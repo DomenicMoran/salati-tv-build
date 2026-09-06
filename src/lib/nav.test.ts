@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 
 import {
+  LOCAL_SCREENS,
   SCREENS,
   SETTINGS_BEREICHE,
   isScreen,
@@ -28,18 +29,29 @@ describe('SCREENS', () => {
     expect(new Set(SCREENS).size).toBe(SCREENS.length);
   });
 
-  it('wird in App.tsx vollstaendig gerendert', () => {
+  it('ueberschneidet sich nicht mit LOCAL_SCREENS', () => {
+    // LOCAL_SCREENS ist bewusst AUSSERHALB von SCREENS, damit
+    // apps/mobile/src/features/tv/screens.test.ts (das SCREENS zeichengenau
+    // gegen den Handy-Katalog prueft) von einem TV-only-Screen unberuehrt bleibt.
+    for (const s of LOCAL_SCREENS) expect((SCREENS as readonly string[]).includes(s)).toBe(false);
+  });
+
+  it('wird in App.tsx vollstaendig gerendert, SCREENS und LOCAL_SCREENS zusammen', () => {
     const src = fs.readFileSync(APP_TSX, 'utf8');
     const rendered = [...src.matchAll(/screen === '([a-z]+)'/g)].map((m) => m[1]);
     // 'clock' steht in App.tsx zusaetzlich im TV-Event-Handler; deshalb Menge
     // statt Reihenfolge/Anzahl vergleichen.
-    expect([...new Set(rendered)].sort()).toEqual([...SCREENS].sort());
+    expect([...new Set(rendered)].sort()).toEqual([...SCREENS, ...LOCAL_SCREENS].sort());
   });
 });
 
 describe('isScreen', () => {
   it('erkennt jeden bekannten Bildschirm', () => {
     for (const s of SCREENS) expect(isScreen(s)).toBe(true);
+  });
+
+  it('erkennt auch die lokalen Bildschirme ohne Handy-Gegenstueck', () => {
+    for (const s of LOCAL_SCREENS) expect(isScreen(s)).toBe(true);
   });
 
   it('weist alles andere ab', () => {
@@ -53,7 +65,9 @@ describe('isScreen', () => {
 
 describe('screenFromLaunchArgument', () => {
   it('liest jeden Bildschirm aus den Voreinstellungen', () => {
-    for (const s of SCREENS) expect(screenFromLaunchArgument({ salatiScreen: s })).toBe(s);
+    for (const s of [...SCREENS, ...LOCAL_SCREENS]) {
+      expect(screenFromLaunchArgument({ salatiScreen: s })).toBe(s);
+    }
   });
 
   it('weist Unbekanntes ab und faellt ueber nichts', () => {
@@ -73,7 +87,9 @@ describe('screenFromLaunchArgument', () => {
 
 describe('screenFromUrl', () => {
   it('liest jeden Bildschirm aus seiner Adresse', () => {
-    for (const s of SCREENS) expect(screenFromUrl(`salatitv://screen/${s}`)).toBe(s);
+    for (const s of [...SCREENS, ...LOCAL_SCREENS]) {
+      expect(screenFromUrl(`salatitv://screen/${s}`)).toBe(s);
+    }
   });
 
   it('nimmt einen abschliessenden Schraegstrich hin', () => {

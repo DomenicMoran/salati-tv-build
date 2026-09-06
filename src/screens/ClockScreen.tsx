@@ -247,8 +247,11 @@ export function ClockScreen({ location: override }: { location?: TvLocation } = 
         </Text>
       </View>
       {/* Laeuft eine Rezitation im Hintergrund, steht sie hier — sonst
-          waere es Ton aus dem Nichts (s. HintergrundStreifen). */}
-      <HintergrundStreifen />
+          waere es Ton aus dem Nichts (s. HintergrundStreifen). `kompakt`:
+          die Gebetsuhr stapelt schon Fusszeile, Vers und je nach Einstellung
+          Jumua-/Wetterhinweis eng — die volle zweizeilige Karte lief am
+          unteren Rand aus dem Bild (Geraetetest 2026-09-06, 540 dp). */}
+      <HintergrundStreifen kompakt />
     </View>
   );
 }

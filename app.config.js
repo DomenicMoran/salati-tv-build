@@ -69,7 +69,18 @@ module.exports = {
   //     Bildnachweis in den Einstellungen. Dazu Akzentfarbe getrennt vom Thema,
   //     Ziffernblatt statt Ziffern (mit Countdown-Bogen), Strichstaerke,
   //     Sekunden an/aus und die Abdunkelung der Motive.
-  version: '1.12.0',
+  // 1.13.0 (2026-09-06): neuer Bereich "Gemeinsam beten" (fuenf
+  //   Aufstellungs-Diagramme, dreizehn Regeln mit Sicherheitsgrad,
+  //   Rechtsschule und Quelle, als Blaetterbuch) — dazu vier am Geraet
+  //   gefundene Fehler behoben: Gebetsruf spielte doppelt (zwei parallele
+  //   Abspielwege liefen unabhaengig), der Hintergrund-Wecker war ungenau
+  //   (jetzt exakter Weckruf hoechster Prioritaet, Berechtigung im
+  //   Einstellungs-Hinweis), abgeschnittene Diagramme und zerfallene
+  //   arabische Schrift, und die "Laeuft im Hintergrund"-Anzeige verdeckte
+  //   die unterste Kachelreihe. Auch die drei Gebetsruf-Aufnahmen sind
+  //   klarer (44,1 statt 32 kHz), und das Hintergrundmotiv laesst sich jetzt
+  //   auch hinter Startmenue und Koran-Leser einschalten.
+  version: '1.13.0',
   scheme: 'salatitv',
   orientation: 'landscape',
   icon: './assets/icon.png',
@@ -84,7 +95,9 @@ module.exports = {
     // 11 = 1.7.0, 12 = 1.8.0 (von Play abgelehnt, siehe oben).
     // 16 = 1.10.0 (nativer Adhan-Dienst, Screensaver-Optionen).
     // 18 = 1.12.0 (Steuerkreuz vom Handy, Koran im Hintergrund, Motive).
-    versionCode: 18,
+    // 19 = 1.13.0 (Gemeinsam beten, doppelter Gebetsruf und Hintergrund-
+    // Wecker behoben, klarere Gebetsrufe, Motiv hinter Menue/Koran-Leser).
+    versionCode: 19,
     // Der Vordergrund darf NICHT icon.png sein: das ist seit 1.8.1 vollflaechig,
     // und die Maske zeigt vom 108-dp-Vordergrund nur die mittleren 72 dp — die
     // Zacken waeren abgeschnitten.
@@ -96,7 +109,7 @@ module.exports = {
     bundleIdentifier: 'de.salatibox.tv',
     // Wird beim Bauen vom Workflow hochgezaehlt; Apple lehnt eine schon
     // hochgeladene Build-Nummer ab, auch wenn die Version dieselbe bleibt.
-    buildNumber: '3',
+    buildNumber: '4',
     infoPlist: {
       // Der Fernseher oeffnet fuer die Handy-Kopplung einen TCP-Server im WLAN
       // (src/lib/pairing.ts). Ohne diesen Text verweigert tvOS den Zugriff aufs

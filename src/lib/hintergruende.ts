@@ -66,3 +66,53 @@ export function istHintergrundId(v: unknown): v is HintergrundId {
 export function hintergrundNameKey(id: GezeichneterHintergrund): string {
   return `settings.background.${id}`;
 }
+
+/**
+ * Bereiche, in denen ein FOTO oder VIDEO zusaetzlich zum Ruhebildschirm
+ * laufen darf — je einer an- oder abschaltbar (Nutzerwunsch 2026-09-06).
+ *
+ * GERAETEBEFUND, der die erste Fassung (2026-08-30) zurueckgenommen hat: mit
+ * demselben Motiv hinter den EINSTELLUNGEN war der kleine Text kaum noch zu
+ * lesen, und auf dem STARTMENUE verschwanden die Unterzeilen der Kacheln im
+ * Gewimmel. `einstellungen` gehoert deshalb NICHT zu dieser Liste — dort war
+ * der Text am schlechtesten lesbar, und die Einstellung selbst muss bedienbar
+ * bleiben, um ein Motiv wieder abzuschalten. Die uebrigen Bereiche bekommen
+ * die Wahl zurueck, aber nur zusammen mit dem festen Saum und dem zusaetzlichen
+ * Schleier aus components/MedienGrund.tsx — ohne die waere es derselbe Fehler
+ * noch einmal.
+ */
+export const HINTERGRUND_BEREICHE = ['ruhebildschirm', 'startmenue', 'koran', 'inhalte'] as const;
+export type HintergrundBereich = (typeof HINTERGRUND_BEREICHE)[number];
+
+/** Je Bereich: darf dort ein Foto/Video laufen? */
+export type HintergrundSichtbarkeit = Record<HintergrundBereich, boolean>;
+
+/**
+ * Voreinstellung: NUR der Ruhebildschirm, alles andere aus.
+ *
+ * Das ist genau das Verhalten vor dieser Einstellung (`MOTIV_BILDSCHIRME`
+ * kannte bis 2026-09-06 nur `'clock'`) — bestehende Nutzer sehen also nach
+ * einem Update keine ungefragte Aenderung, sie koennen die neuen Bereiche nur
+ * zusaetzlich EINSCHALTEN.
+ */
+export const HINTERGRUND_SICHTBARKEIT_STANDARD: HintergrundSichtbarkeit = {
+  ruhebildschirm: true,
+  startmenue: false,
+  koran: false,
+  inhalte: false,
+};
+
+export function normalizeHintergrundSichtbarkeit(v: unknown): HintergrundSichtbarkeit {
+  const out = { ...HINTERGRUND_SICHTBARKEIT_STANDARD };
+  if (typeof v !== 'object' || v === null) return out;
+  const roh = v as Record<string, unknown>;
+  for (const bereich of HINTERGRUND_BEREICHE) {
+    if (typeof roh[bereich] === 'boolean') out[bereich] = roh[bereich];
+  }
+  return out;
+}
+
+/** Locale-Schluessel des Anzeigenamens eines Bereichs (Einstellungen). */
+export function hintergrundBereichNameKey(bereich: HintergrundBereich): string {
+  return `settings.bereiche.${bereich}`;
+}

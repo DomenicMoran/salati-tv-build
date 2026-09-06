@@ -19,6 +19,110 @@
     "offlineStreams": "Offline — list from storage, playback needs a connection",
     "retry": "Retry"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ page",
+    "footerHinweis": "This overview does not replace studying fiqh. For important decisions, ask a local scholar.",
+    "grad": {
+      "anerkannt": "Widely agreed",
+      "empfehlung": "Practical tip",
+      "strittig": "Disputed between schools"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "Once a third person joins, the followers form their own row behind the imam.",
+        "titel": "Three people"
+      },
+      "familienrunde": {
+        "beschreibung": "The imam stands alone in front, men and boys form the row(s) behind him, women and girls the last row.",
+        "titel": "Mixed family group"
+      },
+      "groessereGruppe": {
+        "beschreibung": "The front men's rows are closed first, without gaps; the women's row forms the back.",
+        "titel": "Larger group, several rows"
+      },
+      "imamEhefrau": {
+        "beschreibung": "If a wife prays with her husband leading, she stands behind him, not beside him.",
+        "titel": "Imam and wife"
+      },
+      "zweiPersonen": {
+        "beschreibung": "If only one man prays with the imam, he does not stand behind him but to his right, slightly set back.",
+        "titel": "Imam and one follower"
+      }
+    },
+    "legende": {
+      "frau": "Woman",
+      "imam": "Imam (إمام)",
+      "mann": "Man",
+      "qibla": "Qibla"
+    },
+    "madhhab": {
+      "alle": "All schools of law",
+      "hanafi": "Hanafi",
+      "verschieden": "Schools differ"
+    },
+    "quelle": "Source",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "Once a third person joins, all followers (ma'mum, مأموم) form their own row behind the imam, who stands alone in front. It is reported that when Jabir b. Abdullah and Jabbar b. Sakhr stood to the right and left of the Prophet ﷺ, he took both by the hand and placed them behind him.",
+        "titel": "From three people: a row of their own"
+      },
+      "amin": {
+        "text": "When the imam says \"Amin\" at the end of Al-Fatiha, all followers join in audibly. Reported from the Prophet ﷺ: \"When the imam says Amin, say Amin.\"",
+        "titel": "Saying Amin together"
+      },
+      "besteReihen": {
+        "text": "For men the front row is considered best and the back row least recommended; for women it is the opposite – the back row is considered best for them.",
+        "titel": "Best and least recommended row"
+      },
+      "familienrunde": {
+        "text": "When a family prays together, the imam stands alone in front, men and boys form the row(s) behind him, women and girls the last row – even if only one woman is present, she stands at the back, not beside the men. It is reported that an orphan boy and Anas b. Malik prayed behind the Prophet ﷺ in a house while an older woman formed the row behind them alone.",
+        "titel": "Mixed family group"
+      },
+      "frauZuHause": {
+        "text": "When a woman prays at home with her mahram leading, she stands behind him, not beside him. Full detail with sources on the women's area in the mosque: Study → Fiqh of Worship, lesson 13.",
+        "titel": "A wife at home: behind the one leading"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "When a single man prays with the imam, he does not stand behind him but to the imam's right, slightly set back. It is reported that Ibn Abbas joined the Prophet ﷺ for the night prayer, first stood on his left, and was drawn by the Prophet ﷺ to his right side.",
+        "titel": "Imam with one follower"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "The imam recites Fajr, Maghrib and Isha aloud in the first two rak'ahs, and Dhuhr and Asr silently. The Quran names both registers of voice in prayer.",
+        "titel": "Loud and silent prayers"
+      },
+      "mahramUndKhilwa": {
+        "text": "In principle, men and women, related or not, may take part in congregational prayer together as long as the formation is kept. The one real restriction concerns seclusion (khilwa, خلوة): a man and a woman who are not mahram (محرم) to each other may not be alone together. As soon as another person is present – a mahram, another follower, or a third person – it is no longer khilwa. Reported from the Prophet ﷺ: \"No man should be alone with a woman except in the presence of a mahram.\"",
+        "titel": "Mahram and khilwa"
+      },
+      "qiblaAusrichtung": {
+        "text": "All rows face the qibla together, just as in solitary prayer. The Quran names the qibla direction explicitly; the app shows it in the qibla compass.",
+        "titel": "Facing the qibla"
+      },
+      "rabbanaUndTakbir": {
+        "text": "The imam says \"Allahu Akbar\" audibly at every change of posture; rising after ruku, he says \"Sami'Allahu liman hamidah\", to which the followers answer \"Rabbana wa lakal-hamd\".",
+        "titel": "Takbir, Sami'Allahu liman hamidah and Rabbana"
+      },
+      "reihenSchliessen": {
+        "text": "The row (saff, صف) is closed from the centre outward, shoulder to shoulder, without gaps. Reported from the Prophet ﷺ: \"Straighten your rows, for straightening the rows is part of the completeness of prayer.\"",
+        "titel": "Close the rows, leave no gaps"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Practical tip, not a legal ruling: during silent prayers, followers only hear the takbirs. An imam makes the rhythm reliably audible by saying them clearly and at an even pace – a little louder than his own silent recitation, without rushing.",
+        "titel": "Practical tip: making the rhythm audible"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Hanafi: followers stay completely silent during loud recitation and listen, based on the Quranic verse: \"When the Quran is recited, listen to it and be silent.\" Other schools of law, including the Shafi'i school, require every follower to recite Al-Fatiha quietly themselves – including the basmala (بسملة) before it – based on the Prophet's ﷺ words: \"There is no prayer for the one who does not recite Al-Fatiha.\"",
+        "titel": "Conduct during loud recitation"
+      }
+    },
+    "sections": {
+      "aufstellung": "Formation",
+      "diagramme": "Diagrams",
+      "mahram": "Mahram and khilwa",
+      "rezitation": "Recitation and conduct"
+    },
+    "seite": "Page {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Evening sky",
     "haram": "Masjid al-Haram",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Prayer clock",
     "clockHint": "Prayer times & countdown",
+    "gebetGemeinsam": "Pray Together",
+    "gebetGemeinsamHint": "Lineup & rules",
     "pairing": "Connect",
     "pairingHint": "Phone as remote control",
     "podcasts": "Podcasts",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "All off",
-      "hint": "The call sounds only while Salati is on screen — the TV does not wake the app by itself. Press Back to end a call that is playing.",
+      "exactAlarmAction": "Allow alarms & reminders",
+      "exactAlarmNotGranted": "Currently not allowed — please enable it below, otherwise reminders may arrive late.",
+      "hint": "The call also plays while Salati runs in the background — this needs the “Alarms & reminders” permission below. Without it, it can arrive later in the background. Press Back to end a call that is playing.",
       "licenseHint": "The recordings come from Wikimedia Commons under free licences. Two of them require crediting the author — that is why they are listed here.",
       "licenses": "Where the recordings come from",
       "off": "Off",
@@ -187,6 +295,14 @@
       "verlauf": "Gradient",
       "video": "Video",
       "videos": "Videos"
+    },
+    "bereiche": {
+      "hint": "Settings always stay without a background, so they stay readable.",
+      "inhalte": "Other areas",
+      "koran": "Quran reader",
+      "ruhebildschirm": "Idle screen",
+      "startmenue": "Home menu",
+      "title": "Where the background appears"
     },
     "clockScale": {
       "large": "Large",

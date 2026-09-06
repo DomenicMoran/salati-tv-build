@@ -28,16 +28,47 @@ import { useReduzierteBewegung } from '@/lib/useReduzierteBewegung';
  *    unlesbar. Die Staerke waehlt der Nutzer (Einstellungen → Darstellung); die
  *    Voreinstellung ist bewusst kraeftig.
  */
+/**
+ * Feste zusaetzliche Abdunkelung ausserhalb des Ruhebildschirms.
+ *
+ * Auf der Uhr steht Text nur oben oder unten, dort greift der Saum. Im
+ * STARTMENUE stehen die Kachel-Unterzeilen ueber die ganze Flaeche verteilt
+ * (die Karten selbst sind nur 5-6 % deckend, s. lib/theme.ts `card`), und beim
+ * KORAN-LESER liegen Umschrift und Uebersetzung in der Bildschirmmitte — genau
+ * dort, wo der Saum bewusst nichts tut. Ein zusaetzlicher FESTER, flaechiger
+ * Schleier (nicht die Nutzerwahl `dimmung`) macht dort denselben Unterschied,
+ * den der Saum an den Raendern macht.
+ *
+ * GERAETEBEFUND 2026-09-06 (Android-TV-Emulator salati_tv_36, 1080p): mit dem
+ * Tawaf-VIDEO (dichte helle Menschenmenge direkt hinter dem Text) und dem
+ * Kaaba-FOTO (derselbe Bildinhalt als Standbild) je einmal geprueft — Home-Hub
+ * mit allen zehn Kachel-Unterzeilen, Koran-Leser (u. a. eine zweizeilige
+ * Uebersetzung mitten im dichtesten Bildbereich) und die Suren-Liste der
+ * Rezitatoren (kleine graue arabische Namen). 0.32 zusaetzlich zur gewaehlten
+ * Abdunkelung reicht in allen drei Faellen, um jeden Text klar vom Bild
+ * abzuheben, ohne das Motiv unkenntlich zu machen — per Bildschirmfoto
+ * bestaetigt, nicht nur berechnet.
+ */
+const INHALT_SCHLEIER_DECKKRAFT = 0.32;
+
 export function MedienGrund({
   medium,
   dimmung,
   bewegtesFoto,
+  vollflaechigGedaempft = false,
 }: {
   medium: HintergrundMedium;
   /** 0…1 — wie stark der Grund abgedunkelt wird. */
   dimmung: number;
   /** Fotos langsam wandern lassen (Einstellung; „Bewegung reduzieren" sticht). */
   bewegtesFoto: boolean;
+  /**
+   * Laeuft das Motiv HINTER INHALTEN statt hinter dem Ruhebildschirm (s.
+   * components/Hintergrund.tsx) — dort steht Text ueber die ganze Flaeche
+   * verteilt, nicht nur an den Raendern, und bekommt zusaetzlich zum Saum
+   * einen festen, flaechendeckenden Schleier.
+   */
+  vollflaechigGedaempft?: boolean;
 }) {
   const datei = abspielAdresse(medium);
   const istVideo = medium.art === 'video' && datei !== null;
@@ -53,6 +84,9 @@ export function MedienGrund({
       )}
       {istVideo ? <VideoGrund uri={datei} /> : null}
       <View style={[styles.schleier, { opacity: dimmung }]} />
+      {vollflaechigGedaempft ? (
+        <View style={[styles.schleier, { opacity: INHALT_SCHLEIER_DECKKRAFT }]} />
+      ) : null}
       <Saum />
     </View>
   );

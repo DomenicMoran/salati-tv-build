@@ -19,6 +19,110 @@
     "offlineStreams": "Tanpa rangkaian — senarai dari storan, main balik perlukan sambungan",
     "retry": "Cuba lagi"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ halaman",
+    "footerHinweis": "Gambaran ini tidak menggantikan pembelajaran fiqh. Untuk keputusan penting, rujuk ulama tempatan.",
+    "grad": {
+      "anerkannt": "Diterima secara meluas",
+      "empfehlung": "Cadangan praktikal",
+      "strittig": "Diperselisihkan antara mazhab"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "Sebaik sahaja orang ketiga menyertai, para makmum membentuk saf tersendiri di belakang imam.",
+        "titel": "Tiga orang"
+      },
+      "familienrunde": {
+        "beschreibung": "Imam berdiri sendirian di hadapan, lelaki dan kanak-kanak lelaki membentuk saf di belakangnya, wanita dan kanak-kanak perempuan membentuk saf terakhir.",
+        "titel": "Kumpulan keluarga bercampur"
+      },
+      "groessereGruppe": {
+        "beschreibung": "Saf lelaki di hadapan dirapatkan dahulu tanpa jarak; saf wanita menjadi penutup di belakang.",
+        "titel": "Kumpulan lebih besar, beberapa saf"
+      },
+      "imamEhefrau": {
+        "beschreibung": "Jika isteri bersolat dengan suaminya sebagai imam, dia berdiri di belakangnya, bukan di sisinya.",
+        "titel": "Imam dan isteri"
+      },
+      "zweiPersonen": {
+        "beschreibung": "Jika hanya seorang lelaki bersolat bersama imam, dia tidak berdiri di belakang, sebaliknya sedikit ke belakang di sebelah kanan imam.",
+        "titel": "Imam dan seorang makmum"
+      }
+    },
+    "legende": {
+      "frau": "Perempuan",
+      "imam": "Imam",
+      "mann": "Lelaki",
+      "qibla": "Kiblat"
+    },
+    "madhhab": {
+      "alle": "Semua mazhab",
+      "hanafi": "Mazhab Hanafi",
+      "verschieden": "Mazhab berbeza pendapat"
+    },
+    "quelle": "Sumber",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "Sebaik sahaja orang ketiga menyertai, semua makmum membentuk saf tersendiri di belakang imam, yang berdiri sendirian di hadapan. Diriwayatkan bahawa apabila Jabir bin Abdullah dan Jabbar bin Sakhr berdiri di kanan dan kiri Nabi ﷺ, baginda memegang tangan kedua-duanya dan meletakkan mereka di belakangnya.",
+        "titel": "Mulai tiga orang: membentuk saf sendiri"
+      },
+      "amin": {
+        "text": "Apabila imam menyebut \"amin\" di akhir Al-Fatihah, semua makmum turut menyebutnya dengan suara yang boleh didengar. Diriwayatkan daripada Nabi ﷺ: \"Apabila imam menyebut amin, sebutlah amin.\"",
+        "titel": "Menyebut amin bersama"
+      },
+      "besteReihen": {
+        "text": "Bagi lelaki, saf paling hadapan dianggap terbaik dan saf paling belakang paling kurang digalakkan; bagi wanita sebaliknya – saf paling belakang dianggap terbaik untuk mereka.",
+        "titel": "Saf terbaik dan yang paling kurang digalakkan"
+      },
+      "familienrunde": {
+        "text": "Jika sekeluarga bersolat bersama, imam berdiri sendirian di hadapan, lelaki dan kanak-kanak lelaki membentuk saf di belakangnya, wanita dan kanak-kanak perempuan membentuk saf terakhir – walaupun hanya ada seorang wanita, dia tetap berdiri di belakang, bukan di sisi lelaki. Diriwayatkan bahawa seorang anak yatim dan Anas bin Malik bersolat di belakang Nabi ﷺ di sebuah rumah, manakala seorang wanita tua bersendirian membentuk saf di belakang mereka.",
+        "titel": "Kumpulan keluarga bercampur"
+      },
+      "frauZuHause": {
+        "text": "Jika seorang wanita bersolat di rumah dengan mahramnya sebagai imam, dia berdiri di belakangnya, bukan di sisinya. Huraian lengkap dengan sumber tentang ruang wanita di masjid: Kajian → Fiqh Ibadah, pelajaran 13.",
+        "titel": "Isteri di rumah: di belakang yang mengimamkan"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "Jika hanya seorang lelaki bersolat bersama imam, dia tidak berdiri di belakangnya, sebaliknya sedikit ke belakang di sebelah kanan imam. Diriwayatkan bahawa Ibn Abbas menyertai Nabi ﷺ untuk solat malam, mula-mula berdiri di sebelah kirinya, lalu Nabi ﷺ menariknya ke sebelah kanan.",
+        "titel": "Imam dengan seorang makmum"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "Imam membaca dengan kuat pada dua rakaat pertama Subuh, Maghrib dan Isyak, dan secara perlahan pada Zohor dan Asar. Al-Quran menyebut kedua-dua nada bacaan dalam solat.",
+        "titel": "Solat jahar dan sir"
+      },
+      "mahramUndKhilwa": {
+        "text": "Pada asasnya, lelaki dan wanita, sama ada berkerabat atau tidak, boleh bersama-sama menyertai solat berjemaah selagi susunan saf dipatuhi. Satu-satunya sekatan sebenar berkaitan khalwat (خلوة): seorang lelaki dan wanita yang bukan mahram (محرم) antara satu sama lain tidak boleh berduaan. Sebaik sahaja ada orang lain hadir – seorang mahram, makmum lain, atau orang ketiga – ia bukan lagi khalwat. Diriwayatkan daripada Nabi ﷺ: \"Janganlah seorang lelaki berduaan dengan seorang wanita melainkan bersama mahramnya.\"",
+        "titel": "Mahram dan khalwat"
+      },
+      "qiblaAusrichtung": {
+        "text": "Semua saf menghadap kiblat bersama-sama, sama seperti solat bersendirian. Al-Quran menyebut arah kiblat dengan jelas; aplikasi memaparkannya dalam kompas kiblat.",
+        "titel": "Menghadap kiblat"
+      },
+      "rabbanaUndTakbir": {
+        "text": "Imam menyebut \"Allahu Akbar\" dengan jelas pada setiap perubahan pergerakan; semasa bangun daripada rukuk, dia menyebut \"Sami'Allahu liman hamidah\", lalu makmum menjawab \"Rabbana wa lakal-hamd\".",
+        "titel": "Takbir, Sami'Allahu liman hamidah dan Rabbana"
+      },
+      "reihenSchliessen": {
+        "text": "Saf dirapatkan bermula dari tengah, bahu bertemu bahu, tanpa jarak. Diriwayatkan daripada Nabi ﷺ: \"Luruskanlah saf-saf kamu, kerana meluruskan saf termasuk kesempurnaan solat.\"",
+        "titel": "Rapatkan saf, jangan tinggalkan jarak"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Cadangan praktikal, bukan hukum syarak: dalam solat sir, makmum hanya mendengar takbir. Seorang imam menjadikan rentak jelas didengar dengan menyebutnya secara jelas dan berirama tetap – sedikit lebih kuat daripada bacaan sirnya sendiri, tanpa tergesa-gesa.",
+        "titel": "Cadangan praktikal: menjadikan rentak jelas didengar"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Menurut mazhab Hanafi, makmum berdiam diri sepenuhnya semasa imam mengeraskan bacaan dan mendengar, berdasarkan ayat Al-Quran: \"Apabila dibacakan Al-Quran, maka dengarlah dan berdiamlah.\" Mazhab lain, termasuk Syafi'i, mewajibkan setiap makmum membaca sendiri Al-Fatihah secara perlahan – termasuk basmalah (بسملة) sebelumnya – berdasarkan sabda Nabi ﷺ: \"Tiada solat bagi yang tidak membaca Al-Fatihah.\"",
+        "titel": "Tatacara semasa bacaan dikuatkan"
+      }
+    },
+    "sections": {
+      "aufstellung": "Susunan Saf",
+      "diagramme": "Gambar Rajah",
+      "mahram": "Mahram dan Khalwat",
+      "rezitation": "Bacaan dan Tatacara"
+    },
+    "seite": "Halaman {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Langit senja",
     "haram": "Masjidil Haram",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Jam solat",
     "clockHint": "Waktu solat & kira detik",
+    "gebetGemeinsam": "Solat Berjemaah",
+    "gebetGemeinsamHint": "Saf & peraturan",
     "pairing": "Sambung",
     "pairingHint": "Telefon sebagai alat kawalan",
     "podcasts": "Podcast",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "Matikan semua",
-      "hint": "Azan berkumandang hanya semasa Salati dipaparkan — televisyen tidak membuka aplikasi dengan sendirinya. Tekan Kembali untuk menghentikan azan yang sedang berbunyi.",
+      "exactAlarmAction": "Benarkan penggera & peringatan",
+      "exactAlarmNotGranted": "Buat masa ini tidak dibenarkan — sila aktifkan di bawah, jika tidak peringatan mungkin lewat.",
+      "hint": "Azan tetap berkumandang semasa Salati berjalan di latar belakang — untuk itu diperlukan kebenaran “Penggera & peringatan” di bawah. Tanpanya, azan mungkin lewat di latar belakang. Tekan Kembali untuk menghentikan azan yang sedang berbunyi.",
       "licenseHint": "Rakaman diambil daripada Wikimedia Commons di bawah lesen bebas. Dua daripadanya mewajibkan penghargaan kepada pembuatnya — sebab itu disenaraikan di sini.",
       "licenses": "Asal rakaman",
       "off": "Mati",
@@ -187,6 +295,14 @@
       "verlauf": "Kecerunan",
       "video": "Video",
       "videos": "Video"
+    },
+    "bereiche": {
+      "hint": "Tetapan sentiasa tanpa latar belakang, supaya mudah dibaca.",
+      "inhalte": "Bahagian lain",
+      "koran": "Pembaca Al-Quran",
+      "ruhebildschirm": "Skrin rehat",
+      "startmenue": "Menu utama",
+      "title": "Tempat latar belakang muncul"
     },
     "clockScale": {
       "large": "Besar",

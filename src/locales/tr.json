@@ -19,6 +19,110 @@
     "offlineStreams": "Çevrimdışı — liste bellekten, oynatma için bağlantı gerekir",
     "retry": "Tekrar dene"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ sayfa",
+    "footerHinweis": "Bu genel bakış fıkıh çalışmasının yerini tutmaz. Önemli kararlarda yerel bir alime danışın.",
+    "grad": {
+      "anerkannt": "Geniş çapta kabul görür",
+      "empfehlung": "Pratik öneri",
+      "strittig": "Mezhepler arasında tartışmalı"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "Üçüncü kişi katılınca, cemaat imamın arkasında kendi safını oluşturur.",
+        "titel": "Üç kişi"
+      },
+      "familienrunde": {
+        "beschreibung": "İmam önde tek başına durur, erkekler ve erkek çocuklar arkasında saf(lar), kadınlar ve kız çocukları en arkadaki safı oluşturur.",
+        "titel": "Karma aile cemaati"
+      },
+      "groessereGruppe": {
+        "beschreibung": "Öndeki erkek safları boşluksuz önce tamamlanır; kadın safı en arkada yer alır.",
+        "titel": "Daha büyük grup, birden çok saf"
+      },
+      "imamEhefrau": {
+        "beschreibung": "Bir kadın, imamlık yapan kocasıyla namaz kılıyorsa, yanında değil arkasında durur.",
+        "titel": "İmam ve eşi"
+      },
+      "zweiPersonen": {
+        "beschreibung": "İmamla sadece bir erkek namaz kılıyorsa, arkasında değil, hafifçe geride sağında durur.",
+        "titel": "İmam ve tek bir cemaatçi"
+      }
+    },
+    "legende": {
+      "frau": "Kadın",
+      "imam": "İmam (إمام)",
+      "mann": "Erkek",
+      "qibla": "Kıble"
+    },
+    "madhhab": {
+      "alle": "Tüm mezhepler",
+      "hanafi": "Hanefi",
+      "verschieden": "Mezhepler farklı görüşte"
+    },
+    "quelle": "Kaynak",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "Üçüncü bir kişi katılınca, tüm cemaat (me'mum, مأموم) imamın arkasında kendi safını oluşturur; imam önde tek başına durur. Rivayete göre Cabir b. Abdullah ile Cabbar b. Sahr, Peygamber ﷺ'in sağına ve soluna durunca, Peygamber ﷺ ikisini de elinden tutup arkasına almıştır.",
+        "titel": "Üç kişiden itibaren: kendi safı"
+      },
+      "amin": {
+        "text": "İmam, Fatiha'nın sonunda \"amin\" deyince, tüm cemaat sesli olarak katılır. Peygamber ﷺ'den rivayet edilir: \"İmam amin dediğinde siz de amin deyin.\"",
+        "titel": "Birlikte amin demek"
+      },
+      "besteReihen": {
+        "text": "Erkekler için en öndeki saf en iyisi, en arkadaki saf ise en az tercih edilenidir; kadınlarda bu tam tersidir – onlar için en arkadaki saf en iyisi sayılır.",
+        "titel": "En iyi ve en az tercih edilen saf"
+      },
+      "familienrunde": {
+        "text": "Bir aile birlikte namaz kılıyorsa, imam önde tek başına durur, erkekler ve erkek çocuklar arkasında saf(lar), kadınlar ve kız çocukları en arkadaki safı oluşturur – tek bir kadın bile olsa, erkeklerin yanında değil en arkada durur. Rivayete göre bir yetim çocuk ile Enes b. Malik bir evde Peygamber ﷺ'in arkasında namaz kılmış, yaşlı bir kadın da tek başına arkalarındaki safı oluşturmuştur.",
+        "titel": "Karma aile cemaati"
+      },
+      "frauZuHause": {
+        "text": "Bir kadın evde mahremi imamlık yaparken namaz kılıyorsa, yanında değil arkasında durur. Camideki kadınlar bölümüyle ilgili ayrıntılı ve kaynaklı bilgi: Çalışma → İbadet Fıkhı, 13. ders.",
+        "titel": "Evde eş: imamlık yapanın arkasında"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "İmamla sadece bir erkek namaz kılıyorsa, arkasında değil, imamın hafifçe geride sağında durur. Rivayete göre İbn Abbas, Peygamber ﷺ ile gece namazına katılmış, önce solunda durmuş, Peygamber ﷺ onu sağ tarafına çekmiştir.",
+        "titel": "İmam ve tek bir cemaatçi"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "İmam, Sabah, Akşam ve Yatsı namazlarının ilk iki rekatını sesli, Öğle ve İkindi'yi ise sessiz kıraat eder. Kur'an, namazda her iki ses tonunu da anar.",
+        "titel": "Sesli ve sessiz namazlar"
+      },
+      "mahramUndKhilwa": {
+        "text": "Saf düzeni korunduğu sürece, akraba olsun olmasın erkekler ve kadınlar cemaat namazına birlikte katılabilir. Tek gerçek sınırlama halvetle (خلوة) ilgilidir: Birbirine mahrem (محرم) olmayan bir erkekle bir kadın baş başa kalamaz. Başka bir kişi -bir mahrem, başka bir cemaatçi ya da üçüncü bir kişi- bulunduğu anda halvet söz konusu olmaktan çıkar. Peygamber ﷺ'den rivayet edilir: \"Bir erkek, yanında bir mahremi olmadıkça bir kadınla baş başa kalmasın.\"",
+        "titel": "Mahrem ve halvet"
+      },
+      "qiblaAusrichtung": {
+        "text": "Tüm saflar, tek başına kılınan namazda olduğu gibi birlikte kıbleye yönelir. Kur'an kıble yönünü açıkça belirtir; uygulama bunu kıble pusulasında gösterir.",
+        "titel": "Kıbleye yönelme"
+      },
+      "rabbanaUndTakbir": {
+        "text": "İmam, her duruş değişiminde sesli olarak \"Allahu Ekber\" der; rükudan doğrulurken \"Semi'allahu limen hamideh\" der, cemaat de \"Rabbena ve lekel-hamd\" diye karşılık verir.",
+        "titel": "Tekbir, Semi'allahu limen hamideh ve Rabbena"
+      },
+      "reihenSchliessen": {
+        "text": "Saf (saff, صف) ortadan başlayarak omuz omuza, boşluksuz sıklaştırılır. Peygamber ﷺ'den rivayet edilir: \"Saflarınızı düzeltin, çünkü safları düzeltmek namazın tamamlanmasındandır.\"",
+        "titel": "Safları sıklaştırın, boşluk bırakmayın"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Pratik bir öneridir, bir hüküm değildir: Sessiz namazlarda cemaat yalnızca tekbirleri duyar. Bir imam, tekbirleri net ve düzenli bir tempoda söyleyerek – kendi sessiz kıraatinden biraz daha yüksek sesle, aceleye getirmeden – ritmi güvenilir biçimde duyulur kılar.",
+        "titel": "Pratik öneri: ritmi duyulur kılmak"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Hanefi görüşe göre cemaat, sesli kıraat sırasında tamamen susar ve dinler; dayanağı şu ayettir: \"Kur'an okunduğu zaman onu dinleyin ve susun.\" Şafii mezhebi başta olmak üzere diğer mezhepler ise her cemaatçinin Fatiha'yı -öncesindeki besmele (بسملة) dahil- kendisinin de sessizce okumasını ister; dayanağı Peygamber ﷺ'in şu sözüdür: \"Fatiha'yı okumayanın namazı yoktur.\"",
+        "titel": "Sesli kıraat sırasında davranış"
+      }
+    },
+    "sections": {
+      "aufstellung": "Saf Düzeni",
+      "diagramme": "Şemalar",
+      "mahram": "Mahrem ve Halvet",
+      "rezitation": "Kıraat ve Davranış"
+    },
+    "seite": "Sayfa {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Akşam göğü",
     "haram": "Mescid-i Haram",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Namaz saati",
     "clockHint": "Namaz vakitleri ve geri sayım",
+    "gebetGemeinsam": "Birlikte Namaz",
+    "gebetGemeinsamHint": "Saf ve kurallar",
     "pairing": "Bağlan",
     "pairingHint": "Telefon uzaktan kumanda olarak",
     "podcasts": "Podcast'ler",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "Hepsi kapalı",
-      "hint": "Ezan yalnızca Salati ekrandayken okunur — televizyon uygulamayı kendiliğinden açmaz. Okunan ezanı Geri tuşu durdurur.",
+      "exactAlarmAction": "Alarmlara ve hatırlatıcılara izin ver",
+      "exactAlarmNotGranted": "Şu anda izin verilmemiş — gecikmeleri önlemek için lütfen aşağıdan etkinleştirin.",
+      "hint": "Ezan, Salati arka planda çalışırken de okunur — bunun için aşağıdaki “Alarmlar ve hatırlatıcılar” izni gerekir. Bu izin olmadan ezan arka planda geç gelebilir. Okunan ezanı Geri tuşu durdurur.",
       "licenseHint": "Kayıtlar Wikimedia Commons’tan alınmış olup serbest lisanslıdır. İkisi kaynak gösterilmesini şart koşar; bu yüzden burada belirtilmiştir.",
       "licenses": "Kayıtların kaynağı",
       "off": "Kapalı",
@@ -187,6 +295,14 @@
       "verlauf": "Geçiş",
       "video": "Video",
       "videos": "Videolar"
+    },
+    "bereiche": {
+      "hint": "Ayarlar okunaklı kalması için her zaman arka plansız kalır.",
+      "inhalte": "Diğer bölümler",
+      "koran": "Kur’an okuyucu",
+      "ruhebildschirm": "Bekleme ekranı",
+      "startmenue": "Ana menü",
+      "title": "Arka planın göründüğü yerler"
     },
     "clockScale": {
       "large": "Büyük",

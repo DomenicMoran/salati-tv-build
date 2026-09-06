@@ -19,6 +19,110 @@
     "offlineStreams": "Nje ya mtandao — orodha kutoka kwenye hifadhi, uchezaji unahitaji muunganisho",
     "retry": "Jaribu tena"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ ukurasa",
+    "footerHinweis": "Muhtasari huu hauchukui nafasi ya kujifunza fiqh. Kwa maamuzi muhimu, muulize mwanachuoni wa eneo lako.",
+    "grad": {
+      "anerkannt": "Inakubalika kwa upana",
+      "empfehlung": "Ushauri wa kivitendo",
+      "strittig": "Yenye mgogoro kati ya madhehebu"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "Mara tu mtu wa tatu anapojiunga, wafuasi wanaunda safu yao wenyewe nyuma ya imamu.",
+        "titel": "Watu watatu"
+      },
+      "familienrunde": {
+        "beschreibung": "Imamu husimama peke yake mbele, wanaume na wavulana wanaunda safu nyuma yake, wanawake na wasichana wanaunda safu ya mwisho.",
+        "titel": "Kikundi cha familia kilichochanganyika"
+      },
+      "groessereGruppe": {
+        "beschreibung": "Safu za mbele za wanaume zinajazwa kwanza bila nafasi wazi; safu ya wanawake inakuwa ya mwisho.",
+        "titel": "Kikundi kikubwa zaidi, safu kadhaa"
+      },
+      "imamEhefrau": {
+        "beschreibung": "Ikiwa mke anasali na mumewe akiwa imamu, husimama nyuma yake, si kando yake.",
+        "titel": "Imamu na mke"
+      },
+      "zweiPersonen": {
+        "beschreibung": "Ikiwa mwanaume mmoja tu anasali na imamu, hasimami nyuma yake bali upande wake wa kulia, akiwa nyuma kidogo.",
+        "titel": "Imamu na mfuasi mmoja"
+      }
+    },
+    "legende": {
+      "frau": "Mwanamke",
+      "imam": "Imamu (إمام)",
+      "mann": "Mwanaume",
+      "qibla": "Kibla"
+    },
+    "madhhab": {
+      "alle": "Madhehebu yote",
+      "hanafi": "Kihanafi",
+      "verschieden": "Madhehebu yanatofautiana"
+    },
+    "quelle": "Chanzo",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "Mara tu mtu wa tatu anapojiunga, wafuasi wote (ma'mum, مأموم) wanaunda safu yao wenyewe nyuma ya imamu, ambaye husimama peke yake mbele. Imepokewa kwamba Jabir bin Abdullah na Jabbar bin Sakhr waliposimama kulia na kushoto kwa Mtume ﷺ, aliwashika mkono wote wawili na kuwaweka nyuma yake.",
+        "titel": "Kuanzia watu watatu: safu yao wenyewe"
+      },
+      "amin": {
+        "text": "Imamu anaposema \"Amina\" mwishoni mwa Al-Fatiha, wafuasi wote wanaungana kwa sauti inayosikika. Imepokewa kutoka kwa Mtume ﷺ: \"Imamu akisema Amina, semeni Amina.\"",
+        "titel": "Kusema Amina pamoja"
+      },
+      "besteReihen": {
+        "text": "Kwa wanaume, safu ya mbele inachukuliwa kuwa bora zaidi na ya nyuma isiyopendekezwa zaidi; kwa wanawake ni kinyume chake – safu ya nyuma inachukuliwa kuwa bora kwao.",
+        "titel": "Safu bora na isiyopendekezwa zaidi"
+      },
+      "familienrunde": {
+        "text": "Familia inaposali pamoja, imamu husimama peke yake mbele, wanaume na wavulana wanaunda safu nyuma yake, wanawake na wasichana safu ya mwisho – hata kama ni mwanamke mmoja tu, husimama nyuma, si kando ya wanaume. Imepokewa kwamba yatima na Anas bin Malik walisali nyuma ya Mtume ﷺ ndani ya nyumba, wakati mwanamke mzee alisimama peke yake akiunda safu nyuma yao.",
+        "titel": "Kikundi cha familia kilichochanganyika"
+      },
+      "frauZuHause": {
+        "text": "Ikiwa mwanamke anasali nyumbani na mahram wake akiwa imamu, husimama nyuma yake, si kando yake. Maelezo kamili yenye vyanzo kuhusu eneo la wanawake msikitini: Masomo → Fiqh ya Ibada, somo la 13.",
+        "titel": "Mke nyumbani: nyuma ya anayeongoza sala"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "Ikiwa mwanaume mmoja tu anasali na imamu, hasimami nyuma yake bali upande wa kulia wa imamu, akiwa nyuma kidogo. Imepokewa kwamba Ibn Abbas alijiunga na Mtume ﷺ kwa sala ya usiku, kwanza akasimama upande wake wa kushoto, kisha Mtume ﷺ akamvuta kwenda upande wake wa kulia.",
+        "titel": "Imamu na mfuasi mmoja"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "Imamu husoma kwa sauti katika rakaa mbili za kwanza za Alfajiri, Magharibi na Isha, na kwa kimya katika Adhuhuri na Alasiri. Qur'ani inataja hali zote mbili za sauti katika sala.",
+        "titel": "Sala za sauti na za kimya"
+      },
+      "mahramUndKhilwa": {
+        "text": "Kimsingi, wanaume na wanawake, jamaa au sivyo, wanaweza kushiriki pamoja katika sala ya jamaa maadamu mpangilio wa safu unafuatwa. Kizuizi halisi pekee kinahusu faragha (khalwa, خلوة): mwanaume na mwanamke ambao si mahram (محرم) kwa kila mmoja hawaruhusiwi kuwa peke yao pamoja. Mara tu mtu mwingine yupo – mahram, mfuasi mwingine, au mtu wa tatu – hilo si khalwa tena. Imepokewa kutoka kwa Mtume ﷺ: \"Mwanaume asiwe peke yake na mwanamke isipokuwa akiwa na mahram.\"",
+        "titel": "Mahram na Khalwa"
+      },
+      "qiblaAusrichtung": {
+        "text": "Safu zote zinaelekea Kibla pamoja, kama ilivyo katika sala ya peke yako. Qur'ani inataja mwelekeo wa Kibla waziwazi; programu inauonyesha katika dira ya Kibla.",
+        "titel": "Kuelekea Kibla"
+      },
+      "rabbanaUndTakbir": {
+        "text": "Imamu husema kwa sauti inayosikika \"Allahu Akbar\" kila mabadiliko ya hali; anaposimama baada ya rukuu, husema \"Sami'Allahu liman hamidah\", ambapo wafuasi hujibu \"Rabbana wa lakal-hamd\".",
+        "titel": "Takbira, Sami'Allahu liman hamidah na Rabbana"
+      },
+      "reihenSchliessen": {
+        "text": "Safu inafungwa kuanzia katikati, bega kwa bega, bila mapengo. Imepokewa kutoka kwa Mtume ﷺ: \"Nyoosheni safu zenu, kwani kunyoosha safu ni sehemu ya ukamilifu wa sala.\"",
+        "titel": "Kufunga safu, bila mapengo"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Ushauri wa kivitendo, si hukumu ya kisheria: katika sala za kimya, wafuasi husikia takbira pekee. Imamu hufanya mpangilio wa sauti usikike kwa uhakika kwa kuzisema wazi na kwa mwendo sawa – kwa sauti kubwa kidogo kuliko usomaji wake wa kimya, bila haraka.",
+        "titel": "Ushauri wa kivitendo: kufanya mpangilio wa sauti usikike"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Kwa mujibu wa Kihanafi, wafuasi hukaa kimya kabisa wakati wa usomaji wa sauti na kusikiliza, kwa msingi wa aya ya Qur'ani: \"Na Qur'ani ikisomwa, isikilizeni na mnyamaze.\" Madhehebu mengine, kutia ndani ya Kishafi, yanahitaji kila mfuasi asome mwenyewe Al-Fatiha kwa kimya – ikiwemo basmala (بسملة) kabla yake – kwa msingi wa maneno ya Mtume ﷺ: \"Hakuna sala kwa asiyesoma Al-Fatiha.\"",
+        "titel": "Tabia wakati wa usomaji wa sauti"
+      }
+    },
+    "sections": {
+      "aufstellung": "Mpangilio wa Safu",
+      "diagramme": "Michoro",
+      "mahram": "Mahram na Khalwa",
+      "rezitation": "Usomaji na Tabia"
+    },
+    "seite": "Ukurasa {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Anga la jioni",
     "haram": "Msikiti Mtukufu",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Saa ya sala",
     "clockHint": "Nyakati za sala na hesabu ya kurudi nyuma",
+    "gebetGemeinsam": "Kusali Kwa Jamaa",
+    "gebetGemeinsamHint": "Safu na kanuni",
     "pairing": "Unganisha",
     "pairingHint": "Simu kama rimoti",
     "podcasts": "Podikasti",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "Zima zote",
-      "hint": "Adhana husikika tu wakati Salati iko kwenye skrini — televisheni haifungui programu yenyewe. Bonyeza Rudi ili kusimamisha adhana inayoendelea.",
+      "exactAlarmAction": "Ruhusu kengele na vikumbusho",
+      "exactAlarmNotGranted": "Kwa sasa haijaruhusiwa — tafadhali washa hapa chini, la sivyo vikumbusho vinaweza kuchelewa.",
+      "hint": "Adhana pia husikika Salati ikiendesha chinichini — hii inahitaji ruhusa ya “Kengele na vikumbusho” hapa chini. Bila hiyo, adhana inaweza kuchelewa ikiwa chinichini. Bonyeza Rudi ili kusimamisha adhana inayoendelea.",
       "licenseHint": "Rekodi zimetoka Wikimedia Commons chini ya leseni huru. Mbili kati yake zinahitaji kutaja mtunzi — ndiyo maana zimeorodheshwa hapa.",
       "licenses": "Asili ya rekodi",
       "off": "Imezimwa",
@@ -187,6 +295,14 @@
       "verlauf": "Mpito",
       "video": "Video",
       "videos": "Video"
+    },
+    "bereiche": {
+      "hint": "Mipangilio hubaki bila mandharinyuma kila wakati, ili iwe rahisi kusoma.",
+      "inhalte": "Sehemu nyingine",
+      "koran": "Msomaji wa Qur’ani",
+      "ruhebildschirm": "Skrini ya kupumzika",
+      "startmenue": "Menyu kuu",
+      "title": "Mahali mandharinyuma yanapoonekana"
     },
     "clockScale": {
       "large": "Kubwa",

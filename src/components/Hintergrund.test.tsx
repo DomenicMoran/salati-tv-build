@@ -22,9 +22,37 @@ jest.mock('expo-video', () => ({
 }));
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 
-import { Hintergrund } from '@/components/Hintergrund';
-import { HINTERGRUENDE } from '@/lib/hintergruende';
-import { hydrateTvSettings, setHintergrund } from '@/lib/settings';
+// Ein fester Ein-Eintrag-Katalog, damit sich die Bereichs-Freigabe pruefen
+// laesst, ohne einen echten Netzabruf auszuloesen (der Netz-Katalog steht in
+// R2, s. lib/hintergrundMedien.ts).
+const testMedium = {
+  id: 'testmotiv',
+  art: 'foto' as const,
+  url: 'https://example.invalid/testmotiv.jpg',
+  posterUrl: 'https://example.invalid/testmotiv-poster.jpg',
+  name: 'Testmotiv',
+};
+jest.mock('@/lib/hintergrundMedien', () => ({
+  abspielAdresse: () => 'https://example.invalid/testmotiv.jpg',
+  fetchHintergrundMedien: jest.fn(async () => [testMedium]),
+  useHintergrundMedien: () => ({ katalog: [testMedium], speicher: {} }),
+}));
+
+import { Hintergrund, bereichVonScreen } from '@/components/Hintergrund';
+import { HINTERGRUENDE, HINTERGRUND_BEREICHE, medienId, type HintergrundBereich } from '@/lib/hintergruende';
+import {
+  hydrateTvSettings,
+  setHintergrund,
+  toggleHintergrundBereich,
+  tvSettingsState,
+} from '@/lib/settings';
+import { SCREENS, LOCAL_SCREENS } from '@/lib/nav';
+
+/** Setzt EINEN Bereich gezielt, ohne den Zustand der uebrigen zu kennen — der
+ *  Store bietet nur ein Umschalten an (s. lib/settings.ts). */
+function setzeBereich(bereich: HintergrundBereich, wert: boolean) {
+  if (tvSettingsState().hintergrundSichtbarkeit[bereich] !== wert) toggleHintergrundBereich(bereich);
+}
 
 beforeEach(async () => {
   await hydrateTvSettings();
@@ -134,4 +162,69 @@ it('zeichnet bei „bewegt" die Rosette', async () => {
   // ungedreht - die Bewegung waere unsichtbar.
   const pfade = r.root!.queryAll((n) => typeof n.props?.d === 'string' && n.props.d.length > 0);
   expect(pfade.length).toBeGreaterThan(0);
+});
+
+/**
+ * Wo ein Foto/Video zusaetzlich zum Ruhebildschirm laufen darf
+ * (Nutzerwunsch 2026-09-06). `bereichVonScreen` ist der Vertrag zwischen den
+ * Bildschirmen aus lib/nav.ts und den vier Bereichen der Einstellung — jeder
+ * Bildschirm MUSS hier auftauchen, sonst bliebe er unbemerkt aussen vor
+ * (genau das ist den EINSTELLUNGEN passiert, absichtlich).
+ */
+describe('bereichVonScreen', () => {
+  it('ordnet jedem Bildschirm ausser den Einstellungen genau einen Bereich zu', () => {
+    for (const screen of [...SCREENS, ...LOCAL_SCREENS]) {
+      if (screen === 'settings') {
+        expect(bereichVonScreen(screen)).toBeNull();
+      } else {
+        expect(HINTERGRUND_BEREICHE).toContain(bereichVonScreen(screen));
+      }
+    }
+  });
+
+  it('behandelt „kein Bildschirm" (nur in Tests) wie den Ruhebildschirm', () => {
+    expect(bereichVonScreen(undefined)).toBe('ruhebildschirm');
+  });
+
+  it('kennt die vier vom Nutzer versprochenen Bereiche', () => {
+    expect(bereichVonScreen('clock')).toBe('ruhebildschirm');
+    expect(bereichVonScreen('home')).toBe('startmenue');
+    expect(bereichVonScreen('quran')).toBe('koran');
+    expect(bereichVonScreen('videos')).toBe('inhalte');
+  });
+});
+
+describe('Bereichsfreigabe fuer Foto/Video', () => {
+  it('zeigt ein Motiv auf dem Ruhebildschirm auch ohne Zutun (Voreinstellung)', async () => {
+    setHintergrund(medienId(testMedium.id));
+    const r = await render(<Hintergrund screen="clock" />);
+    expect(r.toJSON()).not.toBeNull();
+  });
+
+  it('zeigt auf dem Startmenue KEIN Motiv, solange der Bereich nicht eingeschaltet ist', async () => {
+    setzeBereich('startmenue', false);
+    setHintergrund(medienId(testMedium.id));
+    const r = await render(<Hintergrund screen="home" />);
+    expect(r.toJSON()).toBeNull();
+  });
+
+  it('zeigt es, sobald „Startmenue" eingeschaltet wird', async () => {
+    setHintergrund(medienId(testMedium.id));
+    setzeBereich('startmenue', true);
+    const r = await render(<Hintergrund screen="home" />);
+    expect(r.toJSON()).not.toBeNull();
+    // Ausgehaengt, BEVOR der Zustand fuer folgende Tests zurueckgesetzt wird —
+    // sonst rendert die noch gemountete Komponente ausserhalb von `act()` neu.
+    r.unmount();
+    setzeBereich('startmenue', false);
+  });
+
+  it('zeigt auf den EINSTELLUNGEN nie ein Motiv, unabhaengig von jeder Bereichs-Wahl', async () => {
+    for (const bereich of HINTERGRUND_BEREICHE) setzeBereich(bereich, true);
+    setHintergrund(medienId(testMedium.id));
+    const r = await render(<Hintergrund screen="settings" />);
+    expect(r.toJSON()).toBeNull();
+    r.unmount();
+    for (const bereich of HINTERGRUND_BEREICHE) setzeBereich(bereich, bereich === 'ruhebildschirm');
+  });
 });

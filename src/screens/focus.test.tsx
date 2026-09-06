@@ -16,6 +16,7 @@ import { act, fireEvent, render } from '@testing-library/react-native';
 import type { ReactElement } from 'react';
 
 import { ClockScreen } from '@/screens/ClockScreen';
+import { GebetGemeinsamScreen } from '@/screens/GebetGemeinsamScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
 import { PairingScreen } from '@/screens/PairingScreen';
 import { PodcastsScreen } from '@/screens/PodcastsScreen';
@@ -144,6 +145,18 @@ describe('Fernbedienbarkeit: jeder Screen hat einen Fokus-Anker', () => {
 
   it('Quiz (Frage-Ansicht)', async () => {
     await expectRemoteUsable(<QuizScreen />);
+  });
+
+  it('Gemeinsam beten (Diagramm- und Regel-Seiten)', async () => {
+    const r = await render(<GebetGemeinsamScreen />);
+    // Start: erste Diagramm-Seite.
+    await expectRemoteUsable(<GebetGemeinsamScreen />);
+    // Zur ersten Regel-Seite weiterblaettern (Kapitel-Chip "Aufstellung") —
+    // bleibt genauso ein einziger Initialfokus.
+    await fireEvent.press(r.getByText('Aufstellung'));
+    const nodes = walk(r.toJSON() as unknown as JsonNode);
+    expect(nodes.filter((n) => n.props.focusable === true).length).toBeGreaterThan(0);
+    expect(nodes.filter((n) => n.props.hasTVPreferredFocus === true)).toHaveLength(1);
   });
 
   describe.each([

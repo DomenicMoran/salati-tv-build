@@ -23,7 +23,24 @@ export const SCREENS = [
   'settings',
 ] as const;
 
-export type Screen = (typeof SCREENS)[number];
+/**
+ * Bildschirme OHNE Gegenstück auf der Handy-Fernbedienung — bewusst NICHT in
+ * `SCREENS`: diese Konstante ist zeichengenau der Cross-App-Vertrag, den
+ * `apps/mobile/src/features/tv/screens.test.ts` gegen diese Datei prüft (s.
+ * Kommentar oben). "Gemeinsam beten" ist reines Betrachten ohne Texteingabe —
+ * es braucht keine Fernbedienungs-Kachel auf dem Handy, und ein Eintrag hier
+ * hätte eine parallele Aenderung an der Handy-Datei erzwungen (an der zur
+ * selben Zeit eine andere Sitzung arbeitet). Trotzdem ein vollwertiger
+ * TV-Screen: eigene Home-Kachel, eigener Eintrag in `Screen`, eigene
+ * Deep-Link-Route — nur eben ohne Meldung an den Kopplungs-Handshake
+ * (s. lib/pairing.ts, das weiterhin nur `SCREENS` versendet).
+ */
+// Kleingeschrieben wie jeder Eintrag in `SCREENS`: `screenFromUrl` lowercased
+// den Adress-Teil vor dem Vergleich (Deep Links sind nicht case-sensitiv),
+// ein Mischschreibungs-Bildschirmname wuerde dort nie treffen.
+export const LOCAL_SCREENS = ['gebetgemeinsam'] as const;
+
+export type Screen = (typeof SCREENS)[number] | (typeof LOCAL_SCREENS)[number];
 
 /**
  * Prüft einen von außen (Handy-Fernbedienung) gelieferten Wert.
@@ -32,9 +49,17 @@ export type Screen = (typeof SCREENS)[number];
  * die TV-App rendert dann GAR NICHTS — kein fokussierbares Element, also auch
  * kein Weg mit der Fernbedienung zurück (derselbe Fehlertyp wie am 2026-07-24).
  * Ein neueres Handy an einem älteren Fernseher genügt dafür.
+ *
+ * Erkennt auch `LOCAL_SCREENS`: ein künftiges Handy-Update könnte diese
+ * Bildschirme genauso per Deep Link/Startargument ansteuern, auch ohne eigene
+ * Fernbedienungs-Kachel.
  */
 export function isScreen(value: unknown): value is Screen {
-  return typeof value === 'string' && (SCREENS as readonly string[]).includes(value);
+  return (
+    typeof value === 'string' &&
+    ((SCREENS as readonly string[]).includes(value) ||
+      (LOCAL_SCREENS as readonly string[]).includes(value))
+  );
 }
 
 /**

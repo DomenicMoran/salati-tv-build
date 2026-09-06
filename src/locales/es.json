@@ -19,6 +19,110 @@
     "offlineStreams": "Sin conexión — lista desde la memoria, la reproducción requiere conexión",
     "retry": "Reintentar"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ página",
+    "footerHinweis": "Este resumen no sustituye el estudio del fiqh. Para decisiones importantes, consulta a un erudito local.",
+    "grad": {
+      "anerkannt": "Ampliamente aceptado",
+      "empfehlung": "Recomendación práctica",
+      "strittig": "Discutido entre escuelas"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "En cuanto se suma una tercera persona, los seguidores forman su propia fila detrás del imán.",
+        "titel": "Tres personas"
+      },
+      "familienrunde": {
+        "beschreibung": "El imán está solo delante, los hombres y niños forman la(s) fila(s) detrás de él, las mujeres y niñas la última fila.",
+        "titel": "Grupo familiar mixto"
+      },
+      "groessereGruppe": {
+        "beschreibung": "Las filas delanteras de hombres se completan primero, sin huecos; la fila de mujeres queda al final.",
+        "titel": "Grupo más grande, varias filas"
+      },
+      "imamEhefrau": {
+        "beschreibung": "Si la esposa reza con su marido como imán, se coloca detrás de él, no a su lado.",
+        "titel": "Imán y esposa"
+      },
+      "zweiPersonen": {
+        "beschreibung": "Si solo un hombre reza con el imán, no se coloca detrás de él, sino a su derecha, ligeramente retrasado.",
+        "titel": "Imán y un solo seguidor"
+      }
+    },
+    "legende": {
+      "frau": "Mujer",
+      "imam": "Imán (إمام)",
+      "mann": "Hombre",
+      "qibla": "Qibla"
+    },
+    "madhhab": {
+      "alle": "Todas las escuelas jurídicas",
+      "hanafi": "Hanafí",
+      "verschieden": "Las escuelas difieren"
+    },
+    "quelle": "Fuente",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "En cuanto se suma una tercera persona, todos los seguidores (ma'mum, مأموم) forman su propia fila detrás del imán, que queda solo delante. Se narra que cuando Yabir b. Abdulah y Yabbar b. Sajr se colocaron a la derecha y a la izquierda del Profeta ﷺ, él tomó a ambos de la mano y los puso detrás de él.",
+        "titel": "A partir de tres personas: fila propia"
+      },
+      "amin": {
+        "text": "Cuando el imán dice \"amín\" al final de Al-Fatiha, todos los seguidores se unen en voz audible. Se narra del Profeta ﷺ: \"Cuando el imán diga amín, digan amín\".",
+        "titel": "Decir amín juntos"
+      },
+      "besteReihen": {
+        "text": "Para los hombres, la primera fila se considera la mejor y la última la menos recomendada; para las mujeres es al revés: la última fila se considera la mejor para ellas.",
+        "titel": "La mejor fila y la menos recomendada"
+      },
+      "familienrunde": {
+        "text": "Cuando una familia reza junta, el imán está solo delante, los hombres y niños forman la(s) fila(s) detrás de él, las mujeres y niñas la última fila; incluso si solo hay una mujer, se queda atrás, no junto a los hombres. Se narra que un niño huérfano y Anas b. Malik rezaron detrás del Profeta ﷺ en una casa, mientras una anciana formaba ella sola la fila detrás de ellos.",
+        "titel": "Grupo familiar mixto"
+      },
+      "frauZuHause": {
+        "text": "Cuando una mujer reza en casa con su mahram como imán, se coloca detrás de él, no a su lado. Detalle completo con fuentes sobre el área de mujeres en la mezquita: Estudio → Fiqh de la adoración, lección 13.",
+        "titel": "La esposa en casa: detrás de quien dirige"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "Cuando un solo hombre reza con el imán, no se coloca detrás de él, sino a su derecha, ligeramente retrasado. Se narra que Ibn Abbas se unió al Profeta ﷺ en la oración nocturna, se colocó primero a su izquierda, y el Profeta ﷺ lo llevó a su lado derecho.",
+        "titel": "Imán con un solo seguidor"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "El imán recita en voz alta Fajr, Maghrib e Isha en las dos primeras rakas, y en voz baja Dhuhr y Asr. El Corán menciona ambos registros de voz en la oración.",
+        "titel": "Oraciones en voz alta y en voz baja"
+      },
+      "mahramUndKhilwa": {
+        "text": "En principio, hombres y mujeres, sean parientes o no, pueden participar juntos en la oración en comunidad mientras se respete la formación. La única restricción real concierne al aislamiento (jalua, خلوة): un hombre y una mujer que no sean mahram (محرم) entre sí no pueden quedarse a solas. En cuanto hay otra persona presente -un mahram, otro seguidor o una tercera persona-, deja de ser jalua. Se narra del Profeta ﷺ: \"Que ningún hombre esté a solas con una mujer, salvo en presencia de un mahram\".",
+        "titel": "Mahram y jalua"
+      },
+      "qiblaAusrichtung": {
+        "text": "Todas las filas se orientan juntas hacia la qibla, igual que en la oración individual. El Corán menciona expresamente la dirección de la qibla; la aplicación la muestra en la brújula de la qibla.",
+        "titel": "Orientación hacia la qibla"
+      },
+      "rabbanaUndTakbir": {
+        "text": "El imán dice en voz audible \"Allahu Akbar\" en cada cambio de postura; al erguirse tras el ruku, dice \"Sami'Allahu liman hamidah\", a lo que los seguidores responden \"Rabbana wa lakal-hamd\".",
+        "titel": "Takbir, Sami'Allahu liman hamidah y Rabbana"
+      },
+      "reihenSchliessen": {
+        "text": "La fila (saff, صف) se cierra desde el centro, hombro con hombro, sin huecos. Se narra del Profeta ﷺ: \"Alineen sus filas, pues alinear las filas es parte de la perfección de la oración\".",
+        "titel": "Cerrar las filas, sin huecos"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Recomendación práctica, no una norma jurídica: en las oraciones silenciosas los seguidores solo oyen los takbires. Un imán hace el ritmo audible de forma fiable diciéndolos con claridad y a un ritmo constante, algo más alto que su propia recitación silenciosa, sin apresurarse.",
+        "titel": "Recomendación práctica: hacer audible el ritmo"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Según la escuela hanafí, los seguidores guardan silencio total durante la recitación en voz alta y escuchan, basándose en el versículo coránico: \"Cuando se recite el Corán, escúchenlo y guarden silencio\". Otras escuelas, entre ellas la shafií, exigen que cada seguidor recite Al-Fatiha en voz baja por sí mismo -incluida la basmala (بسملة) previa-, basándose en las palabras del Profeta ﷺ: \"No hay oración para quien no recita Al-Fatiha\".",
+        "titel": "Comportamiento durante la recitación en voz alta"
+      }
+    },
+    "sections": {
+      "aufstellung": "Formación",
+      "diagramme": "Diagramas",
+      "mahram": "Mahram y jalua",
+      "rezitation": "Recitación y comportamiento"
+    },
+    "seite": "Página {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Cielo del atardecer",
     "haram": "Masyid al-Haram",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Reloj de oración",
     "clockHint": "Horarios de oración y cuenta atrás",
+    "gebetGemeinsam": "Rezar en comunidad",
+    "gebetGemeinsamHint": "Filas y reglas",
     "pairing": "Conectar",
     "pairingHint": "El móvil como mando a distancia",
     "podcasts": "Pódcast",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "Desactivar todo",
-      "hint": "La llamada suena solo mientras Salati está en pantalla; el televisor no abre la aplicación por sí solo. Pulsa Atrás para detener una llamada en curso.",
+      "exactAlarmAction": "Permitir alarmas y recordatorios",
+      "exactAlarmNotGranted": "Actualmente no permitido — actívalo abajo, o los recordatorios podrían llegar tarde.",
+      "hint": "La llamada también suena cuando Salati se ejecuta en segundo plano — para ello Android necesita el permiso «Alarmas y recordatorios» de abajo. Sin él, puede llegar tarde en segundo plano. Pulsa Atrás para detener una llamada en curso.",
       "licenseHint": "Las grabaciones proceden de Wikimedia Commons con licencias libres. Dos exigen citar al autor; por eso figuran aquí.",
       "licenses": "Procedencia de las grabaciones",
       "off": "Desactivado",
@@ -187,6 +295,14 @@
       "verlauf": "Degradado",
       "video": "Vídeo",
       "videos": "Vídeos"
+    },
+    "bereiche": {
+      "hint": "Los ajustes siempre quedan sin fondo, para que se puedan leer.",
+      "inhalte": "Otras áreas",
+      "koran": "Lector del Corán",
+      "ruhebildschirm": "Pantalla de reposo",
+      "startmenue": "Menú principal",
+      "title": "Dónde aparece el fondo"
     },
     "clockScale": {
       "large": "Grande",

@@ -1,5 +1,8 @@
 package de.salatibox.tv.alarm
 
+import android.app.AlarmManager
+import android.content.Context
+import android.os.Build
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -52,6 +55,27 @@ class AdhanAlarmModule(private val reactContext: ReactApplicationContext) :
     try {
       AdhanAlarmScheduler.cancel(reactContext)
       promise.resolve(true)
+    } catch (e: Exception) {
+      promise.reject("ERR_ADHAN_ALARM", e)
+    }
+  }
+
+  /**
+   * Status der SCHEDULE_EXACT_ALARM-Berechtigung — s. src/lib/exactAlarm.ts
+   * fuer den vollen Root-Cause-Kontext (Geraetebefund 2026-09-06: Android TV
+   * verweigert sie GENAUSO wie ein Handy, trotz Manifest-Eintrag). Vor
+   * Android 12 (API 31) gibt es die Sonderberechtigung nicht - dort planten
+   * exakte Alarme schon immer ohne sie, daher `true`.
+   */
+  @ReactMethod
+  fun canScheduleExactAlarms(promise: Promise) {
+    try {
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+        promise.resolve(true)
+        return
+      }
+      val alarmManager = reactContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+      promise.resolve(alarmManager.canScheduleExactAlarms())
     } catch (e: Exception) {
       promise.reject("ERR_ADHAN_ALARM", e)
     }

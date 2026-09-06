@@ -105,8 +105,33 @@ object AdhanAlarmScheduler {
 
   /**
    * Naechsten Eintrag mit einer AKTIVEN Sound-Wahl (nicht "aus") stellen.
-   * Exakt, wenn erlaubt; sonst ungenau statt gar nicht (gleiche Abwaegung wie
-   * beim Widget-Alarm: ein paar Minuten spaeter ist besser als nie).
+   *
+   * GERAETEBEFUND 2026-09-06 (Emulator salati_tv_36, echtes Android-TV-Image,
+   * API 36): `setExactAndAllowWhileIdle` lieferte im Hintergrund einen Ruf
+   * 108s zu spaet aus. Ursache per `dumpsys alarm` belegt:
+   * SCHEDULE_EXACT_ALARM steht zwar im Manifest, ist aber nicht erteilt
+   * (App-Ops: "default" = verweigert) - Android TV hat dieselbe "Alarme &
+   * Erinnerungen"-Spezialberechtigung wie ein Handy
+   * (com.android.tv.settings/.device.apps.specialaccess.AlarmsAndRemindersActivity,
+   * per Screenshot verifiziert), die Beschraenkung aus Android 12/13 gilt
+   * hier UNVERAENDERT. Ohne die Berechtigung stellte der bisherige Code
+   * `setAndAllowWhileIdle` - gemessen als volles Stunden-Fenster
+   * (window=+1h0m0s0ms in dumpsys alarm) statt eines Zeitpunkts; genau daraus
+   * kommen Verspaetungen von Minuten bis zu einer Stunde.
+   *
+   * Deshalb jetzt zwei Stufen statt zwei Alarmtypen:
+   *  1. Erlaubt: `setAlarmClock` - hoechste Prioritaetsstufe im AlarmManager,
+   *     wird auch im Doze/Stromsparmodus zuverlaessig zum exakten Zeitpunkt
+   *     ausgeloest (staerker als `setExactAndAllowWhileIdle`, das Doze zwar
+   *     uebersteht, aber von der Batch-Frequenz-Drosselung fuer haeufige
+   *     Alarme derselben App betroffen sein kann). Zeigt dafuer ein Wecker-
+   *     Symbol in der System-UI - fuer eine App, die tatsaechlich einen
+   *     Gebetsruf zu einer festen Uhrzeit ausloest, sachlich zutreffend.
+   *  2. Verweigert: `setAndAllowWhileIdle` bleibt der Fallback (ungenau statt
+   *     gar nicht, gleiche Abwaegung wie beim Widget-Alarm) - die Luecke wird
+   *     stattdessen in der JS-Oberflaeche sichtbar gemacht (s.
+   *     src/lib/exactAlarm.ts, SettingsScreen.tsx AzanSection), statt still
+   *     zu bleiben.
    */
   fun scheduleNext(context: Context) {
     val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager ?: return
@@ -128,7 +153,18 @@ object AdhanAlarmScheduler {
       Build.VERSION.SDK_INT < Build.VERSION_CODES.S || alarmManager.canScheduleExactAlarms()
     try {
       if (exactAllowed) {
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, next.zeitpunkt, pending)
+        // showIntent: oeffnet die App, wenn der Nutzer auf das Wecker-Symbol
+        // tippt - kein separater Aktivitaets-Alias noetig, `getLaunchIntentForPackage`
+        // liefert dieselbe MainActivity, die auch der Launcher startet.
+        val showIntent = context.packageManager.getLaunchIntentForPackage(context.packageName)?.let {
+          PendingIntent.getActivity(
+            context,
+            REQUEST_CODE,
+            it,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+          )
+        }
+        alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(next.zeitpunkt, showIntent), pending)
       } else {
         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, next.zeitpunkt, pending)
       }

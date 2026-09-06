@@ -106,6 +106,15 @@ describe('setLocation / setIs24h', () => {
       // Foto-/Video-Hintergruende, der Akzent loest die Farbe vom Thema, und
       // die drei Uhr-Felder bestimmen ihr Aussehen.
       hintergrundDimmung: 0.55,
+      // Wo ein Motiv zusaetzlich zum Ruhebildschirm laeuft (2026-09-06):
+      // Voreinstellung ist NUR der Ruhebildschirm, damit sich fuer bestehende
+      // Nutzer nichts ungefragt aendert.
+      hintergrundSichtbarkeit: {
+        ruhebildschirm: true,
+        startmenue: false,
+        koran: false,
+        inhalte: false,
+      },
       fotoBewegung: true,
       akzent: 'thema',
       uhrStil: 'digital',

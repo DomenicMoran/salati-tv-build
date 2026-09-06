@@ -19,6 +19,110 @@
     "offlineStreams": "Hors ligne — liste en mémoire, la lecture nécessite une connexion",
     "retry": "Réessayer"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ page",
+    "footerHinweis": "Cet aperçu ne remplace pas l'étude du fiqh. Pour des décisions importantes, consultez un savant local.",
+    "grad": {
+      "anerkannt": "Largement reconnu",
+      "empfehlung": "Recommandation pratique",
+      "strittig": "Contesté entre les écoles"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "Dès qu'une troisième personne se joint, les fidèles forment leur propre rang derrière l'imam.",
+        "titel": "Trois personnes"
+      },
+      "familienrunde": {
+        "beschreibung": "L'imam se tient seul devant, les hommes et les garçons forment le(s) rang(s) derrière lui, les femmes et les filles le dernier rang.",
+        "titel": "Groupe familial mixte"
+      },
+      "groessereGruppe": {
+        "beschreibung": "Les rangs d'hommes de devant sont complétés en premier, sans espace ; le rang des femmes ferme la marche.",
+        "titel": "Groupe plus grand, plusieurs rangs"
+      },
+      "imamEhefrau": {
+        "beschreibung": "Si l'épouse prie avec son mari comme imam, elle se place derrière lui, pas à côté.",
+        "titel": "Imam et épouse"
+      },
+      "zweiPersonen": {
+        "beschreibung": "Si un seul homme prie avec l'imam, il ne se place pas derrière lui, mais à sa droite, légèrement en retrait.",
+        "titel": "Imam et un seul fidèle"
+      }
+    },
+    "legende": {
+      "frau": "Femme",
+      "imam": "Imam (إمام)",
+      "mann": "Homme",
+      "qibla": "Qibla"
+    },
+    "madhhab": {
+      "alle": "Toutes les écoles juridiques",
+      "hanafi": "Hanafite",
+      "verschieden": "Les écoles divergent"
+    },
+    "quelle": "Source",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "Dès qu'une troisième personne se joint, tous les fidèles (ma'mum, مأموم) forment leur propre rang derrière l'imam, qui reste seul devant. Il est rapporté que lorsque Jabir b. Abdullah et Jabbar b. Sakhr se placèrent à droite et à gauche du Prophète ﷺ, il les prit tous deux par la main et les plaça derrière lui.",
+        "titel": "À partir de trois personnes : un rang à part"
+      },
+      "amin": {
+        "text": "Quand l'imam dit \"amine\" à la fin d'Al-Fatiha, tous les fidèles se joignent à voix audible. Il est rapporté du Prophète ﷺ : \"Quand l'imam dit amine, dites amine.\"",
+        "titel": "Dire amine ensemble"
+      },
+      "besteReihen": {
+        "text": "Pour les hommes, le premier rang est considéré comme le meilleur et le dernier comme le moins recommandé ; pour les femmes, c'est l'inverse — le dernier rang est considéré comme le meilleur pour elles.",
+        "titel": "Meilleur rang et rang le moins recommandé"
+      },
+      "familienrunde": {
+        "text": "Quand une famille prie ensemble, l'imam se tient seul devant, les hommes et les garçons forment le(s) rang(s) derrière lui, les femmes et les filles le dernier rang – même s'il n'y a qu'une seule femme, elle reste à l'arrière, pas à côté des hommes. Il est rapporté qu'un orphelin et Anas b. Malik prièrent derrière le Prophète ﷺ dans une maison, tandis qu'une femme âgée formait seule le rang derrière eux.",
+        "titel": "Groupe familial mixte"
+      },
+      "frauZuHause": {
+        "text": "Quand une femme prie à la maison avec son mahram comme imam, elle se place derrière lui, pas à côté. Détails complets et sources sur l'espace des femmes à la mosquée : Étude → Fiqh du culte, leçon 13.",
+        "titel": "L'épouse à la maison : derrière celui qui dirige"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "Quand un seul homme prie avec l'imam, il ne se place pas derrière lui mais à sa droite, légèrement en retrait. Il est rapporté qu'Ibn Abbas rejoignit le Prophète ﷺ pour la prière nocturne, se plaça d'abord à sa gauche, et que le Prophète ﷺ l'amena à sa droite.",
+        "titel": "Imam avec un seul fidèle"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "L'imam récite à voix haute le Fajr, le Maghrib et l'Isha lors des deux premières rak'ahs, et à voix basse le Dhuhr et l'Asr. Le Coran mentionne les deux registres de voix dans la prière.",
+        "titel": "Prières à voix haute et à voix basse"
+      },
+      "mahramUndKhilwa": {
+        "text": "En principe, hommes et femmes, apparentés ou non, peuvent participer ensemble à la prière en commun tant que la disposition est respectée. La seule véritable restriction concerne l'isolement (khilwa, خلوة) : un homme et une femme qui ne sont pas mahram (محرم) l'un pour l'autre ne peuvent pas rester seuls ensemble. Dès qu'une autre personne est présente — un mahram, un autre fidèle ou une troisième personne —, il n'y a plus de khilwa. Il est rapporté du Prophète ﷺ : \"Qu'aucun homme ne reste seul avec une femme, sauf en présence d'un mahram.\"",
+        "titel": "Mahram et khilwa"
+      },
+      "qiblaAusrichtung": {
+        "text": "Tous les rangs s'orientent ensemble vers la qibla, comme dans la prière individuelle. Le Coran mentionne explicitement la direction de la qibla ; l'application l'indique dans la boussole qibla.",
+        "titel": "Orientation vers la qibla"
+      },
+      "rabbanaUndTakbir": {
+        "text": "L'imam dit à voix audible \"Allahu Akbar\" à chaque changement de posture ; en se relevant du ruku, il dit \"Sami'Allahu liman hamidah\", ce à quoi les fidèles répondent \"Rabbana wa lakal-hamd\".",
+        "titel": "Takbir, Sami'Allahu liman hamidah et Rabbana"
+      },
+      "reihenSchliessen": {
+        "text": "Le rang (saff, صف) se resserre à partir du centre, épaule contre épaule, sans espace. Il est rapporté du Prophète ﷺ : \"Alignez vos rangs, car aligner les rangs fait partie de la perfection de la prière\".",
+        "titel": "Serrer les rangs, ne pas laisser d'espace"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Conseil pratique, non une norme juridique : dans les prières silencieuses, les fidèles n'entendent que les takbirs. Un imam rend le rythme perceptible de façon fiable en les disant clairement et à un rythme régulier — un peu plus fort que sa propre récitation silencieuse, sans se presser.",
+        "titel": "Conseil pratique : rendre le rythme audible"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Chez les hanafites, les fidèles gardent le silence complet pendant la récitation à voix haute et écoutent, en s'appuyant sur le verset coranique : \"Quand le Coran est récité, écoutez-le et gardez le silence.\" D'autres écoles, dont l'école chaféite, exigent que chaque fidèle récite lui-même Al-Fatiha à voix basse — y compris la basmala (بسملة) qui la précède —, en s'appuyant sur la parole du Prophète ﷺ : \"Pas de prière pour celui qui ne récite pas Al-Fatiha.\"",
+        "titel": "Comportement pendant la récitation à voix haute"
+      }
+    },
+    "sections": {
+      "aufstellung": "Disposition",
+      "diagramme": "Schémas",
+      "mahram": "Mahram et khilwa",
+      "rezitation": "Récitation et comportement"
+    },
+    "seite": "Page {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Ciel du soir",
     "haram": "Masjid al-Haram",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Horloge de prière",
     "clockHint": "Horaires de prière et compte à rebours",
+    "gebetGemeinsam": "Prier ensemble",
+    "gebetGemeinsamHint": "Rangs et règles",
     "pairing": "Connecter",
     "pairingHint": "Le téléphone comme télécommande",
     "podcasts": "Podcasts",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "Tout désactiver",
-      "hint": "L’appel retentit uniquement lorsque Salati est affiché ; le téléviseur n’ouvre pas l’application de lui-même. La touche Retour arrête un appel en cours.",
+      "exactAlarmAction": "Autoriser alarmes et rappels",
+      "exactAlarmNotGranted": "Actuellement non autorisé — active-le ci-dessous, sinon les rappels pourraient arriver en retard.",
+      "hint": "L’appel retentit aussi lorsque Salati fonctionne en arrière-plan — cela nécessite l’autorisation « Alarmes et rappels » ci-dessous. Sans elle, il peut arriver en retard en arrière-plan. La touche Retour arrête un appel en cours.",
       "licenseHint": "Les enregistrements proviennent de Wikimedia Commons sous licences libres. Deux d’entre eux exigent de citer l’auteur : ils figurent donc ici.",
       "licenses": "Origine des enregistrements",
       "off": "Désactivé",
@@ -187,6 +295,14 @@
       "verlauf": "Dégradé",
       "video": "Vidéo",
       "videos": "Vidéos"
+    },
+    "bereiche": {
+      "hint": "Les réglages restent toujours sans arrière-plan, pour rester lisibles.",
+      "inhalte": "Autres sections",
+      "koran": "Lecteur du Coran",
+      "ruhebildschirm": "Écran de veille",
+      "startmenue": "Menu principal",
+      "title": "Où l’arrière-plan apparaît"
     },
     "clockScale": {
       "large": "Grand",

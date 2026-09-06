@@ -1,9 +1,13 @@
 import {
   HINTERGRUENDE,
+  HINTERGRUND_BEREICHE,
+  HINTERGRUND_SICHTBARKEIT_STANDARD,
+  hintergrundBereichNameKey,
   hintergrundNameKey,
   istHintergrundId,
   medienId,
   medienIdLesen,
+  normalizeHintergrundSichtbarkeit,
 } from '@/lib/hintergruende';
 
 /**
@@ -50,5 +54,40 @@ describe('istHintergrundId', () => {
 it('bildet fuer jeden gezeichneten Hintergrund einen Locale-Schluessel', () => {
   for (const id of HINTERGRUENDE) {
     expect(hintergrundNameKey(id)).toBe(`settings.background.${id}`);
+  }
+});
+
+/**
+ * Wo ein Foto/Video zusaetzlich zum Ruhebildschirm laufen darf
+ * (Nutzerwunsch 2026-09-06). Die Voreinstellung ist der springende Punkt:
+ * bestehende Nutzer duerfen nach einem Update nicht ploetzlich ein Motiv
+ * hinter dem Startmenue oder dem Koran-Leser sehen, das sie nie eingestellt
+ * haben.
+ */
+describe('normalizeHintergrundSichtbarkeit', () => {
+  it('faellt ohne gespeicherten Wert auf „nur Ruhebildschirm" zurueck', () => {
+    expect(normalizeHintergrundSichtbarkeit(undefined)).toEqual(HINTERGRUND_SICHTBARKEIT_STANDARD);
+    expect(HINTERGRUND_SICHTBARKEIT_STANDARD.ruhebildschirm).toBe(true);
+    expect(HINTERGRUND_SICHTBARKEIT_STANDARD.startmenue).toBe(false);
+    expect(HINTERGRUND_SICHTBARKEIT_STANDARD.koran).toBe(false);
+    expect(HINTERGRUND_SICHTBARKEIT_STANDARD.inhalte).toBe(false);
+  });
+
+  it('uebernimmt nur bekannte Bereiche mit boolschem Wert', () => {
+    expect(
+      normalizeHintergrundSichtbarkeit({ startmenue: true, koran: 'ja', fremderSchluessel: true }),
+    ).toEqual({ ruhebildschirm: true, startmenue: true, koran: false, inhalte: false });
+  });
+
+  it('verwirft Muell', () => {
+    for (const wert of [null, 'an', 42, []]) {
+      expect(normalizeHintergrundSichtbarkeit(wert)).toEqual(HINTERGRUND_SICHTBARKEIT_STANDARD);
+    }
+  });
+});
+
+it('bildet fuer jeden Bereich einen Locale-Schluessel', () => {
+  for (const bereich of HINTERGRUND_BEREICHE) {
+    expect(hintergrundBereichNameKey(bereich)).toBe(`settings.bereiche.${bereich}`);
   }
 });

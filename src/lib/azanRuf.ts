@@ -1,5 +1,5 @@
-import { useEffect, useSyncExternalStore } from 'react';
-import { NativeModules, Platform } from 'react-native';
+import { useEffect, useState, useSyncExternalStore } from 'react';
+import { AppState, NativeModules, Platform } from 'react-native';
 import { createVideoPlayer, type VideoPlayer } from 'expo-video';
 
 import { pausieren as hintergrundPausieren } from '@/lib/hintergrundAudio';
@@ -241,20 +241,50 @@ function planFuerNaechsteTage(
 
 /**
  * Haelt den nativen Alarm-Plan aktuell — bei jeder Einstellungsaenderung
- * (Standort, Sound-Wahl, Berechnungsparameter) und einmal beim Start.
- * Wird wie `useAzanAusloeser` einmal in App.tsx aufgerufen.
+ * (Standort, Sound-Wahl, Berechnungsparameter), bei jedem Vordergrund-/
+ * Hintergrund-Wechsel und einmal beim Start. Wird wie `useAzanAusloeser`
+ * einmal in App.tsx aufgerufen.
+ *
+ * NUR IM HINTERGRUND SCHARF: Der Kommentar oben ("uebernimmt der native
+ * Alarm, wenn der Fernseher NICHT auf der App steht") war bis zum
+ * Geraetebefund 2026-09-06 reine Absicht — der native Alarm blieb auch bei
+ * offener App geplant. Ein Nutzer, der Asr mitten im Vordergrund erlebte,
+ * bekam DEN GLEICHEN Ruf zweimal uebereinander: einmal sofort von
+ * `useAzanAusloeser` (expo-video), einmal 1-2 Minuten spaeter vom nativen
+ * AlarmManager (er darf auf diesem Geraet keinen exakten Alarm stellen und
+ * liefert deshalb `setAndAllowWhileIdle` verspaetet aus — belegt per
+ * `dumpsys audio`: zwei AudioPlaybackConfiguration-Eintraege gleichzeitig,
+ * piid 87 ab 15:15:07 und piid 95 ab 15:16:55, ~47s Ueberlappung). Bei
+ * unterschiedlichen Aufnahmen je Gebet klingt genau das nach „mehreren
+ * Stimmen durcheinander". Deshalb jetzt: solange die App im Vordergrund ist,
+ * wird der native Alarm storniert (der Vordergrund-Pfad deckt diesen
+ * Zeitraum vollstaendig ab); erst beim Wechsel in den Hintergrund wird er
+ * wieder scharf gestellt.
  */
 export function useNativenAdhanPlan(): void {
   const s = useTvSettings();
   const { location, azan, highLatitude, offsets } = s;
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', setAppState);
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     if (!s.loaded || !nativerAdhanAlarm) return;
+    if (appState === 'active') {
+      // Vordergrund: `useAzanAusloeser` spielt den Ruf bereits selbst — der
+      // native Alarm wuerde denselben (oder je nach Drift einen anderen)
+      // Ruf ein zweites Mal ausloesen.
+      nativerAdhanAlarm.cancel().catch(() => {});
+      return;
+    }
     const extras = calcExtras({ highLatitude, offsets });
     const { timestampsMs, prayerKeys, soundKeys } = planFuerNaechsteTage(location, extras, azan);
     nativerAdhanAlarm.setSchedule(timestampsMs, prayerKeys, soundKeys).catch(() => {
       // Ein fehlgeschlagener Plan-Push darf die App nicht stoeren — der
       // Vordergrund-Pfad (useAzanAusloeser) faengt es auf, solange sie offen ist.
     });
-  }, [s.loaded, location, azan, highLatitude, offsets]);
+  }, [s.loaded, location, azan, highLatitude, offsets, appState]);
 }

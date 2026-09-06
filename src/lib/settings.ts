@@ -16,7 +16,14 @@ import {
   type SukunStil,
 } from '@/lib/quranFonts';
 import { DEFAULT_THEME_ID, isThemeId, istAkzentId, type AkzentId, type ThemeId } from '@/lib/theme';
-import { istHintergrundId, type HintergrundId } from '@/lib/hintergruende';
+import {
+  HINTERGRUND_SICHTBARKEIT_STANDARD,
+  istHintergrundId,
+  normalizeHintergrundSichtbarkeit,
+  type HintergrundBereich,
+  type HintergrundId,
+  type HintergrundSichtbarkeit,
+} from '@/lib/hintergruende';
 
 import {
   clampOffset,
@@ -80,6 +87,13 @@ export interface TvSettings {
    * unleserlich.
    */
   hintergrundDimmung: Dimmung;
+  /**
+   * In welchen Bereichen ein Foto/Video zusaetzlich zum Ruhebildschirm
+   * laeuft (s. lib/hintergruende.ts). Voreinstellung: nur der Ruhebildschirm —
+   * das entspricht dem Verhalten vor dieser Einstellung, niemand bekommt nach
+   * einem Update ungefragt ein Motiv hinter Menue oder Koran-Leser.
+   */
+  hintergrundSichtbarkeit: HintergrundSichtbarkeit;
   /** Foto-Hintergruende langsam wandern lassen (Systemeinstellung
    *  „Bewegung reduzieren" sticht). */
   fotoBewegung: boolean;
@@ -214,6 +228,7 @@ let state: TvSettings = {
   // laufen laesst, soll nicht ungefragt ein Muster bekommen.
   hintergrund: 'ruhig',
   hintergrundDimmung: DEFAULT_DIMMUNG,
+  hintergrundSichtbarkeit: HINTERGRUND_SICHTBARKEIT_STANDARD,
   fotoBewegung: true,
   akzent: 'thema',
   uhrStil: 'digital',
@@ -319,6 +334,7 @@ function persist() {
       theme: state.theme,
       hintergrund: state.hintergrund,
       hintergrundDimmung: state.hintergrundDimmung,
+      hintergrundSichtbarkeit: state.hintergrundSichtbarkeit,
       fotoBewegung: state.fotoBewegung,
       akzent: state.akzent,
       uhrStil: state.uhrStil,
@@ -380,6 +396,7 @@ async function hydrate() {
         hintergrundDimmung: istDimmung(parsed.hintergrundDimmung)
           ? parsed.hintergrundDimmung
           : DEFAULT_DIMMUNG,
+        hintergrundSichtbarkeit: normalizeHintergrundSichtbarkeit(parsed.hintergrundSichtbarkeit),
         fotoBewegung: parsed.fotoBewegung ?? true,
         akzent: istAkzentId(parsed.akzent) ? parsed.akzent : 'thema',
         uhrStil: istUhrStil(parsed.uhrStil) ? parsed.uhrStil : 'digital',
@@ -463,6 +480,18 @@ export function setHintergrund(hintergrund: HintergrundId) {
 
 export function setHintergrundDimmung(hintergrundDimmung: Dimmung) {
   state = { ...state, hintergrundDimmung };
+  persist();
+  emit();
+}
+
+/** Schaltet EINEN Bereich um (s. lib/hintergruende.ts) — die anderen bleiben,
+ *  wie sie waren. */
+export function toggleHintergrundBereich(bereich: HintergrundBereich) {
+  const hintergrundSichtbarkeit = {
+    ...state.hintergrundSichtbarkeit,
+    [bereich]: !state.hintergrundSichtbarkeit[bereich],
+  };
+  state = { ...state, hintergrundSichtbarkeit };
   persist();
   emit();
 }

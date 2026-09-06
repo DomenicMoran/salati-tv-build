@@ -19,6 +19,110 @@
     "offlineStreams": "Ohne Netz — Liste aus dem Speicher, Wiedergabe braucht eine Verbindung",
     "retry": "Erneut versuchen"
   },
+  "gebetGemeinsam": {
+    "controlHint": "⏮ ⏭ blättern",
+    "footerHinweis": "Diese Übersicht ersetzt kein Fiqh-Studium. Vor wichtigen Entscheidungen einen ortsansässigen Gelehrten fragen.",
+    "grad": {
+      "anerkannt": "Breit anerkannt",
+      "empfehlung": "Praktische Empfehlung",
+      "strittig": "Zwischen den Schulen strittig"
+    },
+    "konstellationen": {
+      "dreiPersonen": {
+        "beschreibung": "Kommt eine dritte Person hinzu, bilden die Mitbetenden eine eigene Reihe hinter dem Imam.",
+        "titel": "Drei Personen"
+      },
+      "familienrunde": {
+        "beschreibung": "Der Imam steht allein vorn, Männer und Jungen bilden die Reihe(n) dahinter, Frauen und Mädchen die letzte Reihe.",
+        "titel": "Gemischte Familienrunde"
+      },
+      "groessereGruppe": {
+        "beschreibung": "Die vorderen Männerreihen werden zuerst geschlossen, ohne Lücken; die Frauenreihe bildet den Abschluss.",
+        "titel": "Größere Gruppe, mehrere Reihen"
+      },
+      "imamEhefrau": {
+        "beschreibung": "Betet die Ehefrau mit ihrem Mann als Vorbeter, steht sie hinter ihm, nicht neben ihm.",
+        "titel": "Imam und Ehefrau"
+      },
+      "zweiPersonen": {
+        "beschreibung": "Betet nur ein Mann mit dem Imam mit, steht er nicht dahinter, sondern rechts neben ihm, leicht zurückversetzt.",
+        "titel": "Imam und ein Mitbeter"
+      }
+    },
+    "legende": {
+      "frau": "Frau",
+      "imam": "Imam (إمام)",
+      "mann": "Mann",
+      "qibla": "Qibla"
+    },
+    "madhhab": {
+      "alle": "Alle Rechtsschulen",
+      "hanafi": "Hanafitisch",
+      "verschieden": "Schulen uneinig"
+    },
+    "quelle": "Quelle",
+    "regeln": {
+      "abDreiPersonen": {
+        "text": "Kommt eine dritte Person hinzu, bilden alle Mitbetenden (Maʾmūm, مأموم) eine eigene Reihe hinter dem Imam – er steht allein vorn. Überliefert ist, dass sich Jabir b. Abdullah und Jabbar b. Sakhr rechts und links neben den Propheten ﷺ stellten und er beide bei der Hand nahm und hinter sich stellte.",
+        "titel": "Ab drei Personen: eine eigene Reihe"
+      },
+      "amin": {
+        "text": "Spricht der Imam am Ende von Al-Fatiha „Amin“, stimmen alle Mitbetenden hörbar ein. Überliefert vom Propheten ﷺ: „Sagt der Imam Amin, so sagt Amin.“",
+        "titel": "Amin gemeinsam sprechen"
+      },
+      "besteReihen": {
+        "text": "Für Männer gilt die vorderste Reihe als beste, die hinterste als am wenigsten empfohlen; bei Frauen ist es umgekehrt – für sie gilt die hinterste Reihe als beste.",
+        "titel": "Beste und am wenigsten empfohlene Reihe"
+      },
+      "familienrunde": {
+        "text": "Betet eine Familie gemeinsam, steht der Imam allein vorn, Männer und Jungen bilden die Reihe(n) dahinter, Frauen und Mädchen die letzte Reihe – auch wenn nur eine Frau da ist, steht sie hinten, nicht neben den Männern. Überliefert ist, dass ein Waisenjunge und Anas b. Malik hinter dem Propheten ﷺ in einem Haus beteten, während eine ältere Frau allein die Reihe dahinter bildete.",
+        "titel": "Gemischte Familienrunde"
+      },
+      "frauZuHause": {
+        "text": "Betet eine Frau mit ihrem Mahram als Vorbeter zu Hause, stellt sie sich hinter ihn, nicht daneben. Ausführlich mit Belegen zum Frauenbereich in der Moschee: Studium → Fiqh der Anbetung, Lektion 13.",
+        "titel": "Frau zu Hause: hinter dem Vorbeter"
+      },
+      "imamMitEinemMitbeter": {
+        "text": "Betet ein einzelner Mann mit dem Imam mit, stellt er sich nicht dahinter, sondern rechts neben den Imam, leicht zurückversetzt. Überliefert ist, dass Ibn Abbas neben dem Propheten ﷺ zum Nachtgebet antrat, sich zunächst links aufstellte und vom Propheten ﷺ an die rechte Seite gezogen wurde.",
+        "titel": "Imam mit einem Mitbeter"
+      },
+      "lauteUndLeiseGebete": {
+        "text": "Fadschr, Maghrib und Ischa rezitiert der Imam in den ersten beiden Rakat laut, Dhuhr und Asr leise. Der Koran nennt beide Tonlagen des Gebets.",
+        "titel": "Laute und leise Gebete"
+      },
+      "mahramUndKhilwa": {
+        "text": "Grundsätzlich dürfen Männer und Frauen, verwandt oder nicht, gemeinsam am Gemeinschaftsgebet teilnehmen, solange die Aufstellung eingehalten wird. Die eine echte Einschränkung betrifft die Abgeschiedenheit (Khilwa, خلوة): Ein Mann und eine Frau, die nicht Mahram (محرم) füreinander sind, dürfen nicht allein miteinander sein. Sobald eine weitere Person anwesend ist – ein Mahram, ein weiterer Mitbetender oder eine dritte Person –, liegt keine Khilwa mehr vor. Überliefert vom Propheten ﷺ: „Kein Mann sei mit einer Frau allein außer in Gegenwart eines Mahram.“",
+        "titel": "Mahram und Khilwa"
+      },
+      "qiblaAusrichtung": {
+        "text": "Alle Reihen richten sich gemeinsam zur Qibla aus, wie beim Einzelgebet. Der Koran nennt die Qibla-Richtung ausdrücklich; die App zeigt sie im Qibla-Kompass an.",
+        "titel": "Ausrichtung zur Qibla"
+      },
+      "rabbanaUndTakbir": {
+        "text": "Der Imam spricht bei jedem Wechsel der Körperhaltung „Allahu Akbar“ hörbar; richtet er sich nach dem Ruku wieder auf, sagt er „Sami'Allahu liman hamidah“, worauf die Mitbetenden mit „Rabbana wa lakal-hamd“ antworten.",
+        "titel": "Takbir, Sami'Allahu liman hamidah und Rabbana"
+      },
+      "reihenSchliessen": {
+        "text": "Die Reihe (Saff, صف) wird von der Mitte ausgehend Schulter an Schulter geschlossen, ohne Lücken. Überliefert vom Propheten ﷺ: „Richtet eure Reihen aus, denn das Ausrichten der Reihen gehört zur Vollkommenheit des Gebets.“",
+        "titel": "Reihen schließen, keine Lücken"
+      },
+      "rhythmusEmpfehlung": {
+        "text": "Praktischer Hinweis, keine Rechtsnorm: Bei leisen Gebeten hören die Mitbetenden nur die Takbirat. Ein Imam macht den Rhythmus verlässlich hörbar, indem er sie klar und in gleichmäßigem Tempo spricht – etwas lauter als seine eigene leise Rezitation, ohne zu hetzen.",
+        "titel": "Praktischer Hinweis: Rhythmus hörbar machen"
+      },
+      "verhaltenBeiLauterRezitation": {
+        "text": "Hanafitisch schweigen die Mitbetenden bei lauter Rezitation ganz und hören zu, gestützt auf den Koranvers: „Wird der Koran vorgetragen, so hört zu und schweigt.“ Andere Rechtsschulen, darunter die schafiitische, verlangen von jedem Mitbetenden, Al-Fatiha selbst leise mitzusprechen – auch die Basmala (بسملة) davor –, gestützt auf das Wort des Propheten ﷺ: „Kein Gebet für den, der nicht Al-Fatiha rezitiert.“",
+        "titel": "Verhalten bei lauter Rezitation"
+      }
+    },
+    "sections": {
+      "aufstellung": "Aufstellung",
+      "diagramme": "Diagramme",
+      "mahram": "Mahram und Khilwa",
+      "rezitation": "Rezitation und Verhalten"
+    },
+    "seite": "Seite {n} / {total}"
+  },
   "hintergrund": {
     "abendhimmel": "Abendhimmel",
     "haram": "Masjid al-Haram",
@@ -33,6 +137,8 @@
   "home": {
     "clock": "Gebetsuhr",
     "clockHint": "Gebetszeiten & Countdown",
+    "gebetGemeinsam": "Gemeinsam beten",
+    "gebetGemeinsamHint": "Aufstellung & Regeln",
     "pairing": "Verbinden",
     "pairingHint": "Handy als Fernbedienung",
     "podcasts": "Podcasts",
@@ -158,7 +264,9 @@
     },
     "azan": {
       "allOff": "Alle aus",
-      "hint": "Der Ruf erklingt nur, solange Salati auf dem Bildschirm ist — der Fernseher weckt die App nicht von selbst. Ein laufender Ruf endet mit der Zurück-Taste.",
+      "exactAlarmAction": "Wecker & Erinnerungen erlauben",
+      "exactAlarmNotGranted": "Aktuell nicht erlaubt – bitte unten aktivieren, sonst können Erinnerungen zu spät kommen.",
+      "hint": "Der Ruf ertönt auch, wenn Salati im Hintergrund läuft — dafür braucht Android die Erlaubnis „Wecker & Erinnerungen“ (unten). Ohne sie kann er im Hintergrund später kommen. Ein laufender Ruf endet mit der Zurück-Taste.",
       "licenseHint": "Die Aufnahmen stammen von Wikimedia Commons und stehen unter freien Lizenzen. Zwei davon verlangen die Nennung des Urhebers — deshalb stehen sie hier.",
       "licenses": "Herkunft der Aufnahmen",
       "off": "Aus",
@@ -187,6 +295,14 @@
       "verlauf": "Verlauf",
       "video": "Video",
       "videos": "Videos"
+    },
+    "bereiche": {
+      "hint": "Die Einstellungen bleiben immer ohne Motiv, damit sie lesbar bleiben.",
+      "inhalte": "Weitere Bereiche",
+      "koran": "Koran-Leser",
+      "ruhebildschirm": "Ruhebildschirm",
+      "startmenue": "Startmenü",
+      "title": "Wo das Motiv erscheint"
     },
     "clockScale": {
       "large": "Groß",

@@ -17,6 +17,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Hintergrund } from '@/components/Hintergrund';
 import { ausblendenNach, bedienungGesehen } from '@/lib/bedienungSichtbar';
 import { ClockScreen } from '@/screens/ClockScreen';
+import { GebetGemeinsamScreen } from '@/screens/GebetGemeinsamScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
 import { PairingScreen } from '@/screens/PairingScreen';
 import { PodcastsScreen } from '@/screens/PodcastsScreen';
@@ -259,6 +260,7 @@ export default function App() {
       {screen === 'radio' && <RadioScreen />}
       {screen === 'reels' && <ReelsScreen />}
       {screen === 'podcasts' && <PodcastsScreen />}
+      {screen === 'gebetgemeinsam' && <GebetGemeinsamScreen />}
       {screen === 'settings' && <SettingsScreen startBereich={startBereich} />}
       {screen === 'pairing' && <PairingScreen />}
       {screen === 'quiz' && <QuizScreen />}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { AppState, Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Image } from 'expo-image';
 
 import { FocusCard } from '@/components/FocusCard';
@@ -14,6 +14,7 @@ import {
   type AzanChoice,
 } from '@/lib/azan';
 import { azanSpielen, azanStoppen, useAzanLauf } from '@/lib/azanRuf';
+import { checkExactAlarmPermission, openExactAlarmSettings } from '@/lib/exactAlarm';
 import { CITIES, cityForLocation, cityLabel } from '@/data/cities';
 import { useTranslation } from '@/lib/i18n';
 import { LOCALE_ENDONYMS, SUPPORTED_LOCALES } from '@/lib/locale';
@@ -63,6 +64,7 @@ import {
   setHintergrund,
   setHintergrundDimmung,
   setTheme,
+  toggleHintergrundBereich,
   setUhrGewicht,
   setUhrSekunden,
   setUhrStil,
@@ -71,7 +73,13 @@ import {
   toggleReaderOption,
   useTvSettings,
 } from '@/lib/settings';
-import { HINTERGRUENDE, hintergrundNameKey, medienId } from '@/lib/hintergruende';
+import {
+  HINTERGRUENDE,
+  HINTERGRUND_BEREICHE,
+  hintergrundBereichNameKey,
+  hintergrundNameKey,
+  medienId,
+} from '@/lib/hintergruende';
 import {
   fetchHintergrundMedien,
   istGespeichert as istMediumGespeichert,
@@ -414,10 +422,50 @@ function AzanSection({ s }: { s: Styles }) {
   const label = (c: AzanChoice) =>
     c === 'aus' ? t('settings.azan.off') : t('settings.azan.recording', { n: azanNummer(c) });
 
+  // Exact-Alarm-Status (nur Android, s. lib/exactAlarm.ts) — Geraetebefund
+  // 2026-09-06: ohne diese Berechtigung kommt der Ruf im Hintergrund um bis
+  // zu einer Stunde zu spaet, statt ihn still ungenau laufen zu lassen wird
+  // das hier sichtbar gemacht. `null` (iOS/tvOS, oder Modul nicht gebaut)
+  // zeigt bewusst NICHTS Zusaetzliches — kein falscher Alarm auf Plattformen,
+  // die die Beschraenkung gar nicht kennen.
+  const [exactAlarmGranted, setExactAlarmGranted] = useState<boolean | null>(null);
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    let cancelled = false;
+    const pruefen = () => {
+      checkExactAlarmPermission().then((status) => {
+        if (!cancelled) setExactAlarmGranted(status);
+      });
+    };
+    pruefen();
+    // Der Nutzer kommt aus den Systemeinstellungen zurueck, ohne dass die
+    // App neu startet — ohne diese Pruefung stuende der Hinweis bis zum
+    // naechsten App-Start weiter da, obwohl laengst erteilt.
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') pruefen();
+    });
+    return () => {
+      cancelled = true;
+      sub.remove();
+    };
+  }, []);
+
   return (
     <>
       <Text style={s.section}>{t('settings.azan.title')}</Text>
       <Text style={s.hint}>{t('settings.azan.hint')}</Text>
+      {exactAlarmGranted === false && (
+        <>
+          <Text style={s.hint}>{t('settings.azan.exactAlarmNotGranted')}</Text>
+          <View style={s.row}>
+            <FocusCard onPress={() => void openExactAlarmSettings()} style={s.toggleCard}>
+              <Text style={s.toggleLabel} numberOfLines={2}>
+                {t('settings.azan.exactAlarmAction')}
+              </Text>
+            </FocusCard>
+          </View>
+        </>
+      )}
 
       {AZAN_PRAYERS.map((prayer) => (
         <View key={prayer} style={s.azanRow}>
@@ -701,7 +749,7 @@ function DisplaySection({ s }: { s: Styles }) {
  * Zustand zu sehen, nur ein noch nicht bewegter.
  */
 function HintergrundSection({ s }: { s: Styles }) {
-  const { hintergrund, hintergrundDimmung, fotoBewegung } = useTvSettings();
+  const { hintergrund, hintergrundDimmung, hintergrundSichtbarkeit, fotoBewegung } = useTvSettings();
   const { t } = useTranslation();
   const { katalog, speicher } = useHintergrundMedien();
   const [fehler, setFehler] = useState(false);
@@ -799,6 +847,28 @@ function HintergrundSection({ s }: { s: Styles }) {
           ))}
         </View>
       )}
+
+      {/* Wo ein Foto/Video zusaetzlich zum Ruhebildschirm laeuft. Nur eine
+          Reihe, kein eigener Bildschirm — es sind vier feste Bereiche, kein
+          waechsender Katalog wie bei den Motiven selbst. */}
+      <Text style={s.section}>{t('settings.bereiche.title')}</Text>
+      <Text style={s.hint}>{t('settings.bereiche.hint')}</Text>
+      <View style={s.row}>
+        {HINTERGRUND_BEREICHE.map((bereich) => {
+          const aktiv = hintergrundSichtbarkeit[bereich];
+          return (
+            <FocusCard
+              key={bereich}
+              onPress={() => toggleHintergrundBereich(bereich)}
+              style={[s.toggleCard, aktiv && s.activeCard]}>
+              <Text style={[s.toggleLabel, aktiv && s.activeText]} numberOfLines={2}>
+                {t(hintergrundBereichNameKey(bereich))}
+              </Text>
+              <Text style={[s.toggleState, aktiv && s.activeText]}>{aktiv ? '✓' : '—'}</Text>
+            </FocusCard>
+          );
+        })}
+      </View>
 
       <Text style={s.section}>{t('settings.dimmung.title')}</Text>
       <Text style={s.hint}>{t('settings.dimmung.hint')}</Text>

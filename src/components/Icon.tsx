@@ -15,6 +15,7 @@ export type IconName =
   | 'quiz'
   | 'phone'
   | 'settings'
+  | 'group'
   | 'play'
   | 'pause'
   | 'back'
@@ -90,6 +91,19 @@ export function Icon({ name, size = 28, color = '#d4af37' }: { name: IconName; s
             d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
             {...p}
           />
+        </>
+      )}
+      {/* Drei Betende in einer Reihe hinter dem Imam — dieselbe Grundform wie
+          das Aufstellungs-Diagramm des Bereichs "Gemeinsam beten"
+          (Kreis+Stern vorn, zwei Koepfe dahinter), nur als 24er-Icon. */}
+      {name === 'group' && (
+        <>
+          <Circle cx={12} cy={7.2} r={2.6} {...p} />
+          <Path d="M8 20v-2.4a4 4 0 0 1 8 0V20" {...p} />
+          <Circle cx={4.6} cy={9.6} r={2} {...p} />
+          <Path d="M2 20v-1.8a3 3 0 0 1 4-2.8" {...p} />
+          <Circle cx={19.4} cy={9.6} r={2} {...p} />
+          <Path d="M22 20v-1.8a3 3 0 0 0-4-2.8" {...p} />
         </>
       )}
       {name === 'play' && <Path d="M8 5.5 18 12 8 18.5V5.5Z" {...p} fill={color} />}

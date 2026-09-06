@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-n
 
 import { FocusCard } from '@/components/FocusCard';
 import { fokusUeberstand } from '@/components/fokusUeberstand';
-import { HintergrundStreifen } from '@/components/HintergrundStreifen';
+import { HintergrundStreifen, streifenPlatz } from '@/components/HintergrundStreifen';
 import { Icon, type IconName } from '@/components/Icon';
 import { useTranslation } from '@/lib/i18n';
 import type { Screen } from '@/lib/nav';
@@ -30,6 +30,12 @@ interface Tile {
 const TILES: Tile[] = [
   { screen: 'clock', labelKey: 'home.clock', hintKey: 'home.clockHint', icon: 'clock' },
   { screen: 'quran', labelKey: 'home.quran', hintKey: 'home.quranHint', icon: 'reader' },
+  {
+    screen: 'gebetgemeinsam',
+    labelKey: 'home.gebetGemeinsam',
+    hintKey: 'home.gebetGemeinsamHint',
+    icon: 'group',
+  },
   { screen: 'reciters', labelKey: 'home.reciters', hintKey: 'home.recitersHint', icon: 'book' },
   { screen: 'radio', labelKey: 'home.radio', hintKey: 'home.radioHint', icon: 'radio' },
   { screen: 'videos', labelKey: 'home.videos', hintKey: 'home.videosHint', icon: 'video' },
@@ -71,7 +77,7 @@ export function resetHomeFokus() {
  * abgeschnitten, was wie ein Darstellungsfehler aussieht und nicht wie „hier
  * geht es weiter". Gleichzeitig blieben rechts oben rund 60 % der Kopfzeile
  * leer. Beides ist behoben: die Kachelhoehe wird jetzt aus der VERFUEGBAREN
- * HOEHE geteilt durch die Reihenzahl gerechnet (alle zehn Kacheln sind ohne
+ * HOEHE geteilt durch die Reihenzahl gerechnet (alle Kacheln sind ohne
  * Scrollen sichtbar), und in die freie Kopfzeile ist das naechste Gebet
  * gewandert — die Information, wegen der der Fernseher ueberhaupt laeuft.
  */
@@ -84,8 +90,10 @@ export function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
 
   const padH = clamp(width * 0.05, 28, 96);
   const padV = clamp(height * 0.05, 20, 56);
-  // Fuenf Spalten auf breiten Panels: zehn Kacheln ergeben damit genau zwei
-  // volle Reihen — keine angebrochene letzte Reihe, kein Scrollen.
+  // Fuenf Spalten auf breiten Panels: bei zehn Kacheln (vor "Gemeinsam
+  // beten") ergab das genau zwei volle Reihen; mit der elften bricht die
+  // letzte Reihe planmaessig ab — die Berechnung unten (Reihenzahl aus der
+  // tatsaechlichen Kachelzahl) traegt das mit, kein Sonderfall noetig.
   const cols = width >= 1400 ? 5 : 4;
   const gap = clamp(width * 0.018, 14, 30);
   const rows = Math.ceil(TILES.length / cols);
@@ -96,14 +104,29 @@ export function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
   const tileW = Math.floor((availW - gap * (cols - 1)) / cols) - 1;
   // Kopfzeile grob veranschlagt (Wortmarke + Unterzeile + Abstand) — die Hoehe
   // muss VOR dem Layout feststehen, sonst laesst sie sich nicht aufteilen.
-  const headerH = clamp(height * 0.19, 92, 200);
-  const availH = height - padV * 2 - headerH;
-  const tileH = clamp(Math.floor((availH - gap * (rows - 1)) / rows), 96, 300);
+  //
+  // Bildschirmbefund 2026-09-05: der Wiedergabe-Streifen schwebte frei ueber
+  // der letzten Kachelreihe und verdeckte deren Unterzeile. Die Flaeche wird
+  // jetzt IMMER abgezogen — auch wenn gerade nichts laeuft —, sonst wuerde das
+  // Raster genau beim Start/Ende einer Wiedergabe springen und den Fokus
+  // verlieren (s. HintergrundStreifen.streifenPlatz). Die Kopfzeile stand nur
+  // aus Vorsicht deutlich groesser als ihr Inhalt (Wortmarke+Unterzeile bzw.
+  // die dreizeilige Gebetszeit) braucht; dieser Puffer war der guenstigste Ort,
+  // um dem Streifen Platz zu geben, ohne die Kacheln selbst unter ihre lesbare
+  // Mindestgroesse zu druecken.
+  const headerH = clamp(height * 0.12, 66, 160);
+  const streifenH = streifenPlatz(height);
+  const availH = height - padV * 2 - headerH - streifenH;
+  // Untergrenze 108 statt der bisherigen 96: bei 96 unterschritt die Kachel
+  // knapp die Summe aus Icon-, Titel- und zweizeiliger Hinweishoehe und die
+  // Unterzeile lief am unteren Bildschirmrand aus dem Bild (Geraetetest auf
+  // salati_tv_36, 540 dp).
+  const tileH = clamp(Math.floor((availH - gap * (rows - 1)) / rows), 108, 300);
 
   const { highLatitude, offsets, location, is24h } = settings;
   const extras = useMemo(() => calcExtras({ highLatitude, offsets }), [highLatitude, offsets]);
   // Einmal je halbe Minute genuegt: der Hub zeigt keine Sekunden, und ein
-  // Sekundentakt wuerde bei jedem Tick alle zehn Kacheln neu rendern.
+  // Sekundentakt wuerde bei jedem Tick alle Kacheln neu rendern.
   // Die Zeit kommt aus dem State und nicht aus `Date.now()` im Rumpf — ein
   // Direktaufruf waere eine unreine Funktion im Render (react-hooks/purity).
   const [jetzt, setJetzt] = useState(() => new Date());

@@ -7,7 +7,7 @@ import { MedienGrund } from '@/components/MedienGrund';
 // Die Kennungen selbst stehen in lib/hintergruende.ts — ohne einen einzigen
 // Import, damit die Einstellungen sie lesen koennen, ohne expo-video und das
 // Dateisystem mitzuziehen (der Grund steht dort).
-import { medienIdLesen } from '@/lib/hintergruende';
+import { medienIdLesen, type HintergrundBereich } from '@/lib/hintergruende';
 import { fetchHintergrundMedien, useHintergrundMedien } from '@/lib/hintergrundMedien';
 import type { Screen } from '@/lib/nav';
 import { useTvSettings } from '@/lib/settings';
@@ -39,33 +39,57 @@ import { useTheme } from '@/lib/useTheme';
 // gescheitert (s. components/AmbientGlow.tsx).
 
 /**
- * Bildschirme, auf denen ein FOTO oder VIDEO liegen darf — genau einer.
- *
- * Geraetebefund 2026-08-30, in dieser Reihenfolge gemessen:
- *   • Hinter den EINSTELLUNGEN war die Seite mit dem Tawaf-Video kaum noch zu
- *     lesen: hunderte helle Punkte hinter kleinem Text.
- *   • Auf dem HUB sah es eindrucksvoll aus, aber die Unterzeilen der Kacheln
- *     („Gebetszeiten & Countdown") verschwanden im Gewimmel.
- *
- * Die gezeichneten Hintergruende halten sich von selbst zurueck, ein Motiv
- * nicht. Es gehoert deshalb genau dorthin, wo grosse Zahlen und wenig Text
- * stehen und wo der Fernseher stundenlang steht: auf die Uhr. Ueberall sonst
- * bleibt der ruhige Grund — die Einstellung bleibt bestehen, sie wirkt nur
- * nicht ueberall.
+ * Bereich je Bildschirm — bestimmt, welche Einstellung (s.
+ * lib/hintergruende.ts) darueber entscheidet, ob dort ein Foto/Video liegen
+ * darf. `settings` fehlt ABSICHTLICH: dort war der Text am schlechtesten
+ * lesbar (Geraetebefund 2026-08-30), und die Einstellung muss bedienbar
+ * bleiben, um ein Motiv wieder abzuschalten — sie bekommt deshalb nie eines,
+ * unabhaengig davon, was der Nutzer sonst waehlt.
  */
-const MOTIV_BILDSCHIRME: readonly Screen[] = ['clock'];
+const BEREICH_VON_SCREEN: Partial<Record<Screen, HintergrundBereich>> = {
+  clock: 'ruhebildschirm',
+  home: 'startmenue',
+  quran: 'koran',
+  videos: 'inhalte',
+  reels: 'inhalte',
+  radio: 'inhalte',
+  reciters: 'inhalte',
+  podcasts: 'inhalte',
+  quiz: 'inhalte',
+  gebetgemeinsam: 'inhalte',
+  pairing: 'inhalte',
+};
+
+/**
+ * Welcher Bereich (s. lib/hintergruende.ts) einen Bildschirm steuert —
+ * `null` fuer die Einstellungen, die bewusst in keiner Tabelle stehen.
+ *
+ * Exportiert, damit sich die Zuordnung ohne Bildschirm pruefen laesst: sie
+ * ist der Vertrag zwischen den elf Bildschirmen aus lib/nav.ts und den vier
+ * Bereichen der Einstellung — eine vergessene Zeile hier zeigt sich sonst erst
+ * am Fernseher, als Motiv, das niemand fuer diesen Bildschirm eingeschaltet
+ * hat, oder als Bildschirm, der trotz eingeschaltetem Bereich ruhig bleibt.
+ */
+export function bereichVonScreen(screen?: Screen): HintergrundBereich | null {
+  // Ohne `screen` (nur in Tests, s. Hintergrund.test.tsx) gilt derselbe
+  // Bereich wie der Ruhebildschirm — das war schon vor dieser Einstellung das
+  // Verhalten der Komponente ohne Prop.
+  return screen === undefined ? 'ruhebildschirm' : (BEREICH_VON_SCREEN[screen] ?? null);
+}
 
 export function Hintergrund({ screen }: { screen?: Screen } = {}) {
-  const { hintergrund, hintergrundDimmung, fotoBewegung } = useTvSettings();
+  const { hintergrund, hintergrundDimmung, hintergrundSichtbarkeit, fotoBewegung } = useTvSettings();
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
   const id = `hg-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
   const kurz = Math.min(width, height);
 
+  const bereich = bereichVonScreen(screen);
+  const motivErlaubt = bereich !== null && hintergrundSichtbarkeit[bereich];
+
   // Foto/Video: der Katalog wird nur geholt, wenn wirklich eines gewaehlt ist
   // — wer bei „Ruhig" bleibt, soll dafuer keine Anfrage ausloesen.
-  const gewaehltesMedium =
-    screen === undefined || MOTIV_BILDSCHIRME.includes(screen) ? medienIdLesen(hintergrund) : null;
+  const gewaehltesMedium = motivErlaubt ? medienIdLesen(hintergrund) : null;
   const { katalog } = useHintergrundMedien();
   useEffect(() => {
     if (gewaehltesMedium && !katalog) void fetchHintergrundMedien().catch(() => {});
@@ -85,7 +109,17 @@ export function Hintergrund({ screen }: { screen?: Screen } = {}) {
     // Solange der Katalog fehlt (erster Start ohne Netz), bleibt der Grund
     // ruhig — besser als ein halbes Bild oder ein Fehlerkasten hinter der Uhr.
     if (!medium) return null;
-    return <MedienGrund medium={medium} dimmung={hintergrundDimmung} bewegtesFoto={fotoBewegung} />;
+    // Ausserhalb des Ruhebildschirms steht ueberall Text, nicht nur an den
+    // Raendern (Kachel-Unterzeilen im Startmenue, Vers und Uebersetzung beim
+    // Koran-Leser) — der feste Saum allein reicht dort nicht, s. MedienGrund.
+    return (
+      <MedienGrund
+        medium={medium}
+        dimmung={hintergrundDimmung}
+        bewegtesFoto={fotoBewegung}
+        vollflaechigGedaempft={bereich !== 'ruhebildschirm'}
+      />
+    );
   }
 
   if (hintergrund === 'ruhig') return null;
