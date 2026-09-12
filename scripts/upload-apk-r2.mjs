@@ -19,13 +19,31 @@
 // Zugangsdaten kommen aus der .env im Repo-Wurzelverzeichnis und werden NIE
 // ausgegeben.
 //
-// Ausfuehren: cd apps/tv && node scripts/upload-apk-r2.mjs [pfad/zur.apk]
-//             node scripts/upload-apk-r2.mjs --pruefen   (nur nachsehen)
+// Befund 12.09.2026: `--pruefen` machte bis dahin nur HTTP-HEAD + Groessen-
+// pruefung — dieselbe Luecke, die bei der Handy-APK dazu fuehrte, dass die auf
+// salati.pro verlinkte Datei unbemerkt drei Fassungen hinter Play zurueckhing
+// (apps/mobile/scripts/release-check.mjs, Befund vom selben Tag). Bei Salati TV
+// war es kein Wettlauf, sondern ein fehlender Auslieferungsschritt: 1.13.0 ging
+// am 06.09. in beide Laeden, das AAB/APK-nach-R2-Hochladen ist aber NICHT Teil
+// von android.yml — es ist ein manueller Schritt (dieses Skript), der nach dem
+// Release schlicht nicht mehr lief. `--pruefen` liest jetzt zusaetzlich die im
+// APK stehende Version per HTTP-Range (leseApkVersionVonUrl, Handy-Skript,
+// keine Kopie — s. Import) und vergleicht sie gegen app.config.js.
 import { createHash, createHmac } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+// Wiederverwendet statt kopiert: apps/mobile und apps/tv liegen im selben
+// Checkout (apps/tv ist nur aus dem pnpm-Workspace ausgeschlossen, s.
+// pnpm-workspace.yaml — kein getrenntes Repo). Die Datei hat keine eigenen
+// Abhaengigkeiten (nur node:zlib), der relative Import funktioniert daher
+// unabhaengig von Paketgrenzen. Laeuft NUR lokal (wie release-check.mjs bei
+// der Handy-App) — der oeffentliche Spiegel `salati-tv-build`
+// (scripts/sync-public-build.sh) spiegelt ausschliesslich apps/tv und baut
+// dort, dieser Pruefschritt gehoert nicht in die CI.
+import { leseApkVersionVonUrl } from '../../mobile/scripts/lib/apk-version.mjs';
+import appConfig from '../app.config.js';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const TV = path.join(HIER, '..');
@@ -227,10 +245,30 @@ const oeffentlich = `${env.cloudflare_public_url.replace(/\/+$/, '')}/${KEY}`;
 
 if (process.argv.includes('--pruefen')) {
   const r = await fetch(oeffentlich, { method: 'HEAD' });
+  const groesse = Number(r.headers.get('content-length') ?? 0);
+  console.log(`online: HTTP ${r.status} · ${(groesse / 1e6).toFixed(1)} MB · ${r.headers.get('content-type')}`);
+  console.log(`Repo (app.config.js): Version ${appConfig.version}, versionCode ${appConfig.android.versionCode}`);
+
+  if (!r.ok || groesse < 20_000_000) {
+    console.log('FEHLER: Datei nicht plausibel (HTTP-Fehler oder unter 20 MB) — Version nicht geprueft.');
+    process.exit(1);
+  }
+
+  let apkVersion;
+  try {
+    apkVersion = await leseApkVersionVonUrl(oeffentlich);
+  } catch (e) {
+    console.log(`FEHLER: Version nicht lesbar (${e.message}).`);
+    process.exit(1);
+  }
+
+  const versionPasst =
+    apkVersion.versionName === appConfig.version && apkVersion.versionCode === appConfig.android.versionCode;
   console.log(
-    `online: HTTP ${r.status} · ${(Number(r.headers.get('content-length') ?? 0) / 1e6).toFixed(1)} MB · ${r.headers.get('content-type')}`,
+    `${versionPasst ? 'OK' : 'FEHLER'}: online ${apkVersion.versionName}/${apkVersion.versionCode}` +
+      (versionPasst ? ' — stimmt mit dem Repo ueberein' : ` — Repo steht auf ${appConfig.version}/${appConfig.android.versionCode}, R2 hinkt hinterher`),
   );
-  process.exit(0);
+  process.exit(versionPasst ? 0 : 1);
 }
 
 const apk = process.argv.find((a) => a.endsWith('.apk')) ?? STANDARD_APK;

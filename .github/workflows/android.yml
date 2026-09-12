@@ -17,6 +17,15 @@ on:
         type: choice
         options: [apk, aab]
         default: apk
+      veroeffentlichen:
+        description: >-
+          "true" laedt das AAB in den Produktions-Track. Fehlt dann das
+          Geheimnis PLAY_SERVICE_ACCOUNT_BASE64, BRICHT der Lauf ab statt
+          still zu ueberspringen. "false" baut nur und legt das AAB als
+          Artefakt ab -- das ist der aktuelle Normalweg, weil das Geheimnis
+          im oeffentlichen Spiegel-Repo bewusst NICHT hinterlegt ist.
+        type: boolean
+        default: false
 
 env:
   EXPO_TV: '1'
@@ -88,18 +97,40 @@ jobs:
       # nur mit anderem Paketnamen. Ein Dienstkonto des Entwicklerkontos hat
       # Zugriff auf ALLE seine Apps, es braucht also keinen zweiten Zugang.
       #
-      # Fehlt das Geheimnis, wird der Schritt still uebersprungen und das AAB
-      # bleibt als Artefakt zum Hochladen von Hand. Genau so war es bis heute:
-      # der Fernseher hatte gar keinen Veroeffentlichungsschritt.
+      # BEFUND 06.09.2026: Dieser Schritt lief bis dahin OHNE Schalter und
+      # uebersprang sich bei fehlendem Geheimnis mit `exit 0`. Der Lauf wurde
+      # gruen, das AAB blieb blosses Artefakt, und die Auslieferung von 1.13.0
+      # galt faelschlich als veroeffentlicht, bis der Play-Zustand abgefragt
+      # wurde. Ein stiller Uebersprung ist die schlechteste aller Varianten:
+      # er sieht aus wie Erfolg. Deshalb gilt jetzt:
+      #   veroeffentlichen=false -> Schritt laeuft gar nicht erst (Normalweg)
+      #   veroeffentlichen=true  -> Geheimnis fehlt = ABBRUCH, laut und rot
+      # Das Geheimnis ist im oeffentlichen Spiegel-Repo bewusst nicht
+      # hinterlegt (Entscheidung 06.09.2026, siehe apps/tv/USER-TODO.md).
+      # Normalweg der Auslieferung: hier nur bauen, Artefakt herunterladen,
+      # lokal mit scripts/play-aab-upload.mjs hochladen.
       - name: AAB in den Play Store (Produktions-Track)
-        if: inputs.art == 'aab'
+        if: inputs.art == 'aab' && inputs.veroeffentlichen
         env:
           PLAY_SERVICE_ACCOUNT_BASE64: ${{ secrets.PLAY_SERVICE_ACCOUNT_BASE64 }}
         run: |
           if [ -z "$PLAY_SERVICE_ACCOUNT_BASE64" ]; then
-            echo "PLAY_SERVICE_ACCOUNT_BASE64 fehlt - Veroeffentlichung uebersprungen."
-            echo "Das AAB haengt als Artefakt am Lauf."
-            exit 0
+            echo "::error title=Veroeffentlichung nicht moeglich::PLAY_SERVICE_ACCOUNT_BASE64 ist in diesem Repo nicht gesetzt."
+            {
+              echo "## Veroeffentlichung ABGEBROCHEN"
+              echo
+              echo "\`veroeffentlichen=true\` war angefordert, aber das Geheimnis"
+              echo "\`PLAY_SERVICE_ACCOUNT_BASE64\` ist in diesem Repo nicht gesetzt."
+              echo
+              echo "**Das AAB wurde NICHT in den Play Store geladen.**"
+              echo
+              echo "Normalweg: Artefakt \`salati-tv-android\` herunterladen und lokal hochladen:"
+              echo
+              echo '```'
+              echo "node scripts/play-aab-upload.mjs <pfad/zum/app-release.aab> store/release-notes-<version>.json"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
           fi
           # app.config.js exportiert das Expo-Objekt DIREKT, nicht unter .expo -
           # anders als app.config.ts der Handy-App.
