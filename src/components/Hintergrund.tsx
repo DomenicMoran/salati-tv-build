@@ -8,6 +8,7 @@ import { MedienGrund } from '@/components/MedienGrund';
 // Import, damit die Einstellungen sie lesen koennen, ohne expo-video und das
 // Dateisystem mitzuziehen (der Grund steht dort).
 import { medienIdLesen, type HintergrundBereich } from '@/lib/hintergruende';
+import { FOLGE_TAKT_MS, naechstesMotiv } from '@/lib/hintergrundFolge';
 import { fetchHintergrundMedien, useHintergrundMedien } from '@/lib/hintergrundMedien';
 import type { Screen } from '@/lib/nav';
 import { useTvSettings } from '@/lib/settings';
@@ -57,6 +58,7 @@ const BEREICH_VON_SCREEN: Partial<Record<Screen, HintergrundBereich>> = {
   podcasts: 'inhalte',
   quiz: 'inhalte',
   gebetgemeinsam: 'inhalte',
+  audiobooks: 'inhalte',
   pairing: 'inhalte',
 };
 
@@ -78,7 +80,8 @@ export function bereichVonScreen(screen?: Screen): HintergrundBereich | null {
 }
 
 export function Hintergrund({ screen }: { screen?: Screen } = {}) {
-  const { hintergrund, hintergrundDimmung, hintergrundSichtbarkeit, fotoBewegung } = useTvSettings();
+  const { hintergrund, hintergrundDimmung, hintergrundSichtbarkeit, fotoBewegung, hintergrundFolge } =
+    useTvSettings();
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
   const id = `hg-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
@@ -90,15 +93,39 @@ export function Hintergrund({ screen }: { screen?: Screen } = {}) {
   // Foto/Video: der Katalog wird nur geholt, wenn wirklich eines gewaehlt ist
   // — wer bei „Ruhig" bleibt, soll dafuer keine Anfrage ausloesen.
   const gewaehltesMedium = motivErlaubt ? medienIdLesen(hintergrund) : null;
+  const folgeLaeuft = hintergrundFolge !== 'fest' && motivErlaubt;
   const { katalog } = useHintergrundMedien();
   useEffect(() => {
-    if (gewaehltesMedium && !katalog) void fetchHintergrundMedien().catch(() => {});
-  }, [gewaehltesMedium, katalog]);
+    if ((gewaehltesMedium || folgeLaeuft) && !katalog) void fetchHintergrundMedien().catch(() => {});
+  }, [gewaehltesMedium, folgeLaeuft, katalog]);
+
+  const [folgeIndex, setFolgeIndex] = useState(0);
+  useEffect(() => {
+    if (!folgeLaeuft || !katalog?.length) return;
+    const takt = setInterval(() => {
+      setFolgeIndex((aktuell) => naechstesMotiv(aktuell, katalog.length, hintergrundFolge, Math.random));
+    }, FOLGE_TAKT_MS);
+    return () => clearInterval(takt);
+  }, [folgeLaeuft, katalog, hintergrundFolge]);
 
   const styles = useMemo(
     () => StyleSheet.create({ fill: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 } }),
     [],
   );
+
+  if (folgeLaeuft) {
+    const medium = katalog?.length ? katalog[folgeIndex % katalog.length] : null;
+    if (!medium) return null;
+    return (
+      <MedienGrund
+        key={medium.id}
+        medium={medium}
+        dimmung={hintergrundDimmung}
+        bewegtesFoto={fotoBewegung}
+        vollflaechigGedaempft={bereich !== 'ruhebildschirm'}
+      />
+    );
+  }
 
   // Ist ein Motiv gewaehlt, gibt es NUR das Motiv oder gar nichts — nie einen
   // gezeichneten Ersatz. Ohne diese Zeile fiel die Auswahl unten auf das
@@ -127,6 +154,10 @@ export function Hintergrund({ screen }: { screen?: Screen } = {}) {
   if (hintergrund === 'sterne') return <Sternenhimmel />;
 
   if (hintergrund === 'kuppel') return <Kuppelnacht />;
+
+  if (hintergrund === 'daemmerung') return <Daemmerung />;
+
+  if (hintergrund === 'garten') return <Gartenlicht />;
 
   if (hintergrund === 'bewegt') return <BewegterGrund />;
 
@@ -444,6 +475,51 @@ export function sternenfeld(w: number, h: number): { a: string; b: string; siche
     `M${mx},${my - r} A${r},${r} 0 1,0 ${mx},${my + r} ` +
     `A${(r * 1.25).toFixed(1)},${(r * 1.25).toFixed(1)} 0 0,1 ${mx},${my - r} Z`;
   return { a: a.join(' '), b: b.join(' '), sichel, punkte };
+}
+
+function Daemmerung() {
+  const { width, height } = useWindowDimensions();
+  const id = useId().replace(/:/g, '');
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <Svg width={width} height={height}>
+        <Defs>
+          <LinearGradient id={`${id}-himmel`} x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#1b2744" />
+            <Stop offset="0.55" stopColor="#6a3a45" />
+            <Stop offset="1" stopColor="#e2a15a" />
+          </LinearGradient>
+        </Defs>
+        <Rect width={width} height={height} fill={`url(#${id}-himmel)`} />
+        <Circle cx={width * 0.72} cy={height * 0.78} r={Math.min(width, height) * 0.06} fill="#fff4d2" opacity={0.85} />
+      </Svg>
+    </View>
+  );
+}
+
+function Gartenlicht() {
+  const { width, height } = useWindowDimensions();
+  const id = useId().replace(/:/g, '');
+  const boegen = [0.2, 0.38, 0.56, 0.74].map((anteil, index) => {
+    const y = height * (0.35 + index * 0.12);
+    return `M0,${y} Q${width * 0.5},${y - height * 0.08} ${width},${y}`;
+  });
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <Svg width={width} height={height}>
+        <Defs>
+          <LinearGradient id={`${id}-garten`} x1="0" y1="1" x2="0" y2="0">
+            <Stop offset="0" stopColor="#102418" />
+            <Stop offset="1" stopColor="#1c3d32" />
+          </LinearGradient>
+        </Defs>
+        <Rect width={width} height={height} fill={`url(#${id}-garten)`} />
+        {boegen.map((pfad) => (
+          <Path key={pfad} d={pfad} stroke="#d4af37" strokeOpacity={0.35} strokeWidth={2} fill="none" />
+        ))}
+      </Svg>
+    </View>
+  );
 }
 
 // --------------------------------------------------------------------------

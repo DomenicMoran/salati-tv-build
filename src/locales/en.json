@@ -132,7 +132,9 @@
     "medina": "Green Dome",
     "medinaLuft": "Prophet's Mosque",
     "ornament": "Dome ornament",
-    "tawaf": "Tawaf"
+    "tawaf": "Tawaf",
+    "alhambraBrunnen": "Alhambra fountain",
+    "qarawiyyin": "Qarawiyyin"
   },
   "home": {
     "clock": "Prayer clock",
@@ -157,7 +159,9 @@
     "settingsHint": "Location & method",
     "tagline": "Prayer times · Quran · Learning",
     "videos": "Videos",
-    "videosHint": "Grammar & lessons"
+    "videosHint": "Grammar & lessons",
+    "audiobooks": "Audiobooks",
+    "audiobooksHint": "Audio, video and books"
   },
   "pairing": {
     "action": "Connect TV",
@@ -283,7 +287,7 @@
       "foto": "Photo",
       "fotos": "Photos",
       "gezeichnet": "Drawn",
-      "hint": "Sits behind every area and works with any colour world.",
+      "hint": "Sits behind every area and works with any colour world. Slideshow and Random cycle every picture.",
       "kuppel": "Dome",
       "ladeFehler": "The motifs could not be loaded.",
       "muster": "Pattern",
@@ -294,7 +298,14 @@
       "title": "Background",
       "verlauf": "Gradient",
       "video": "Video",
-      "videos": "Videos"
+      "videos": "Videos",
+      "daemmerung": "Dusk",
+      "garten": "Garden light",
+      "folge": {
+        "fest": "One picture",
+        "reihe": "Slideshow",
+        "zufall": "Random"
+      }
     },
     "bereiche": {
       "hint": "Settings always stay without a background, so they stay readable.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "Videos could not be loaded.",
     "title": "Videos"
+  },
+  "audiobooks": {
+    "title": "Audiobooks",
+    "loadError": "The audiobooks could not be loaded.",
+    "empty": "No audiobook is listed in this language yet.",
+    "grammar": "Grammar",
+    "pflichtwissen": "Essentials",
+    "kicker": "Audiobook",
+    "watch": "Watch video",
+    "listen": "Listen",
+    "books": "Books",
+    "book": "Open book",
+    "booksEmpty": "No book is listed in this language yet.",
+    "kurs1": "Arabic course 1",
+    "kurs2": "Arabic course 2",
+    "rassoul": "Tafsir Al-Quran Al-Karim",
+    "rassoulGerman": "The commentary is German, in the authors wording.",
+    "handouts": "Handouts",
+    "loading": "Loading",
+    "quran": "Quran",
+    "quranNote": "The Arabic Quran text is in the public domain."
+  },
+  "bibliothek": {
+    "continueReading": "Continue reading",
+    "savedPlace": "Last read"
   }
 }

@@ -132,7 +132,9 @@
     "medina": "Grüne Kuppel",
     "medinaLuft": "Prophetenmoschee",
     "ornament": "Kuppelornament",
-    "tawaf": "Tawaf"
+    "tawaf": "Tawaf",
+    "alhambraBrunnen": "Alhambra-Brunnen",
+    "qarawiyyin": "Qarawiyyin"
   },
   "home": {
     "clock": "Gebetsuhr",
@@ -157,7 +159,9 @@
     "settingsHint": "Standort & Methode",
     "tagline": "Gebetszeiten · Koran · Lernen",
     "videos": "Videos",
-    "videosHint": "Grammatik & Lektionen"
+    "videosHint": "Grammatik & Lektionen",
+    "audiobooks": "Hörbücher",
+    "audiobooksHint": "Audio, Video und Bücher"
   },
   "pairing": {
     "action": "TV verbinden",
@@ -283,7 +287,7 @@
       "foto": "Foto",
       "fotos": "Fotos",
       "gezeichnet": "Gezeichnet",
-      "hint": "Liegt hinter allen Bereichen und wirkt in jeder Farbwelt.",
+      "hint": "Liegt hinter allen Bereichen und wirkt in jeder Farbwelt. Nacheinander und Zufällig wechseln alle Motive.",
       "kuppel": "Kuppel",
       "ladeFehler": "Die Motive konnten nicht geladen werden.",
       "muster": "Muster",
@@ -294,7 +298,14 @@
       "title": "Hintergrund",
       "verlauf": "Verlauf",
       "video": "Video",
-      "videos": "Videos"
+      "videos": "Videos",
+      "daemmerung": "Daemmerung",
+      "garten": "Gartenlicht",
+      "folge": {
+        "fest": "Ein Motiv",
+        "reihe": "Nacheinander",
+        "zufall": "Zufällig"
+      }
     },
     "bereiche": {
       "hint": "Die Einstellungen bleiben immer ohne Motiv, damit sie lesbar bleiben.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "Videos konnten nicht geladen werden.",
     "title": "Videos"
+  },
+  "audiobooks": {
+    "title": "Hörbücher",
+    "loadError": "Die Hörbücher konnten nicht geladen werden.",
+    "empty": "In dieser Sprache ist noch kein Hörbuch gelistet.",
+    "grammar": "Grammatik",
+    "pflichtwissen": "Pflichtwissen",
+    "kicker": "Hörbuch",
+    "watch": "Video ansehen",
+    "listen": "Anhören",
+    "books": "Bücher",
+    "book": "Buch öffnen",
+    "booksEmpty": "In dieser Sprache ist noch kein Buch gelistet.",
+    "kurs1": "Arabischkurs 1",
+    "kurs2": "Arabischkurs 2",
+    "rassoul": "Tafsir Al-Quran Al-Karim",
+    "rassoulGerman": "Der Kommentar ist deutsch, Wortlaut des Autors.",
+    "handouts": "Lernunterlagen",
+    "loading": "Wird geladen",
+    "quran": "Koran",
+    "quranNote": "Der arabische Korantext ist gemeinfrei."
+  },
+  "bibliothek": {
+    "continueReading": "Weiterlesen",
+    "savedPlace": "Zuletzt gelesen"
   }
 }

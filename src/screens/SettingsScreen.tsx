@@ -62,6 +62,7 @@ import {
   setBedienungAusblenden,
   setFotoBewegung,
   setHintergrund,
+  setHintergrundFolge,
   setHintergrundDimmung,
   setTheme,
   toggleHintergrundBereich,
@@ -80,6 +81,7 @@ import {
   hintergrundNameKey,
   medienId,
 } from '@/lib/hintergruende';
+import { HINTERGRUND_FOLGEN } from '@/lib/hintergrundFolge';
 import {
   fetchHintergrundMedien,
   istGespeichert as istMediumGespeichert,
@@ -749,7 +751,8 @@ function DisplaySection({ s }: { s: Styles }) {
  * Zustand zu sehen, nur ein noch nicht bewegter.
  */
 function HintergrundSection({ s }: { s: Styles }) {
-  const { hintergrund, hintergrundDimmung, hintergrundSichtbarkeit, fotoBewegung } = useTvSettings();
+  const { hintergrund, hintergrundDimmung, hintergrundSichtbarkeit, fotoBewegung, hintergrundFolge } =
+    useTvSettings();
   const { t } = useTranslation();
   const { katalog, speicher } = useHintergrundMedien();
   const [fehler, setFehler] = useState(false);
@@ -770,6 +773,7 @@ function HintergrundSection({ s }: { s: Styles }) {
     setFehler(false);
     // ZUERST setzen, dann laden: der Nutzer soll sofort sehen, dass seine Wahl
     // angekommen ist — das Standbild steht ja schon.
+    setHintergrundFolge('fest');
     setHintergrund(medienId(m.id));
     if (speicher[m.id]) return;
     setLaedt((v) => ({ ...v, [m.id]: 0 }));
@@ -793,14 +797,32 @@ function HintergrundSection({ s }: { s: Styles }) {
     <>
       <Text style={s.section}>{t('settings.background.title')}</Text>
       <Text style={s.hint}>{t('settings.background.hint')}</Text>
+      <View style={s.grid}>
+        {HINTERGRUND_FOLGEN.map((folge) => {
+          const active = folge === hintergrundFolge;
+          return (
+            <FocusCard
+              key={folge}
+              onPress={() => setHintergrundFolge(folge)}
+              style={[s.themeCard, active && s.activeCard]}>
+              <Text style={[s.cardLabel, active && s.activeText]} numberOfLines={2}>
+                {t(`settings.background.folge.${folge}`)}
+              </Text>
+            </FocusCard>
+          );
+        })}
+      </View>
       <Text style={s.groupLabel}>{t('settings.background.gezeichnet')}</Text>
       <View style={s.grid}>
         {HINTERGRUENDE.map((hg) => {
-          const active = hg === hintergrund;
+          const active = hintergrundFolge === 'fest' && hg === hintergrund;
           return (
             <FocusCard
               key={hg}
-              onPress={() => setHintergrund(hg)}
+              onPress={() => {
+                setHintergrundFolge('fest');
+                setHintergrund(hg);
+              }}
               style={[s.themeCard, active && s.activeCard]}>
               <Text style={[s.cardLabel, active && s.activeText]} numberOfLines={2}>
                 {t(hintergrundNameKey(hg))}
@@ -820,7 +842,7 @@ function HintergrundSection({ s }: { s: Styles }) {
               key={m.id}
               s={s}
               medium={m}
-              aktiv={hintergrund === medienId(m.id)}
+              aktiv={hintergrundFolge === 'fest' && hintergrund === medienId(m.id)}
               gespeichert={!!speicher[m.id]}
               fortschritt={laedt[m.id]}
               onPress={() => void waehlen(m)}
@@ -839,7 +861,7 @@ function HintergrundSection({ s }: { s: Styles }) {
               key={m.id}
               s={s}
               medium={m}
-              aktiv={hintergrund === medienId(m.id)}
+              aktiv={hintergrundFolge === 'fest' && hintergrund === medienId(m.id)}
               gespeichert={!!speicher[m.id]}
               fortschritt={laedt[m.id]}
               onPress={() => void waehlen(m)}

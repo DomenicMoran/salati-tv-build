@@ -25,7 +25,7 @@ export interface LaufendesStueck {
   coverUrl?: string;
   loop: boolean;
   /** Woher es gestartet wurde — der Hinweis-Streifen verlinkt zurueck. */
-  quelle: 'reciters' | 'radio' | 'podcasts' | 'quran';
+  quelle: 'reciters' | 'radio' | 'podcasts' | 'quran' | 'audiobooks';
 }
 
 interface Zustand {

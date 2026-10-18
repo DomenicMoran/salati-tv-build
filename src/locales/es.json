@@ -132,7 +132,9 @@
     "medina": "Cúpula Verde",
     "medinaLuft": "Mezquita del Profeta",
     "ornament": "Ornamento de cúpula",
-    "tawaf": "Tawaf"
+    "tawaf": "Tawaf",
+    "alhambraBrunnen": "Fuente de la Alhambra",
+    "qarawiyyin": "Qarawiyyin"
   },
   "home": {
     "clock": "Reloj de oración",
@@ -157,7 +159,9 @@
     "settingsHint": "Ubicación y método",
     "tagline": "Horarios de oración · Corán · Aprendizaje",
     "videos": "Vídeos",
-    "videosHint": "Gramática y lecciones"
+    "videosHint": "Gramática y lecciones",
+    "audiobooks": "Audiolibros",
+    "audiobooksHint": "Audio, video y libros"
   },
   "pairing": {
     "action": "Conectar TV",
@@ -283,7 +287,7 @@
       "foto": "Foto",
       "fotos": "Fotos",
       "gezeichnet": "Dibujados",
-      "hint": "Está detrás de todas las áreas y funciona con cualquier paleta.",
+      "hint": "Está detrás de todas las áreas y funciona con cualquier paleta. La presentación y el azar recorren todas las imágenes.",
       "kuppel": "Cúpula",
       "ladeFehler": "No se han podido cargar los motivos.",
       "muster": "Patrón",
@@ -294,7 +298,14 @@
       "title": "Fondo",
       "verlauf": "Degradado",
       "video": "Vídeo",
-      "videos": "Vídeos"
+      "videos": "Vídeos",
+      "daemmerung": "Atardecer",
+      "garten": "Luz de jardin",
+      "folge": {
+        "fest": "Una imagen",
+        "reihe": "Presentación",
+        "zufall": "Al azar"
+      }
     },
     "bereiche": {
       "hint": "Los ajustes siempre quedan sin fondo, para que se puedan leer.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "No se pudieron cargar los vídeos.",
     "title": "Vídeos"
+  },
+  "audiobooks": {
+    "title": "Audiolibros",
+    "loadError": "No se pudieron cargar los audiolibros.",
+    "empty": "Aun no hay un audiolibro en este idioma.",
+    "grammar": "Gramatica",
+    "pflichtwissen": "Lo esencial",
+    "kicker": "Audiolibro",
+    "watch": "Ver video",
+    "listen": "Escuchar",
+    "books": "Libros",
+    "book": "Abrir libro",
+    "booksEmpty": "Aun no hay un libro en este idioma.",
+    "kurs1": "Curso de arabe 1",
+    "kurs2": "Curso de arabe 2",
+    "rassoul": "Tafsir Al-Quran Al-Karim",
+    "rassoulGerman": "El comentario esta en aleman, texto del autor.",
+    "handouts": "Apuntes",
+    "loading": "Cargando",
+    "quran": "Coran",
+    "quranNote": "El texto arabe del Coran es de dominio publico."
+  },
+  "bibliothek": {
+    "continueReading": "Seguir leyendo",
+    "savedPlace": "Última lectura"
   }
 }

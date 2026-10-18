@@ -132,7 +132,9 @@
     "medina": "Dôme vert",
     "medinaLuft": "Mosquée du Prophète",
     "ornament": "Ornement de coupole",
-    "tawaf": "Tawaf"
+    "tawaf": "Tawaf",
+    "alhambraBrunnen": "Fontaine de l'Alhambra",
+    "qarawiyyin": "Qarawiyyin"
   },
   "home": {
     "clock": "Horloge de prière",
@@ -157,7 +159,9 @@
     "settingsHint": "Lieu et méthode",
     "tagline": "Horaires de prière · Coran · Apprentissage",
     "videos": "Vidéos",
-    "videosHint": "Grammaire et leçons"
+    "videosHint": "Grammaire et leçons",
+    "audiobooks": "Livres audio",
+    "audiobooksHint": "Audio, video et livres"
   },
   "pairing": {
     "action": "Connecter la TV",
@@ -283,7 +287,7 @@
       "foto": "Photo",
       "fotos": "Photos",
       "gezeichnet": "Dessinés",
-      "hint": "Se place derrière toutes les sections et fonctionne avec chaque palette.",
+      "hint": "Se place derrière toutes les sections et fonctionne avec chaque palette. Le diaporama et le hasard font défiler toutes les images.",
       "kuppel": "Coupole",
       "ladeFehler": "Impossible de charger les motifs.",
       "muster": "Motif",
@@ -294,7 +298,14 @@
       "title": "Arrière-plan",
       "verlauf": "Dégradé",
       "video": "Vidéo",
-      "videos": "Vidéos"
+      "videos": "Vidéos",
+      "daemmerung": "Crepuscule",
+      "garten": "Lumiere de jardin",
+      "folge": {
+        "fest": "Une image",
+        "reihe": "Diaporama",
+        "zufall": "Au hasard"
+      }
     },
     "bereiche": {
       "hint": "Les réglages restent toujours sans arrière-plan, pour rester lisibles.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "Impossible de charger les vidéos.",
     "title": "Vidéos"
+  },
+  "audiobooks": {
+    "title": "Livres audio",
+    "loadError": "Les livres audio nont pas pu etre charges.",
+    "empty": "Aucun livre audio nest liste dans cette langue.",
+    "grammar": "Grammaire",
+    "pflichtwissen": "Essentiel",
+    "kicker": "Livre audio",
+    "watch": "Voir la video",
+    "listen": "Ecouter",
+    "books": "Livres",
+    "book": "Ouvrir le livre",
+    "booksEmpty": "Aucun livre dans cette langue.",
+    "kurs1": "Cours darabe 1",
+    "kurs2": "Cours darabe 2",
+    "rassoul": "Tafsir Al-Quran Al-Karim",
+    "rassoulGerman": "Le commentaire est en allemand, texte de lauteur.",
+    "handouts": "Fiches",
+    "loading": "Chargement",
+    "quran": "Coran",
+    "quranNote": "Le texte arabe du Coran est dans le domaine public."
+  },
+  "bibliothek": {
+    "continueReading": "Reprendre la lecture",
+    "savedPlace": "Dernière lecture"
   }
 }

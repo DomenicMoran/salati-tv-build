@@ -132,7 +132,9 @@
     "medina": "Yeşil Kubbe",
     "medinaLuft": "Mescid-i Nebevî",
     "ornament": "Kubbe süslemesi",
-    "tawaf": "Tavaf"
+    "tawaf": "Tavaf",
+    "alhambraBrunnen": "Elhamra fıskiyesi",
+    "qarawiyyin": "Karaviyyin"
   },
   "home": {
     "clock": "Namaz saati",
@@ -157,7 +159,9 @@
     "settingsHint": "Konum ve yöntem",
     "tagline": "Namaz vakitleri · Kur’an · Öğrenme",
     "videos": "Videolar",
-    "videosHint": "Dil bilgisi ve dersler"
+    "videosHint": "Dil bilgisi ve dersler",
+    "audiobooks": "Sesli kitaplar",
+    "audiobooksHint": "Ses, video ve kitaplar"
   },
   "pairing": {
     "action": "TV'ye bağlan",
@@ -283,7 +287,7 @@
       "foto": "Fotoğraf",
       "fotos": "Fotoğraflar",
       "gezeichnet": "Çizim",
-      "hint": "Tüm bölümlerin arkasında durur ve her renk dünyasında çalışır.",
+      "hint": "Tüm bölümlerin arkasında durur ve her renk dünyasında çalışır. Sırayla ve Rastgele bütün görselleri değiştirir.",
       "kuppel": "Kubbe",
       "ladeFehler": "Görseller yüklenemedi.",
       "muster": "Desen",
@@ -294,7 +298,14 @@
       "title": "Arka plan",
       "verlauf": "Geçiş",
       "video": "Video",
-      "videos": "Videolar"
+      "videos": "Videolar",
+      "daemmerung": "Alacakaranlik",
+      "garten": "Bahce isigi",
+      "folge": {
+        "fest": "Tek görsel",
+        "reihe": "Sırayla",
+        "zufall": "Rastgele"
+      }
     },
     "bereiche": {
       "hint": "Ayarlar okunaklı kalması için her zaman arka plansız kalır.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "Videolar yüklenemedi.",
     "title": "Videolar"
+  },
+  "audiobooks": {
+    "title": "Sesli kitaplar",
+    "loadError": "Sesli kitaplar yuklenemedi.",
+    "empty": "Bu dilde henuz sesli kitap yok.",
+    "grammar": "Dilbilgisi",
+    "pflichtwissen": "Zaruri bilgi",
+    "kicker": "Sesli kitap",
+    "watch": "Videoyu izle",
+    "listen": "Dinle",
+    "books": "Kitaplar",
+    "book": "Kitabi ac",
+    "booksEmpty": "Bu dilde henuz kitap yok.",
+    "kurs1": "Arapca kurs 1",
+    "kurs2": "Arapca kurs 2",
+    "rassoul": "Tefsirul Kuranil Kerim",
+    "rassoulGerman": "Aciklama Almanca, yazarin metni.",
+    "handouts": "Ders notlari",
+    "loading": "Yukleniyor",
+    "quran": "Kuran",
+    "quranNote": "Arapca Kuran metni kamu malidir."
+  },
+  "bibliothek": {
+    "continueReading": "Okumaya devam",
+    "savedPlace": "Son okunan"
   }
 }

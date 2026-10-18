@@ -132,7 +132,9 @@
     "medina": "Kubah Hijau",
     "medinaLuft": "Masjid Nabawi",
     "ornament": "Ornamen kubah",
-    "tawaf": "Tawaf"
+    "tawaf": "Tawaf",
+    "alhambraBrunnen": "Air pancut Alhambra",
+    "qarawiyyin": "Qarawiyyin"
   },
   "home": {
     "clock": "Jam solat",
@@ -157,7 +159,9 @@
     "settingsHint": "Lokasi & kaedah",
     "tagline": "Waktu solat · Al-Quran · Pembelajaran",
     "videos": "Video",
-    "videosHint": "Tatabahasa & pelajaran"
+    "videosHint": "Tatabahasa & pelajaran",
+    "audiobooks": "Buku audio",
+    "audiobooksHint": "Audio, video dan buku"
   },
   "pairing": {
     "action": "Sambung TV",
@@ -283,7 +287,7 @@
       "foto": "Foto",
       "fotos": "Foto",
       "gezeichnet": "Lukisan",
-      "hint": "Berada di belakang semua bahagian dan sesuai dengan setiap warna.",
+      "hint": "Berada di belakang semua bahagian dan sesuai dengan setiap warna. Bergilir dan Rawak menukar semua gambar.",
       "kuppel": "Kubah",
       "ladeFehler": "Motif tidak dapat dimuat.",
       "muster": "Corak",
@@ -294,7 +298,14 @@
       "title": "Latar belakang",
       "verlauf": "Kecerunan",
       "video": "Video",
-      "videos": "Video"
+      "videos": "Video",
+      "daemmerung": "Senja",
+      "garten": "Cahaya taman",
+      "folge": {
+        "fest": "Satu gambar",
+        "reihe": "Bergilir",
+        "zufall": "Rawak"
+      }
     },
     "bereiche": {
       "hint": "Tetapan sentiasa tanpa latar belakang, supaya mudah dibaca.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "Video tidak dapat dimuatkan.",
     "title": "Video"
+  },
+  "audiobooks": {
+    "title": "Buku audio",
+    "loadError": "Buku audio tidak dapat dimuatkan.",
+    "empty": "Belum ada buku audio dalam bahasa ini.",
+    "grammar": "Tatabahasa",
+    "pflichtwissen": "Ilmu wajib",
+    "kicker": "Buku audio",
+    "watch": "Tonton video",
+    "listen": "Dengar",
+    "books": "Buku",
+    "book": "Buka buku",
+    "booksEmpty": "Belum ada buku dalam bahasa ini.",
+    "kurs1": "Kursus Arab 1",
+    "kurs2": "Kursus Arab 2",
+    "rassoul": "Tafsir Al-Quran Al-Karim",
+    "rassoulGerman": "Ulasan dalam bahasa Jerman, teks penulis.",
+    "handouts": "Nota",
+    "loading": "Memuatkan",
+    "quran": "Quran",
+    "quranNote": "Teks Arab Quran adalah domain awam."
+  },
+  "bibliothek": {
+    "continueReading": "Sambung baca",
+    "savedPlace": "Terakhir dibaca"
   }
 }

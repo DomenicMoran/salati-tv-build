@@ -132,7 +132,9 @@
     "medina": "Kuba la Kijani",
     "medinaLuft": "Msikiti wa Mtume",
     "ornament": "Nakshi ya kuba",
-    "tawaf": "Tawafu"
+    "tawaf": "Tawafu",
+    "alhambraBrunnen": "Chemchemi ya Alhambra",
+    "qarawiyyin": "Qarawiyyin"
   },
   "home": {
     "clock": "Saa ya sala",
@@ -157,7 +159,9 @@
     "settingsHint": "Mahali na mbinu",
     "tagline": "Nyakati za sala · Qur’ani · Kujifunza",
     "videos": "Video",
-    "videosHint": "Sarufi na masomo"
+    "videosHint": "Sarufi na masomo",
+    "audiobooks": "Vitabu vya sauti",
+    "audiobooksHint": "Sauti, video na vitabu"
   },
   "pairing": {
     "action": "Unganisha TV",
@@ -283,7 +287,7 @@
       "foto": "Picha",
       "fotos": "Picha",
       "gezeichnet": "Michoro",
-      "hint": "Iko nyuma ya sehemu zote na inafaa kwa kila rangi.",
+      "hint": "Iko nyuma ya sehemu zote na inafaa kwa kila rangi. Mfululizo na nasibu hubadilisha picha zote.",
       "kuppel": "Kuba",
       "ladeFehler": "Motifu hazikuweza kupakiwa.",
       "muster": "Muundo",
@@ -294,7 +298,14 @@
       "title": "Mandharinyuma",
       "verlauf": "Mpito",
       "video": "Video",
-      "videos": "Video"
+      "videos": "Video",
+      "daemmerung": "Machweo",
+      "garten": "Mwanga wa bustani",
+      "folge": {
+        "fest": "Picha moja",
+        "reihe": "Mfululizo",
+        "zufall": "Nasibu"
+      }
     },
     "bereiche": {
       "hint": "Mipangilio hubaki bila mandharinyuma kila wakati, ili iwe rahisi kusoma.",
@@ -436,5 +447,30 @@
   "videos": {
     "loadError": "Video hazikuweza kupakiwa.",
     "title": "Video"
+  },
+  "audiobooks": {
+    "title": "Vitabu vya sauti",
+    "loadError": "Vitabu vya sauti havikupakiwa.",
+    "empty": "Bado hakuna kitabu cha sauti kwa lugha hii.",
+    "grammar": "Sarufi",
+    "pflichtwissen": "Elimu ya lazima",
+    "kicker": "Kitabu cha sauti",
+    "watch": "Tazama video",
+    "listen": "Sikiliza",
+    "books": "Vitabu",
+    "book": "Fungua kitabu",
+    "booksEmpty": "Bado hakuna kitabu kwa lugha hii.",
+    "kurs1": "Kozi ya Kiarabu 1",
+    "kurs2": "Kozi ya Kiarabu 2",
+    "rassoul": "Tafsiri ya Quran Tukufu",
+    "rassoulGerman": "Maelezo yako kwa Kijerumani, maneno ya mwandishi.",
+    "handouts": "Maelezo",
+    "loading": "Inapakia",
+    "quran": "Quran",
+    "quranNote": "Maandishi ya Kiarabu ya Quran hayana hakimiliki."
+  },
+  "bibliothek": {
+    "continueReading": "Endelea kusoma",
+    "savedPlace": "Ilisomwa hivi karibuni"
   }
 }

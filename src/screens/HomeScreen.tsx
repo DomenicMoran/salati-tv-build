@@ -30,16 +30,17 @@ interface Tile {
 const TILES: Tile[] = [
   { screen: 'clock', labelKey: 'home.clock', hintKey: 'home.clockHint', icon: 'clock' },
   { screen: 'quran', labelKey: 'home.quran', hintKey: 'home.quranHint', icon: 'reader' },
+  { screen: 'audiobooks', labelKey: 'home.audiobooks', hintKey: 'home.audiobooksHint', icon: 'reader' },
+  { screen: 'reciters', labelKey: 'home.reciters', hintKey: 'home.recitersHint', icon: 'book' },
+  { screen: 'radio', labelKey: 'home.radio', hintKey: 'home.radioHint', icon: 'radio' },
+  { screen: 'videos', labelKey: 'home.videos', hintKey: 'home.videosHint', icon: 'video' },
+  { screen: 'podcasts', labelKey: 'home.podcasts', hintKey: 'home.podcastsHint', icon: 'headphones' },
   {
     screen: 'gebetgemeinsam',
     labelKey: 'home.gebetGemeinsam',
     hintKey: 'home.gebetGemeinsamHint',
     icon: 'group',
   },
-  { screen: 'reciters', labelKey: 'home.reciters', hintKey: 'home.recitersHint', icon: 'book' },
-  { screen: 'radio', labelKey: 'home.radio', hintKey: 'home.radioHint', icon: 'radio' },
-  { screen: 'videos', labelKey: 'home.videos', hintKey: 'home.videosHint', icon: 'video' },
-  { screen: 'podcasts', labelKey: 'home.podcasts', hintKey: 'home.podcastsHint', icon: 'headphones' },
   { screen: 'reels', labelKey: 'home.reels', hintKey: 'home.reelsHint', icon: 'bolt' },
   { screen: 'quiz', labelKey: 'home.quiz', hintKey: 'home.quizHint', icon: 'quiz' },
   { screen: 'pairing', labelKey: 'home.pairing', hintKey: 'home.pairingHint', icon: 'phone' },
@@ -165,6 +166,7 @@ export function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
       <View style={s.header}>
         <View style={s.brandBlock}>
           <Text style={s.brand}>SALATI</Text>
+          <View style={s.brandLinie} />
           <Text style={s.sub}>{t('home.tagline')}</Text>
         </View>
         <View style={s.nextBlock}>
@@ -238,6 +240,14 @@ function makeStyles(o: {
     },
     brandBlock: { alignItems: o.rtl ? 'flex-end' : 'flex-start', flexShrink: 1 },
     brand: { color: th.accent, fontSize: clamp(o.height * 0.055, 28, 48), fontWeight: '800', letterSpacing: 8 },
+    brandLinie: {
+      width: clamp(o.height * 0.12, 48, 96),
+      height: 2,
+      marginTop: 8,
+      backgroundColor: th.accent,
+      opacity: 0.7,
+      alignSelf: o.rtl ? 'flex-end' : 'flex-start',
+    },
     sub: { color: th.textMuted, fontSize: clamp(o.height * 0.03, 16, 26), marginTop: 6, textAlign: align },
     // Die rechte Kopfhaelfte war leer; hier steht jetzt, wonach der Nutzer
     // ohnehin sucht — ohne dass er dafuer die Uhr oeffnen muss.

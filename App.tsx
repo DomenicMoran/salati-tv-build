@@ -16,6 +16,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { Hintergrund } from '@/components/Hintergrund';
 import { ausblendenNach, bedienungGesehen } from '@/lib/bedienungSichtbar';
+import { AudiobooksScreen } from '@/screens/AudiobooksScreen';
 import { ClockScreen } from '@/screens/ClockScreen';
 import { GebetGemeinsamScreen } from '@/screens/GebetGemeinsamScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
@@ -260,6 +261,7 @@ export default function App() {
       {screen === 'radio' && <RadioScreen />}
       {screen === 'reels' && <ReelsScreen />}
       {screen === 'podcasts' && <PodcastsScreen />}
+      {screen === 'audiobooks' && <AudiobooksScreen onQuran={() => setScreen('quran')} />}
       {screen === 'gebetgemeinsam' && <GebetGemeinsamScreen />}
       {screen === 'settings' && <SettingsScreen startBereich={startBereich} />}
       {screen === 'pairing' && <PairingScreen />}

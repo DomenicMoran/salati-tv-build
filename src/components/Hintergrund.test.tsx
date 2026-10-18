@@ -77,6 +77,8 @@ it('kennt genau diese gezeichneten Moeglichkeiten', () => {
     'bewegt',
     'sterne',
     'kuppel',
+    'daemmerung',
+    'garten',
   ]);
 });
 

@@ -38,7 +38,7 @@ export const SCREENS = [
 // Kleingeschrieben wie jeder Eintrag in `SCREENS`: `screenFromUrl` lowercased
 // den Adress-Teil vor dem Vergleich (Deep Links sind nicht case-sensitiv),
 // ein Mischschreibungs-Bildschirmname wuerde dort nie treffen.
-export const LOCAL_SCREENS = ['gebetgemeinsam'] as const;
+export const LOCAL_SCREENS = ['gebetgemeinsam', 'audiobooks'] as const;
 
 export type Screen = (typeof SCREENS)[number] | (typeof LOCAL_SCREENS)[number];
 
