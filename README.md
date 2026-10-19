@@ -1,4 +1,3 @@
-﻿# Salati TV — Build-Mirror (öffentlich)
+﻿# Salati TV — Build-Mirror
 
-Automatisch gespiegelter Build-Mirror von apps/tv für kostenlose GitHub-Actions-Builds.
-Enthält keine Secrets. Nicht direkt hier entwickeln.
+Automatisch gespiegelter Build-Mirror. Enthält keine Secrets.

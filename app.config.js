@@ -80,7 +80,7 @@ module.exports = {
   //   die unterste Kachelreihe. Auch die drei Gebetsruf-Aufnahmen sind
   //   klarer (44,1 statt 32 kHz), und das Hintergrundmotiv laesst sich jetzt
   //   auch hinter Startmenue und Koran-Leser einschalten.
-  version: '1.14.0',
+  version: '1.14.1',
   scheme: 'salatitv',
   orientation: 'landscape',
   icon: './assets/icon.png',
@@ -98,7 +98,8 @@ module.exports = {
     // 19 = 1.13.0 (Gemeinsam beten, doppelter Gebetsruf und Hintergrund-
     // Wecker behoben, klarere Gebetsrufe, Motiv hinter Menue/Koran-Leser).
     // 20 = 1.14.0 (Hörbücher, Hintergrundreihe, Grammatik in der Katalogsprache).
-    versionCode: 20,
+    // 21 = 1.14.1 (Lernunterlagen bleiben in jeder Oberflächensprache sichtbar).
+    versionCode: 21,
     // Der Vordergrund darf NICHT icon.png sein: das ist seit 1.8.1 vollflaechig,
     // und die Maske zeigt vom 108-dp-Vordergrund nur die mittleren 72 dp — die
     // Zacken waeren abgeschnitten.
@@ -110,7 +111,7 @@ module.exports = {
     bundleIdentifier: 'de.salatibox.tv',
     // Wird beim Bauen vom Workflow hochgezaehlt; Apple lehnt eine schon
     // hochgeladene Build-Nummer ab, auch wenn die Version dieselbe bleibt.
-    buildNumber: '6',
+    buildNumber: '7',
     infoPlist: {
       // Der Fernseher oeffnet fuer die Handy-Kopplung einen TCP-Server im WLAN
       // (src/lib/pairing.ts). Ohne diesen Text verweigert tvOS den Zugriff aufs

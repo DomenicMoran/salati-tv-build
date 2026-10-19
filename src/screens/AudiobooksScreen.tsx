@@ -26,6 +26,7 @@ import { VideoPlayer } from '@/components/VideoPlayer';
 import { SURAHS } from '@/data/surahs';
 import releasePolicy from '@/data/release-policy.json';
 import { useTranslation } from '@/lib/i18n';
+import { unterlageHinweis, unterlagenFuerSprache } from '@/lib/unterlagen';
 import type { Theme } from '@/lib/theme';
 import { useTheme } from '@/lib/useTheme';
 
@@ -53,6 +54,7 @@ interface Unterlage {
   visible?: boolean;
   lang?: string;
 }
+
 
 interface TafsirBlock {
   from: number;
@@ -411,14 +413,16 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
         ))}
 
       {ansicht.art === 'unterlagen' &&
-        (unterlagen ?? [])
-          .filter((eintrag) => !eintrag.lang || eintrag.lang === locale)
-          .map((eintrag) => (
-            <FocusCard key={eintrag.id} onPress={() => buchOeffnen(eintrag.pdf_url)} style={styles.karte}>
-              <Text style={styles.zeile}>{eintrag.title}</Text>
-              <Text style={styles.meta}>{t('audiobooks.book')}</Text>
-            </FocusCard>
-          ))}
+        unterlagenFuerSprache(unterlagen ?? [], locale).map((eintrag) => (
+          <FocusCard key={eintrag.id} onPress={() => buchOeffnen(eintrag.pdf_url)} style={styles.karte}>
+            <Text style={styles.zeile}>{eintrag.title}</Text>
+            <Text style={styles.meta}>
+              {unterlageHinweis(eintrag.lang, locale)
+                ? `${t('audiobooks.book')} · ${eintrag.lang?.split(/[-_]/)[0]}`
+                : t('audiobooks.book')}
+            </Text>
+          </FocusCard>
+        ))}
 
       {ansicht.art === 'rassoul' && (
         <>
