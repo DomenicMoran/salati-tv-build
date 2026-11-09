@@ -66,6 +66,24 @@ jest.mock('expo-font', () => ({
   loadAsync: jest.fn(async () => {}),
 }));
 
+jest.mock('@/lib/morphologie', () => ({
+  ladeMorphologie: jest.fn(async () => ({
+    schema: 4,
+    surah: 2,
+    verses: {
+      '1': [
+        {
+          position: 1,
+          text: 'كَفَرُوا۟',
+          root: 'كفر',
+          lemma: 'كَفَرَ',
+          segments: [{ text: 'كَفَرُوا۟', kind: 'stem', pos: 'V', features: {}, derived: [], raw: '' }],
+        },
+      ],
+    },
+  })),
+}));
+
 // Ein Vers mit genau den Zeichen, an denen sich die KFGQPC-Umschreibung zeigt:
 // U+0652 (Sukun) und U+06DF. Nicht ausgedacht — die Schreibweise stammt aus
 // dem Wortlaut, den api.quran.com liefert.
@@ -231,6 +249,14 @@ describe('Leser', () => {
     await fireEvent.press(r.getByText('⏭'));
     await fireEvent.press(r.getByText('⏭'));
     expect(r.getByText('alayhim')).toBeTruthy();
+  });
+
+  it('zeigt Wortanalyse mit Morphologie-Grunddaten', async () => {
+    const r = await oeffneLeser(<QuranReaderScreen />);
+    expect(r.getByTestId('reader-wortanalyse')).toBeTruthy();
+    await fireEvent.press(r.getByTestId('reader-wortanalyse'));
+    expect(r.getByTestId('wort-analyse-overlay')).toBeTruthy();
+    expect(r.getByText('كَفَرَ')).toBeTruthy();
   });
 
   it('meldet die Wiederholung erst, wenn sie eingeschaltet ist', async () => {

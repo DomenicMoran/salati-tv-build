@@ -24,7 +24,6 @@ import {
   type HintergrundId,
   type HintergrundSichtbarkeit,
 } from '@/lib/hintergruende';
-import { istHintergrundFolge, type HintergrundFolge } from '@/lib/hintergrundFolge';
 
 import {
   clampOffset,
@@ -98,11 +97,6 @@ export interface TvSettings {
   /** Foto-Hintergruende langsam wandern lassen (Systemeinstellung
    *  „Bewegung reduzieren" sticht). */
   fotoBewegung: boolean;
-  /**
-   * fest = genau das gewaehlte Motiv. reihe = Katalog nacheinander.
-   * zufall = Katalog in wechselnder Reihenfolge.
-   */
-  hintergrundFolge: HintergrundFolge;
   /** Akzentfarbe unabhaengig von der Farbwelt (s. lib/theme.ts). */
   akzent: AkzentId;
   /** Ziffernblatt statt Ziffern auf dem Screensaver. */
@@ -236,7 +230,6 @@ let state: TvSettings = {
   hintergrundDimmung: DEFAULT_DIMMUNG,
   hintergrundSichtbarkeit: HINTERGRUND_SICHTBARKEIT_STANDARD,
   fotoBewegung: true,
-  hintergrundFolge: 'fest',
   akzent: 'thema',
   uhrStil: 'digital',
   uhrGewicht: 'leicht',
@@ -343,7 +336,6 @@ function persist() {
       hintergrundDimmung: state.hintergrundDimmung,
       hintergrundSichtbarkeit: state.hintergrundSichtbarkeit,
       fotoBewegung: state.fotoBewegung,
-      hintergrundFolge: state.hintergrundFolge,
       akzent: state.akzent,
       uhrStil: state.uhrStil,
       uhrGewicht: state.uhrGewicht,
@@ -406,7 +398,6 @@ async function hydrate() {
           : DEFAULT_DIMMUNG,
         hintergrundSichtbarkeit: normalizeHintergrundSichtbarkeit(parsed.hintergrundSichtbarkeit),
         fotoBewegung: parsed.fotoBewegung ?? true,
-        hintergrundFolge: istHintergrundFolge(parsed.hintergrundFolge) ? parsed.hintergrundFolge : 'fest',
         akzent: istAkzentId(parsed.akzent) ? parsed.akzent : 'thema',
         uhrStil: istUhrStil(parsed.uhrStil) ? parsed.uhrStil : 'digital',
         uhrGewicht: istUhrGewicht(parsed.uhrGewicht) ? parsed.uhrGewicht : 'leicht',
@@ -507,12 +498,6 @@ export function toggleHintergrundBereich(bereich: HintergrundBereich) {
 
 export function setFotoBewegung(fotoBewegung: boolean) {
   state = { ...state, fotoBewegung };
-  persist();
-  emit();
-}
-
-export function setHintergrundFolge(hintergrundFolge: HintergrundFolge) {
-  state = { ...state, hintergrundFolge };
   persist();
   emit();
 }

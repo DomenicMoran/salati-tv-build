@@ -231,7 +231,28 @@
     "repeatOn": "Ayat diulang · ↻ menghentikan ulangan",
     "sectionHint": "Ayat panjang · ⏮ ⏭ menyelak dalam ayat, kemudian ke seterusnya",
     "sectionOf": "Bahagian {n} / {total}",
-    "verseOf": "Ayat {n} / {total}"
+    "verseOf": "Ayat {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "Qari tidak dapat dimuatkan.",
@@ -467,7 +488,9 @@
     "handouts": "Nota",
     "loading": "Memuatkan",
     "quran": "Quran",
-    "quranNote": "Teks Arab Quran adalah domain awam."
+    "quranNote": "Teks Arab Quran adalah domain awam.",
+    "handoutsLocaleEmpty": "PDF bahan pembelajaran buat masa ini hanya dalam bahasa Jerman.",
+    "handoutsShowGerman": "Lihat nota Jerman"
   },
   "bibliothek": {
     "continueReading": "Sambung baca",

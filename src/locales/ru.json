@@ -231,7 +231,28 @@
     "repeatOn": "Аят повторяется · ↻ прекращает повтор",
     "sectionHint": "Длинный аят · ⏮ ⏭ листает внутри аята, затем к следующему",
     "sectionOf": "Часть {n} / {total}",
-    "verseOf": "Аят {n} / {total}"
+    "verseOf": "Аят {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "Не удалось загрузить чтецов.",
@@ -467,7 +488,9 @@
     "handouts": "Материалы",
     "loading": "Загрузка",
     "quran": "Коран",
-    "quranNote": "Арабский текст Корана общедоступен."
+    "quranNote": "Арабский текст Корана общедоступен.",
+    "handoutsLocaleEmpty": "Учебные PDF сейчас доступны только на немецком.",
+    "handoutsShowGerman": "Показать материалы на немецком"
   },
   "bibliothek": {
     "continueReading": "Продолжить чтение",

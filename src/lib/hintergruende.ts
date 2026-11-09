@@ -19,9 +19,7 @@ export type GezeichneterHintergrund =
   | 'muster'
   | 'bewegt'
   | 'sterne'
-  | 'kuppel'
-  | 'daemmerung'
-  | 'garten';
+  | 'kuppel';
 
 /**
  * Gezeichnet oder ein Motiv aus dem Katalog (`medium:<id>`, s.
@@ -38,8 +36,6 @@ export const HINTERGRUENDE: readonly GezeichneterHintergrund[] = [
   'bewegt',
   'sterne',
   'kuppel',
-  'daemmerung',
-  'garten',
 ];
 
 /** Kennung eines Motivs in den Einstellungen. */

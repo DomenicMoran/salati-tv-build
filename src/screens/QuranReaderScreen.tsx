@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { AmbientGlow } from '@/components/AmbientGlow';
 import { FocusCard } from '@/components/FocusCard';
+import { WortAnalyseOverlay } from '@/components/WortAnalyseOverlay';
 import { fokusUeberstand } from '@/components/fokusUeberstand';
 import { useBedienungSichtbar } from '@/lib/bedienungSichtbar';
 import { StateView } from '@/components/StateView';
@@ -36,6 +37,7 @@ import {
 import { useQuranFont, type QuranFontResult } from '@/lib/useQuranFont';
 import { useTheme } from '@/lib/useTheme';
 import { useLatestRef } from '@/lib/useLatestRef';
+import { useMorphologieSurah } from '@/lib/useMorphologieSurah';
 
 // Koran-Reader für den TV: großer Untertitel-Look. Rezitation Vers für Vers mit
 // live markiertem Wort (Wort-Zeitstempel von quran.com), arabischer Text +
@@ -205,6 +207,12 @@ function Reader({ height, width }: { height: number; width: number }) {
   // Sprache und Panel unterschiedlich viel uebrig, und um genau diesen Rest
   // geht es bei der Frage, wie viel Vers auf den Schirm passt.
   const [buehne, setBuehne] = useState({ w: 0, h: 0 });
+  const [wortAnalyseOffen, setWortAnalyseOffen] = useState(false);
+  const [wortAnalyseNav, setWortAnalyseNav] = useState({ idx, surah });
+  if (wortAnalyseNav.idx !== idx || wortAnalyseNav.surah !== surah) {
+    setWortAnalyseNav({ idx, surah });
+    if (wortAnalyseOffen) setWortAnalyseOffen(false);
+  }
   const misstBuehne = useCallback((e: LayoutChangeEvent) => {
     const { width: w, height: h } = e.nativeEvent.layout;
     setBuehne((alt) => (Math.abs(alt.w - w) < 1 && Math.abs(alt.h - h) < 1 ? alt : { w, h }));
@@ -216,6 +224,7 @@ function Reader({ height, width }: { height: number; width: number }) {
   );
   const meta = SURAHS.find((x) => x.n === surah);
   const activeWord = current ? activeWordIndex(current.segments, posMs) : -1;
+  const morphologie = useMorphologieSurah(surah, !!verses);
 
   // Wie viel Hoehe der Vers bekommt und wie viel seine Begleitzeilen. Ohne
   // Umschrift und Uebersetzung gehoert die Buehne ganz dem Vers; mit beiden
@@ -261,6 +270,9 @@ function Reader({ height, width }: { height: number; width: number }) {
   }
   const abschnittIdx = Math.min(manuell ?? autoAbschnitt, abschnitte.length - 1);
   const sichtbareWorte = abschnitte[abschnittIdx] ?? [];
+  const wortFuerAnalyse = activeWord >= 0 ? activeWord : (sichtbareWorte[0] ?? 0);
+  const wortPosition = wortFuerAnalyse + 1;
+  const wortArabisch = current?.words[wortFuerAnalyse]?.ar ?? '';
 
   // Blaettern statt Verswechsel, solange der Vers noch Abschnitte hat. Damit
   // erreicht die Fernbedienung jedes Wort auch dann, wenn der Text ohne
@@ -434,7 +446,22 @@ function Reader({ height, width }: { height: number; width: number }) {
             {t('settings.readerTranslation')}
           </Text>
         </FocusCard>
+        <FocusCard onPress={() => setWortAnalyseOffen(true)} style={s.ctrlPille}>
+          <Text testID="reader-wortanalyse" style={s.ctrlLabel} numberOfLines={1}>
+            {t('reader.wordAnalysis.action')}
+          </Text>
+        </FocusCard>
       </View>
+
+      <WortAnalyseOverlay
+        sichtbar={wortAnalyseOffen}
+        schliessen={() => setWortAnalyseOffen(false)}
+        surah={surah}
+        ayah={current.n}
+        wortPosition={wortPosition}
+        readerArabisch={wortArabisch}
+        morphologie={morphologie}
+      />
 
       <Text style={[s.hint, !bedienungSichtbar && s.verborgen]} numberOfLines={1}>
         {quelle === 'paket'

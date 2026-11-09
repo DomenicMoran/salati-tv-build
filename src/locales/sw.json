@@ -231,7 +231,28 @@
     "repeatOn": "Aya inarudiwa · ↻ husitisha kurudia",
     "sectionHint": "Aya ndefu · ⏮ ⏭ hupindua ukurasa ndani ya aya, kisha inayofuata",
     "sectionOf": "Sehemu {n} / {total}",
-    "verseOf": "Aya {n} / {total}"
+    "verseOf": "Aya {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "Wasomaji hawakuweza kupakiwa.",
@@ -467,7 +488,9 @@
     "handouts": "Maelezo",
     "loading": "Inapakia",
     "quran": "Quran",
-    "quranNote": "Maandishi ya Kiarabu ya Quran hayana hakimiliki."
+    "quranNote": "Maandishi ya Kiarabu ya Quran hayana hakimiliki.",
+    "handoutsLocaleEmpty": "PDF za masomo zinapatikana kwa Kijerumani tu kwa sasa.",
+    "handoutsShowGerman": "Angalia maelezo ya Kijerumani"
   },
   "bibliothek": {
     "continueReading": "Endelea kusoma",

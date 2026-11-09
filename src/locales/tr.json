@@ -231,7 +231,28 @@
     "repeatOn": "Ayet tekrarlanıyor · ↻ tekrarı bitirir",
     "sectionHint": "Uzun ayet · ⏮ ⏭ ayet içinde sayfa çevirir, sonunda sonrakine geçer",
     "sectionOf": "Bölüm {n} / {total}",
-    "verseOf": "Ayet {n} / {total}"
+    "verseOf": "Ayet {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "Hafızlar yüklenemedi.",
@@ -467,7 +488,9 @@
     "handouts": "Ders notlari",
     "loading": "Yukleniyor",
     "quran": "Kuran",
-    "quranNote": "Arapca Kuran metni kamu malidir."
+    "quranNote": "Arapca Kuran metni kamu malidir.",
+    "handoutsLocaleEmpty": "PDF ders notları şu an yalnızca Almanca.",
+    "handoutsShowGerman": "Almanca ders notlarını göster"
   },
   "bibliothek": {
     "continueReading": "Okumaya devam",

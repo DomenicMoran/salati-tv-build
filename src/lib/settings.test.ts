@@ -116,7 +116,6 @@ describe('setLocation / setIs24h', () => {
         inhalte: false,
       },
       fotoBewegung: true,
-      hintergrundFolge: 'fest',
       akzent: 'thema',
       uhrStil: 'digital',
       uhrGewicht: 'leicht',

@@ -231,7 +231,28 @@
     "repeatOn": "آیه تکرار می‌شود · ↻ تکرار را پایان می‌دهد",
     "sectionHint": "آیهٔ بلند · ⏮ ⏭ درون آیه ورق می‌زند، سپس به آیهٔ بعد",
     "sectionOf": "بخش {n} / {total}",
-    "verseOf": "آیه {n} / {total}"
+    "verseOf": "آیه {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "قاریان بارگذاری نشدند.",
@@ -467,7 +488,9 @@
     "handouts": "جزوه‌ها",
     "loading": "در حال بارگذاری",
     "quran": "قرآن",
-    "quranNote": "متن عربی قرآن در مالکیت عمومی است."
+    "quranNote": "متن عربی قرآن در مالکیت عمومی است.",
+    "handoutsLocaleEmpty": "فایل‌های PDF آموزشی فعلاً فقط به آلمانی موجودند.",
+    "handoutsShowGerman": "نمایش جزوه‌های آلمانی"
   },
   "bibliothek": {
     "continueReading": "ادامه مطالعه",

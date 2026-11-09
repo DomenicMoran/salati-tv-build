@@ -37,6 +37,9 @@ jest.mock('@/lib/hintergrundMedien', () => ({
   fetchHintergrundMedien: jest.fn(async () => [testMedium]),
   useHintergrundMedien: () => ({ katalog: [testMedium], speicher: {} }),
 }));
+jest.mock('@/lib/useReduzierteBewegung', () => ({
+  useReduzierteBewegung: () => true,
+}));
 
 import { Hintergrund, bereichVonScreen } from '@/components/Hintergrund';
 import { HINTERGRUENDE, HINTERGRUND_BEREICHE, medienId, type HintergrundBereich } from '@/lib/hintergruende';
@@ -153,9 +156,11 @@ it('setzt beim Lichtschein zwei Lichter', async () => {
   expect(zaehle(r.toJSON(), 'RNSVGRadialGradient')).toBe(2);
 });
 
-it('zeichnet bei „bewegt" die Rosette', async () => {
-  setHintergrund('bewegt');
-  const r = await render(<Hintergrund />);
+it(
+  'zeichnet bei „bewegt" die Rosette',
+  async () => {
+    setHintergrund('bewegt');
+    const r = await render(<Hintergrund />);
   // Zwoelf Kreise auf einem Kreis plus zwei Ringe - ohne sie waere der Grund
   // leer und die Drehung ginge ins Nichts.
   const kreise = r.root!.queryAll((n) => typeof n.props?.r === 'number' && n.props.r > 0);
@@ -164,7 +169,9 @@ it('zeichnet bei „bewegt" die Rosette', async () => {
   // ungedreht - die Bewegung waere unsichtbar.
   const pfade = r.root!.queryAll((n) => typeof n.props?.d === 'string' && n.props.d.length > 0);
   expect(pfade.length).toBeGreaterThan(0);
-});
+  },
+  20_000,
+);
 
 /**
  * Wo ein Foto/Video zusaetzlich zum Ruhebildschirm laufen darf

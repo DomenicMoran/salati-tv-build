@@ -225,13 +225,97 @@
     "title": "Quran Radio"
   },
   "reader": {
-    "controlHint": "OK = pause · ⏮ ⏭ verse · ↻ repeat verse",
+    "controlHint": "OK = pause · ⏮ ⏭ verse · ↻ repeat · word analysis",
     "loadError": "Could not load the surah.",
     "pickerSubtitle": "Choose a surah · recitation with word highlighting & translation",
     "repeatOn": "Repeating this verse · ↻ stops repeating",
     "sectionHint": "Long verse · ⏮ ⏭ turns the page, then moves on",
     "sectionOf": "Part {n} / {total}",
-    "verseOf": "Verse {n} / {total}"
+    "verseOf": "Verse {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      },
+      "fragmentsTitle": "Fragments",
+      "syntaxTitle": "Syntax role (Iʿrāb)",
+      "syntaxNone": "No syntax data for this word.",
+      "stemTraitsTitle": "Stem features",
+      "headWord": "Head: word {position} ({text})",
+      "headPosition": "Head: word {position} in the verse",
+      "lexikonCta": "Full grammar, paradigms and lexicon: Salati app on your phone.",
+      "lexikonCtaRoot": "Open root {root} in the lexicon on the Salati mobile app.",
+      "legendDerived": "Derived: {feature}",
+      "segmentKind": {
+        "prefix": "Prefix",
+        "stem": "Stem",
+        "suffix": "Suffix"
+      },
+      "featureKeys": {
+        "person": "Person",
+        "gender": "Gender",
+        "number": "Number",
+        "case": "Case",
+        "state": "Definiteness",
+        "mood": "Mood",
+        "tense": "Tense",
+        "voice": "Voice",
+        "verbForm": "Verb form",
+        "derivation": "Derivation"
+      },
+      "features": {
+        "person": { "1": "1st person", "2": "2nd person", "3": "3rd person" },
+        "gender": { "m": "Masculine", "f": "Feminine" },
+        "number": { "sg": "Singular", "du": "Dual", "pl": "Plural" },
+        "case": { "nom": "Nominative", "acc": "Accusative", "gen": "Genitive" },
+        "state": { "definite": "Definite", "indefinite": "Indefinite" },
+        "mood": { "ind": "Indicative", "sub": "Subjunctive", "juss": "Jussive" },
+        "tense": { "perfect": "Perfect", "imperfect": "Imperfect", "imperative": "Imperative" },
+        "voice": { "active": "Active", "passive": "Passive" },
+        "verbForm": "Verb form {n}",
+        "derivation": {
+          "activeParticiple": "active participle",
+          "passiveParticiple": "passive participle",
+          "verbalNoun": "verbal noun"
+        }
+      },
+      "relations": {
+        "fallback": "{code} · {ar}",
+        "predOf": "Predicate of {wort}",
+        "subjOf": "Subject of {wort}",
+        "root": "Clause head",
+        "gen": "Genitive (مجرور)",
+        "nom": "Nominative",
+        "acc": "Accusative",
+        "Obj": "Direct object",
+        "Adj": "Adjective/epithet",
+        "Poss": "Possessive complement (مضاف إليه)",
+        "App": "Apposition (بدل)",
+        "conj": "Conjunction (معطوف)",
+        "link": "Linked adjunct (متعلق)",
+        "Pass": "Passive subject",
+        "emph": "Emphasis (توكيد)",
+        "NonRel": "No clause role",
+        "Voc": "Vocative",
+        "Subj": "Subject",
+        "Pred": "Predicate"
+      }
+    }
   },
   "reciters": {
     "loadError": "Reciters could not be loaded.",
@@ -465,6 +549,8 @@
     "rassoul": "Tafsir Al-Quran Al-Karim",
     "rassoulGerman": "The commentary is German, in the authors wording.",
     "handouts": "Handouts",
+    "handoutsLocaleEmpty": "PDF study handouts are currently available in German only.",
+    "handoutsShowGerman": "View German handouts",
     "loading": "Loading",
     "quran": "Quran",
     "quranNote": "The Arabic Quran text is in the public domain."

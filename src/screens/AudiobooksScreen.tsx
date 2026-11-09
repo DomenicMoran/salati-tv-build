@@ -24,9 +24,9 @@ import { FocusCard } from '@/components/FocusCard';
 import { StateView } from '@/components/StateView';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { SURAHS } from '@/data/surahs';
-import releasePolicy from '@/data/release-policy.json';
+import { releasePolicy } from '@/data/release-policy';
 import { useTranslation } from '@/lib/i18n';
-import { unterlageHinweis, unterlagenFuerSprache } from '@/lib/unterlagen';
+import { unterlageHinweis, unterlagenAufloesen } from '@/lib/unterlagen';
 import type { Theme } from '@/lib/theme';
 import { useTheme } from '@/lib/useTheme';
 
@@ -53,6 +53,7 @@ interface Unterlage {
   pdf_url: string;
   visible?: boolean;
   lang?: string;
+  licenseStatus?: 'cleared' | 'pending';
 }
 
 
@@ -120,25 +121,48 @@ function spurName(track: string, t: (key: string) => string): string {
  * plus der vom Autor freigegebene Tafsir und die Lernunterlagen.
  */
 export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
+  const { width, height } = useWindowDimensions();
+  const { t, rtl, locale } = useTranslation();
   const [ansicht, setAnsicht] = useState<Ansicht>({ art: 'hub' });
   const [kapitel, setKapitel] = useState<Kapitel[] | null>(null);
   const [unterlagen, setUnterlagen] = useState<Unterlage[] | null>(null);
+  const [unterlagenLocaleBasis, setUnterlagenLocaleBasis] = useState(locale);
+  const [deutscheUnterlagenZeigen, setDeutscheUnterlagenZeigen] = useState(false);
+  if (unterlagenLocaleBasis !== locale) {
+    setUnterlagenLocaleBasis(locale);
+    if (deutscheUnterlagenZeigen) setDeutscheUnterlagenZeigen(false);
+  }
   const [fehler, setFehler] = useState(false);
   const [versuch, setVersuch] = useState(0);
   const [ton, setTon] = useState<Kapitel | null>(null);
   const [film, setFilm] = useState<string | null>(null);
-  const [bloecke, setBloecke] = useState<TafsirBlock[] | null>(null);
-  const [textFehler, setTextFehler] = useState(false);
-  const [gespeichert, setGespeichert] = useState<Lesefortschritt | null>(null);
-  const [inhaltSprache, setInhaltSprache] = useState(locale);
   const [scrollZielBlock, setScrollZielBlock] = useState<number | null>(null);
   const scrollRef = useRef<ScrollView>(null);
   const blockOffsetsRef = useRef<number[]>([]);
   const zuletztGespeicherterBlock = useRef<number | null>(null);
-  const { width, height } = useWindowDimensions();
-  const { t, rtl, locale } = useTranslation();
+  const tafsirSure = ansicht.art === 'sure' ? ansicht.nummer : null;
+  const [tafsirLadeSchluessel, setTafsirLadeSchluessel] = useState<number | null>(null);
+  const [bloecke, setBloecke] = useState<TafsirBlock[] | null>(null);
+  const [textFehler, setTextFehler] = useState(false);
+  if (tafsirLadeSchluessel !== tafsirSure) {
+    setTafsirLadeSchluessel(tafsirSure);
+    setBloecke(null);
+    setTextFehler(false);
+  }
+  const [gespeichert, setGespeichert] = useState<Lesefortschritt | null>(null);
+  const [inhaltSprache, setInhaltSprache] = useState<string>(locale);
+  const [inhaltSpracheBasis, setInhaltSpracheBasis] = useState(locale);
+  if (inhaltSpracheBasis !== locale) {
+    setInhaltSpracheBasis(locale);
+    setInhaltSprache(locale);
+  }
   const theme = useTheme();
   const styles = useMemo(() => listenStil(width, height, rtl, theme), [width, height, rtl, theme]);
+
+  const unterlagenAufgeloest = useMemo(
+    () => unterlagenAufloesen(unterlagen ?? [], locale, deutscheUnterlagenZeigen),
+    [unterlagen, locale, deutscheUnterlagenZeigen],
+  );
 
   const neu = () => {
     setFehler(false);
@@ -236,12 +260,10 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
   }, [locale, versuch]);
 
   useEffect(() => {
-    if (ansicht.art !== 'sure') return;
-    let lebendig = true;
-    setBloecke(null);
-    setTextFehler(false);
+    if (tafsirSure === null) return;
     blockOffsetsRef.current = [];
-    fetch(`${TAFSIR_BASE}/${ansicht.nummer}.json`)
+    let lebendig = true;
+    fetch(`${TAFSIR_BASE}/${tafsirSure}.json`)
       .then((antwort) => {
         if (!antwort.ok) throw new Error(String(antwort.status));
         return antwort.json() as Promise<{ blocks?: TafsirBlock[] }>;
@@ -251,7 +273,7 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
     return () => {
       lebendig = false;
     };
-  }, [ansicht]);
+  }, [tafsirSure]);
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -364,6 +386,7 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
           <FocusCard onPress={() => setAnsicht({ art: 'rassoul' })} style={styles.karte}>
             <Text style={styles.zeile}>{t('audiobooks.rassoul')}</Text>
             <Text style={styles.meta}>{RASSOUL_CREDIT}</Text>
+            <Text style={styles.meta}>{t('audiobooks.rassoulGerman')}</Text>
           </FocusCard>
           <FocusCard onPress={() => setAnsicht({ art: 'unterlagen' })} style={styles.karte}>
             <Text style={styles.zeile}>{t('audiobooks.handouts')}</Text>
@@ -412,8 +435,20 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
           ))
         ))}
 
+      {ansicht.art === 'unterlagen' && unterlagenAufgeloest.localeLeer ? (
+        <>
+          <Text style={styles.meta}>{t('audiobooks.handoutsLocaleEmpty')}</Text>
+          {unterlagenAufgeloest.deutschVerfuegbar ? (
+            <FocusCard
+              onPress={() => setDeutscheUnterlagenZeigen(true)}
+              style={styles.karte}>
+              <Text style={styles.zeile}>{t('audiobooks.handoutsShowGerman')}</Text>
+            </FocusCard>
+          ) : null}
+        </>
+      ) : null}
       {ansicht.art === 'unterlagen' &&
-        unterlagenFuerSprache(unterlagen ?? [], locale).map((eintrag) => (
+        unterlagenAufgeloest.liste.map((eintrag) => (
           <FocusCard key={eintrag.id} onPress={() => buchOeffnen(eintrag.pdf_url)} style={styles.karte}>
             <Text style={styles.zeile}>{eintrag.title}</Text>
             <Text style={styles.meta}>

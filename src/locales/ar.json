@@ -231,7 +231,28 @@
     "repeatOn": "يتم تكرار الآية · ↻ ينهي التكرار",
     "sectionHint": "آية طويلة · ⏮ ⏭ تتنقّل داخل الآية ثم إلى التالية",
     "sectionOf": "الجزء {n} / {total}",
-    "verseOf": "الآية {n} / {total}"
+    "verseOf": "الآية {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "تعذّر تحميل قائمة القرّاء.",
@@ -467,7 +488,9 @@
     "handouts": "مذكرات",
     "loading": "جار التحميل",
     "quran": "القرآن",
-    "quranNote": "النص العربي للقرآن ملك عام."
+    "quranNote": "النص العربي للقرآن ملك عام.",
+    "handoutsLocaleEmpty": "ملفات PDF التعليمية متوفرة بالألمانية فقط حالياً.",
+    "handoutsShowGerman": "عرض المذكرات الألمانية"
   },
   "bibliothek": {
     "continueReading": "متابعة القراءة",

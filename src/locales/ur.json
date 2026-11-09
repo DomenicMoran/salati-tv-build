@@ -231,7 +231,28 @@
     "repeatOn": "آیت دہرائی جا رہی ہے · ↻ دہرانا ختم کرتا ہے",
     "sectionHint": "طویل آیت · ⏮ ⏭ آیت کے اندر صفحہ بدلتا ہے، پھر اگلی آیت پر",
     "sectionOf": "حصہ {n} / {total}",
-    "verseOf": "آیت {n} / {total}"
+    "verseOf": "آیت {n} / {total}",
+    "wordAnalysis": {
+      "action": "Word Analysis",
+      "title": "Word Analysis",
+      "fundstelle": "Surah {surah}, Verse {ayah}, Word {position}",
+      "rootLabel": "Root",
+      "lemmaLabel": "Base Form",
+      "rootNone": "No root is recorded for this word.",
+      "wortartTitle": "Part of Speech",
+      "posLabel": "QAC tag",
+      "morphologyNoData": "Grammar data for this surah is not available yet.",
+      "surahNoData": "Grammar data for this surah is not available yet.",
+      "loadError": "Could not load grammar data.",
+      "closeButton": "Close",
+      "closeHint": "OK closes word analysis",
+      "wortarten": {
+        "ism": "Ism (noun)",
+        "fiil": "Fiʿl (verb)",
+        "harf": "Harf (particle)",
+        "unknown": "Unknown"
+      }
+    }
   },
   "reciters": {
     "loadError": "قاری لوڈ نہیں ہو سکے۔",
@@ -467,7 +488,9 @@
     "handouts": "نوٹس",
     "loading": "لوڈ ہو رہا ہے",
     "quran": "قرآن",
-    "quranNote": "عربی قرآن کا متن عوامی ملکیت ہے۔"
+    "quranNote": "عربی قرآن کا متن عوامی ملکیت ہے۔",
+    "handoutsLocaleEmpty": "PDF مطالعہ مواد فی الحال صرف جرمن میں دستیاب ہے۔",
+    "handoutsShowGerman": "جرمن ہینڈآؤٹ دیکھیں"
   },
   "bibliothek": {
     "continueReading": "پڑھنا جاری رکھیں",

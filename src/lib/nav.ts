@@ -18,27 +18,15 @@ export const SCREENS = [
   'reciters',
   'quran',
   'podcasts',
+  'audiobooks',
+  'gebetgemeinsam',
   'quiz',
   'pairing',
   'settings',
 ] as const;
 
-/**
- * Bildschirme OHNE Gegenstück auf der Handy-Fernbedienung — bewusst NICHT in
- * `SCREENS`: diese Konstante ist zeichengenau der Cross-App-Vertrag, den
- * `apps/mobile/src/features/tv/screens.test.ts` gegen diese Datei prüft (s.
- * Kommentar oben). "Gemeinsam beten" ist reines Betrachten ohne Texteingabe —
- * es braucht keine Fernbedienungs-Kachel auf dem Handy, und ein Eintrag hier
- * hätte eine parallele Aenderung an der Handy-Datei erzwungen (an der zur
- * selben Zeit eine andere Sitzung arbeitet). Trotzdem ein vollwertiger
- * TV-Screen: eigene Home-Kachel, eigener Eintrag in `Screen`, eigene
- * Deep-Link-Route — nur eben ohne Meldung an den Kopplungs-Handshake
- * (s. lib/pairing.ts, das weiterhin nur `SCREENS` versendet).
- */
-// Kleingeschrieben wie jeder Eintrag in `SCREENS`: `screenFromUrl` lowercased
-// den Adress-Teil vor dem Vergleich (Deep Links sind nicht case-sensitiv),
-// ein Mischschreibungs-Bildschirmname wuerde dort nie treffen.
-export const LOCAL_SCREENS = ['gebetgemeinsam', 'audiobooks'] as const;
+/** TV-only Screens ohne Handy-Fernbedienung — leer, solange alle Hub-Bildschirme in `SCREENS` stehen. */
+export const LOCAL_SCREENS = [] as const;
 
 export type Screen = (typeof SCREENS)[number] | (typeof LOCAL_SCREENS)[number];
 

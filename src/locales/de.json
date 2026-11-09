@@ -225,13 +225,97 @@
     "title": "Koran-Radio"
   },
   "reader": {
-    "controlHint": "OK = Pause · ⏮ ⏭ Vers · ↻ Vers wiederholen",
+    "controlHint": "OK = Pause · ⏮ ⏭ Vers · ↻ Wiederholen · Wortanalyse",
     "loadError": "Sure konnte nicht geladen werden.",
     "pickerSubtitle": "Sure wählen · Rezitation mit Wort-Markierung & Übersetzung",
     "repeatOn": "Vers wird wiederholt · ↻ beendet die Wiederholung",
     "sectionHint": "Langer Vers · ⏮ ⏭ blättert im Vers, am Ende zum nächsten",
     "sectionOf": "Abschnitt {n} / {total}",
-    "verseOf": "Vers {n} / {total}"
+    "verseOf": "Vers {n} / {total}",
+    "wordAnalysis": {
+      "action": "Wortanalyse",
+      "title": "Wortanalyse",
+      "fundstelle": "Sure {surah}, Vers {ayah}, Wort {position}",
+      "rootLabel": "Wurzel",
+      "lemmaLabel": "Grundform",
+      "rootNone": "Für dieses Wort ist keine Wurzel hinterlegt.",
+      "wortartTitle": "Wortart",
+      "posLabel": "QAC-Tag",
+      "morphologyNoData": "Für diese Sure sind noch keine Grammatikdaten verfügbar.",
+      "surahNoData": "Für diese Sure sind noch keine Grammatikdaten verfügbar.",
+      "loadError": "Grammatikdaten konnten nicht geladen werden.",
+      "closeButton": "Schließen",
+      "closeHint": "OK schließt die Wortanalyse",
+      "wortarten": {
+        "ism": "Ism (Nomen)",
+        "fiil": "Fiʿl (Verb)",
+        "harf": "Harf (Partikel)",
+        "unknown": "Unbekannt"
+      },
+      "fragmentsTitle": "Fragmente",
+      "syntaxTitle": "Satzrolle (Iʿrāb)",
+      "syntaxNone": "Für dieses Wort liegen keine Syntaxdaten vor.",
+      "stemTraitsTitle": "Merkmale am Stamm",
+      "headWord": "Bezug: Wort {position} ({text})",
+      "headPosition": "Bezug: Wort {position} im Vers",
+      "lexikonCta": "Ausführliche Grammatik, Paradigmen und Lexikon: Salati-App auf dem Smartphone.",
+      "lexikonCtaRoot": "Wurzel {root} im Lexikon der Salati-App auf dem Smartphone öffnen.",
+      "legendDerived": "Hergleitet: {feature}",
+      "segmentKind": {
+        "prefix": "Präfix",
+        "stem": "Stamm",
+        "suffix": "Suffix"
+      },
+      "featureKeys": {
+        "person": "Person",
+        "gender": "Genus",
+        "number": "Numerus",
+        "case": "Kasus",
+        "state": "Bestimmtheit",
+        "mood": "Modus",
+        "tense": "Tempus",
+        "voice": "Genus verbi",
+        "verbForm": "Verbform",
+        "derivation": "Ableitung"
+      },
+      "features": {
+        "person": { "1": "1. Person", "2": "2. Person", "3": "3. Person" },
+        "gender": { "m": "Maskulin", "f": "Feminin" },
+        "number": { "sg": "Singular", "du": "Dual", "pl": "Plural" },
+        "case": { "nom": "Nominativ", "acc": "Akkusativ", "gen": "Genitiv" },
+        "state": { "definite": "Bestimmt", "indefinite": "Unbestimmt" },
+        "mood": { "ind": "Indikativ", "sub": "Subjunktiv", "juss": "Jussiv" },
+        "tense": { "perfect": "Perfekt", "imperfect": "Imperfekt", "imperative": "Imperativ" },
+        "voice": { "active": "Aktiv", "passive": "Passiv" },
+        "verbForm": "Verbform {n}",
+        "derivation": {
+          "activeParticiple": "aktives Partizip",
+          "passiveParticiple": "passives Partizip",
+          "verbalNoun": "verbales Nomen"
+        }
+      },
+      "relations": {
+        "fallback": "{code} · {ar}",
+        "predOf": "Prädikat von {wort}",
+        "subjOf": "Subjekt von {wort}",
+        "root": "Satzkopf",
+        "gen": "Genitiv (مجرور)",
+        "nom": "Nominativ",
+        "acc": "Akkusativ",
+        "Obj": "direktes Objekt",
+        "Adj": "Adjektiv/Epitheton",
+        "Poss": "Genitiv-Komplement (مضاف إليه)",
+        "App": "Apposition (بدل)",
+        "conj": "Konjunktion (معطوف)",
+        "link": "Anhang (متعلق)",
+        "Pass": "Ersatz-Subjekt",
+        "emph": "Betonung (توكيد)",
+        "NonRel": "ohne Satzrolle",
+        "Voc": "Vokativ",
+        "Subj": "Subjekt",
+        "Pred": "Prädikat"
+      }
+    }
   },
   "reciters": {
     "loadError": "Rezitatoren konnten nicht geladen werden.",
@@ -465,6 +549,8 @@
     "rassoul": "Tafsir Al-Quran Al-Karim",
     "rassoulGerman": "Der Kommentar ist deutsch, Wortlaut des Autors.",
     "handouts": "Lernunterlagen",
+    "handoutsLocaleEmpty": "Die PDF-Lernunterlagen gibt es derzeit nur auf Deutsch.",
+    "handoutsShowGerman": "Deutsche Unterlagen anzeigen",
     "loading": "Wird geladen",
     "quran": "Koran",
     "quranNote": "Der arabische Korantext ist gemeinfrei."
