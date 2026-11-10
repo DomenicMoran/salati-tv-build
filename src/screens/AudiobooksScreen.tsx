@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   BackHandler,
-  Linking,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
@@ -20,6 +19,7 @@ import {
 } from '@/features/bibliothek/lesefortschritt';
 
 import { AudioNowPlaying } from '@/components/AudioNowPlaying';
+import { PdfInAppView } from '@/components/PdfInAppView';
 import { FocusCard } from '@/components/FocusCard';
 import { StateView } from '@/components/StateView';
 import { VideoPlayer } from '@/components/VideoPlayer';
@@ -136,6 +136,7 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
   const [versuch, setVersuch] = useState(0);
   const [ton, setTon] = useState<Kapitel | null>(null);
   const [film, setFilm] = useState<string | null>(null);
+  const [pdfAnsicht, setPdfAnsicht] = useState<{ url: string; title: string } | null>(null);
   const [scrollZielBlock, setScrollZielBlock] = useState<number | null>(null);
   const scrollRef = useRef<ScrollView>(null);
   const blockOffsetsRef = useRef<number[]>([]);
@@ -277,6 +278,10 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (pdfAnsicht) {
+        setPdfAnsicht(null);
+        return true;
+      }
       if (film) {
         setFilm(null);
         return true;
@@ -296,11 +301,24 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
       return false;
     });
     return () => sub.remove();
-  }, [ansicht, film, ton]);
+  }, [ansicht, film, pdfAnsicht, ton]);
 
-  const buchOeffnen = (adresse: string) => {
-    void Linking.openURL(medienAdresse(adresse)).catch(() => setFehler(true));
+  const buchOeffnen = (adresse: string, title: string) => {
+    setPdfAnsicht({ url: medienAdresse(adresse), title });
   };
+
+  if (pdfAnsicht) {
+    return (
+      <PdfInAppView
+        theme={theme}
+        title={pdfAnsicht.title}
+        pdfUrl={pdfAnsicht.url}
+        onClose={() => setPdfAnsicht(null)}
+        openInBrowserLabel="Browser"
+        viewerErrorLabel={t('common.error')}
+      />
+    );
+  }
 
   if (film) return <VideoPlayer uri={film} onEnd={() => setFilm(null)} />;
   if (ton) {
@@ -416,7 +434,9 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
                 </FocusCard>
               ) : null}
               {eintrag.book_pdf_url ? (
-                <FocusCard onPress={() => buchOeffnen(eintrag.book_pdf_url!)} style={styles.karte}>
+                <FocusCard
+                  onPress={() => buchOeffnen(eintrag.book_pdf_url!, spurName(eintrag.track, t))}
+                  style={styles.karte}>
                   <Text style={styles.meta}>{t('audiobooks.book')}</Text>
                 </FocusCard>
               ) : null}
@@ -428,7 +448,10 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
           <Text style={styles.meta}>{t('audiobooks.booksEmpty')}</Text>
         ) : (
           buecher.map((eintrag) => (
-            <FocusCard key={eintrag.track} onPress={() => buchOeffnen(eintrag.book_pdf_url!)} style={styles.karte}>
+            <FocusCard
+              key={eintrag.track}
+              onPress={() => buchOeffnen(eintrag.book_pdf_url!, spurName(eintrag.track, t))}
+              style={styles.karte}>
               <Text style={styles.zeile}>{spurName(eintrag.track, t)}</Text>
               <Text style={styles.meta}>{t('audiobooks.book')}</Text>
             </FocusCard>
@@ -449,7 +472,7 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
       ) : null}
       {ansicht.art === 'unterlagen' &&
         unterlagenAufgeloest.liste.map((eintrag) => (
-          <FocusCard key={eintrag.id} onPress={() => buchOeffnen(eintrag.pdf_url)} style={styles.karte}>
+          <FocusCard key={eintrag.id} onPress={() => buchOeffnen(eintrag.pdf_url, eintrag.title)} style={styles.karte}>
             <Text style={styles.zeile}>{eintrag.title}</Text>
             <Text style={styles.meta}>
               {unterlageHinweis(eintrag.lang, locale)
