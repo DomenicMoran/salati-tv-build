@@ -148,10 +148,10 @@ export function wortAnalyseAnzeige(
     arabisch: readerArabisch || morph.text,
     root: morph.root,
     lemma: morph.lemma,
-    stemPos: stem.pos,
-    wortart: wortart(stem.pos),
+    stemPos: stem?.pos ?? '',
+    wortart: stem ? wortart(stem.pos) : null,
     fragmente: fragmentZeilen(morph, t),
     syntax: syntaxZeile(morph, verseWords, t),
-    stammMerkmale: segmentMerkmale(stem, t),
+    stammMerkmale: stem ? segmentMerkmale(stem, t) : [],
   };
 }
