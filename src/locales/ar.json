@@ -409,7 +409,9 @@
       "display": "المظهر",
       "prayer": "مواقيت الصلاة",
       "reader": "القرآن",
-      "storage": "التخزين"
+      "storage": "التخزين",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "حذف الكل",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "متابعة القراءة",
-    "savedPlace": "آخر موضع"
+    "savedPlace": "آخر موضع",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

@@ -409,7 +409,9 @@
       "display": "Görünüm",
       "prayer": "Namaz vakitleri",
       "reader": "Kur'an",
-      "storage": "Depolama"
+      "storage": "Depolama",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Tümünü sil",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Okumaya devam",
-    "savedPlace": "Son okunan"
+    "savedPlace": "Son okunan",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

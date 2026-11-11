@@ -472,7 +472,9 @@
       "display": "Appearance",
       "prayer": "Prayer times",
       "reader": "Quran",
-      "storage": "Storage"
+      "storage": "Storage",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Delete all",
@@ -558,5 +560,9 @@
   "bibliothek": {
     "continueReading": "Continue reading",
     "savedPlace": "Last read"
+,
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

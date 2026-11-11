@@ -409,7 +409,9 @@
       "display": "ظاہری شکل",
       "prayer": "نماز کے اوقات",
       "reader": "قرآن",
-      "storage": "اسٹوریج"
+      "storage": "اسٹوریج",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "سب حذف کریں",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "پڑھنا جاری رکھیں",
-    "savedPlace": "آخر پڑھا گیا"
+    "savedPlace": "آخر پڑھا گیا",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

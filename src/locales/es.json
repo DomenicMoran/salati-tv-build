@@ -409,7 +409,9 @@
       "display": "Apariencia",
       "prayer": "Horarios de oración",
       "reader": "Corán",
-      "storage": "Almacenamiento"
+      "storage": "Almacenamiento",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Borrar todo",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Seguir leyendo",
-    "savedPlace": "Última lectura"
+    "savedPlace": "Última lectura",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

@@ -409,7 +409,9 @@
       "display": "চেহারা",
       "prayer": "নামাজের সময়",
       "reader": "কুরআন",
-      "storage": "স্টোরেজ"
+      "storage": "স্টোরেজ",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "সব মুছুন",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "পড়া চালিয়ে যান",
-    "savedPlace": "সর্বশেষ পড়া"
+    "savedPlace": "সর্বশেষ পড়া",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

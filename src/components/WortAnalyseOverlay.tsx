@@ -71,23 +71,21 @@ export function WortAnalyseOverlay({
             />
             <Zeile label={t('reader.wordAnalysis.posLabel')} wert={anzeige.stemPos} />
 
-            {anzeige.fragmente.length > 0 ? (
-              <Abschnitt titel={t('reader.wordAnalysis.fragmentsTitle')} testID="wort-analyse-fragmente">
-                {anzeige.fragmente.map((frag, i) => (
-                  <View key={`${frag.text}-${i}`} style={s.fragmentKarte}>
-                    <Text style={s.fragmentText}>{frag.text}</Text>
-                    <Text style={s.fragmentMeta}>
-                      {frag.kindLabel} · {frag.pos}
+            <Abschnitt titel={t('reader.wordAnalysis.fragmentsTitle')} testID="wort-analyse-fragmente">
+              {anzeige.fragmente.map((frag, i) => (
+                <View key={`${frag.text}-${i}`} style={s.fragmentKarte}>
+                  <Text style={s.fragmentText}>{frag.text}</Text>
+                  <Text style={s.fragmentMeta}>
+                    {frag.kindLabel} · {frag.pos}
+                  </Text>
+                  {frag.merkmale.map((m) => (
+                    <Text key={m} style={s.fragmentMerkmal}>
+                      {m}
                     </Text>
-                    {frag.merkmale.map((m) => (
-                      <Text key={m} style={s.fragmentMerkmal}>
-                        {m}
-                      </Text>
-                    ))}
-                  </View>
-                ))}
-              </Abschnitt>
-            ) : null}
+                  ))}
+                </View>
+              ))}
+            </Abschnitt>
 
             <Abschnitt titel={t('reader.wordAnalysis.syntaxTitle')} testID="wort-analyse-syntax">
               {anzeige.syntax ? (

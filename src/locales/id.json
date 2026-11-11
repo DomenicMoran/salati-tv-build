@@ -409,7 +409,9 @@
       "display": "Tampilan",
       "prayer": "Waktu salat",
       "reader": "Al-Qur'an",
-      "storage": "Penyimpanan"
+      "storage": "Penyimpanan",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Hapus semua",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Lanjutkan membaca",
-    "savedPlace": "Terakhir dibaca"
+    "savedPlace": "Terakhir dibaca",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

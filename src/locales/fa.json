@@ -409,7 +409,9 @@
       "display": "ظاهر",
       "prayer": "اوقات نماز",
       "reader": "قرآن",
-      "storage": "حافظه"
+      "storage": "حافظه",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "حذف همه",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "ادامه مطالعه",
-    "savedPlace": "آخرین مطالعه"
+    "savedPlace": "آخرین مطالعه",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

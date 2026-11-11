@@ -93,6 +93,7 @@ import { AKZENTE, THEMES } from '@/lib/theme';
 import type { Theme } from '@/lib/theme';
 import { useAllQuranFonts } from '@/lib/useQuranFont';
 import { useTheme } from '@/lib/useTheme';
+import { DatenschutzSettingsSection, ImpressumSettingsSection } from '@/screens/legalSettingsSections';
 
 /** Vorschautext der Schriftauswahl — kurz genug fuer eine Kachel und lang
  *  genug, dass Ligatur, Vokalzeichen und Alif-Wasla sichtbar werden. */
@@ -135,6 +136,8 @@ const SECTION_KEYS: Record<SectionId, string> = {
   hintergrund: 'settings.sections.background',
   reader: 'settings.sections.reader',
   storage: 'settings.sections.storage',
+  datenschutz: 'settings.sections.datenschutz',
+  impressum: 'settings.sections.impressum',
 };
 
 // Einstellungen: Sprache, Standort, Gebetszeit-Rechnung, Darstellung und
@@ -189,6 +192,8 @@ export function SettingsScreen({ startBereich }: { startBereich?: SectionId | nu
         {section === 'hintergrund' && <HintergrundSection s={s} />}
         {section === 'reader' && <ReaderSection s={s} />}
         {section === 'storage' && <StorageSection s={s} />}
+        {section === 'datenschutz' && <DatenschutzSettingsSection />}
+        {section === 'impressum' && <ImpressumSettingsSection />}
       </ScrollView>
     </View>
   );

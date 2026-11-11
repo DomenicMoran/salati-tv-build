@@ -409,7 +409,9 @@
       "display": "Muonekano",
       "prayer": "Nyakati za sala",
       "reader": "Qur'an",
-      "storage": "Hifadhi"
+      "storage": "Hifadhi",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Futa vyote",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Endelea kusoma",
-    "savedPlace": "Ilisomwa hivi karibuni"
+    "savedPlace": "Ilisomwa hivi karibuni",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

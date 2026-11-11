@@ -472,7 +472,9 @@
       "display": "Darstellung",
       "prayer": "Gebetszeiten",
       "reader": "Koran",
-      "storage": "Speicher"
+      "storage": "Speicher",
+      "datenschutz": "Datenschutz",
+      "impressum": "Impressum"
     },
     "storage": {
       "deleteAll": "Alle löschen",
@@ -557,6 +559,9 @@
   },
   "bibliothek": {
     "continueReading": "Weiterlesen",
-    "savedPlace": "Zuletzt gelesen"
+    "savedPlace": "Zuletzt gelesen",
+    "hub": {
+      "searchPlaceholder": "Bibliothek durchsuchen"
+    }
   }
 }

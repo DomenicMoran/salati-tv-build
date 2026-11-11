@@ -133,6 +133,8 @@ export const SETTINGS_BEREICHE = [
   'hintergrund',
   'reader',
   'storage',
+  'datenschutz',
+  'impressum',
 ] as const;
 
 export type SettingsBereich = (typeof SETTINGS_BEREICHE)[number];

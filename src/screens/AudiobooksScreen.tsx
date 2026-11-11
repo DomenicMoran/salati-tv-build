@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   useWindowDimensions,
   View,
 } from 'react-native';
@@ -108,6 +109,14 @@ function minuten(sekunden: number | null | undefined): string {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
+function normalizeSearch(s: string): string {
+  return s
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '');
+}
+
 function spurName(track: string, t: (key: string) => string): string {
   if (track === 'grammatik-hoerbuch') return t('audiobooks.grammar');
   if (track === 'pflichtwissen') return t('audiobooks.pflichtwissen');
@@ -151,6 +160,7 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
     setTextFehler(false);
   }
   const [gespeichert, setGespeichert] = useState<Lesefortschritt | null>(null);
+  const [unterlagenQuery, setUnterlagenQuery] = useState('');
   const [inhaltSprache, setInhaltSprache] = useState<string>(locale);
   const [inhaltSpracheBasis, setInhaltSpracheBasis] = useState(locale);
   if (inhaltSpracheBasis !== locale) {
@@ -164,6 +174,14 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
     () => unterlagenAufloesen(unterlagen ?? [], locale, deutscheUnterlagenZeigen),
     [unterlagen, locale, deutscheUnterlagenZeigen],
   );
+
+  const unterlagenGefiltert = useMemo(() => {
+    const q = normalizeSearch(unterlagenQuery);
+    if (!q) return unterlagenAufgeloest.liste;
+    return unterlagenAufgeloest.liste.filter((eintrag) =>
+      normalizeSearch(eintrag.title).includes(q),
+    );
+  }, [unterlagenAufgeloest.liste, unterlagenQuery]);
 
   const neu = () => {
     setFehler(false);
@@ -470,8 +488,21 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
           ) : null}
         </>
       ) : null}
+      {ansicht.art === 'unterlagen' ? (
+        <TextInput
+          value={unterlagenQuery}
+          onChangeText={setUnterlagenQuery}
+          placeholder={t('bibliothek.hub.searchPlaceholder')}
+          placeholderTextColor={theme.textMuted}
+          style={[
+            styles.suchfeld,
+            { color: theme.text, borderColor: theme.accent, backgroundColor: theme.card },
+          ]}
+          accessibilityLabel={t('bibliothek.hub.searchPlaceholder')}
+        />
+      ) : null}
       {ansicht.art === 'unterlagen' &&
-        unterlagenAufgeloest.liste.map((eintrag) => (
+        unterlagenGefiltert.map((eintrag) => (
           <FocusCard key={eintrag.id} onPress={() => buchOeffnen(eintrag.pdf_url, eintrag.title)} style={styles.karte}>
             <Text style={styles.zeile}>{eintrag.title}</Text>
             <Text style={styles.meta}>
@@ -558,6 +589,15 @@ function listenStil(breite: number, hoehe: number, rtl: boolean, theme: Theme) {
       fontSize: klemmen(hoehe * 0.024, 14, 20),
       marginTop: 4,
       textAlign: ausrichtung,
+    },
+    suchfeld: {
+      borderWidth: 2,
+      borderRadius: 10,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      fontSize: klemmen(hoehe * 0.028, 16, 24),
+      marginBottom: 14,
+      minHeight: 52,
     },
     fliesstext: {
       color: theme.text,

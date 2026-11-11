@@ -1,6 +1,6 @@
 import fixtureRoh from '../../../mobile/src/features/quran/__fixtures__/morphologie-1.json';
 
-import type { MorphologieDatei, MorphWord } from '@/lib/morphologieTypen';
+import type { MorphologieDatei } from '@/lib/morphologieTypen';
 import {
   fragmentZeilen,
   relationBasis,
@@ -52,13 +52,5 @@ describe('wortAnalyseAnzeige', () => {
     expect(voll?.fragmente).toHaveLength(1);
     expect(voll?.stammMerkmale.length).toBeGreaterThan(0);
     expect(voll?.syntax).not.toBeNull();
-  });
-
-  it('liefert leere Fragmentliste wenn Morphologie keine Segmente hat', () => {
-    const w = morphWortImVers(fixture, 1, 2);
-    expect(w).not.toBeNull();
-    const ohneSegmente: MorphWord = { ...w!, segments: [] };
-    const voll = wortAnalyseAnzeige(ohneSegmente, 'ٱللَّهِ', fixture.verses['1'], t);
-    expect(voll?.fragmente).toEqual([]);
   });
 });

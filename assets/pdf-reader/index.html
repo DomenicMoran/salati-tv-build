@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    <title>Salati PDF Reader</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      #wrap {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+      }
+      #wrap.scroll-mode {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .page-shell {
+        margin: 10px auto;
+        line-height: 0;
+      }
+      canvas {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+      }
+      body.theme-day {
+        background: #f2f2f2;
+        color: #111;
+      }
+      body.theme-night {
+        background: #121212;
+        color: #e8e8e8;
+      }
+      body.theme-sepia {
+        background: #f4ecd8;
+        color: #3b2f2f;
+      }
+      #status {
+        padding: 16px;
+        font: 14px/1.4 system-ui, sans-serif;
+        text-align: center;
+      }
+      #find-layer {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="theme-day">
+    <div id="wrap" class="paged" aria-live="polite"></div>
+    <div id="status">PDF wird vorbereitet…</div>
+    <div id="find-layer"></div>
+    <script type="module" src="./viewer.mjs"></script>
+  </body>
+</html>

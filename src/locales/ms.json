@@ -409,7 +409,9 @@
       "display": "Rupa",
       "prayer": "Waktu solat",
       "reader": "Al-Quran",
-      "storage": "Storan"
+      "storage": "Storan",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Padam semua",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Sambung baca",
-    "savedPlace": "Terakhir dibaca"
+    "savedPlace": "Terakhir dibaca",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

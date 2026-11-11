@@ -1,7 +1,7 @@
 {
   "name": "@salatibox/tv",
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.16.0",
   "private": true,
   "scripts": {
     "start": "EXPO_TV=1 expo start",

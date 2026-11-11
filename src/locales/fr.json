@@ -409,7 +409,9 @@
       "display": "Apparence",
       "prayer": "Horaires de prière",
       "reader": "Coran",
-      "storage": "Stockage"
+      "storage": "Stockage",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Tout supprimer",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Reprendre la lecture",
-    "savedPlace": "Dernière lecture"
+    "savedPlace": "Dernière lecture",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

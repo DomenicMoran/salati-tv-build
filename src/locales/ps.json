@@ -409,7 +409,9 @@
       "display": "ظاهري بڼه",
       "prayer": "د لمانځه وختونه",
       "reader": "قرآن",
-      "storage": "حافظه"
+      "storage": "حافظه",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "ټول ړنګ کړئ",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "لوستل دوام ورکړئ",
-    "savedPlace": "وروستی لوستل"
+    "savedPlace": "وروستی لوستل",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }

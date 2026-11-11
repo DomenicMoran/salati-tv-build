@@ -409,7 +409,9 @@
       "display": "Внешний вид",
       "prayer": "Время намаза",
       "reader": "Коран",
-      "storage": "Память"
+      "storage": "Память",
+      "datenschutz": "Privacy",
+      "impressum": "Legal notice"
     },
     "storage": {
       "deleteAll": "Удалить всё",
@@ -494,6 +496,9 @@
   },
   "bibliothek": {
     "continueReading": "Продолжить чтение",
-    "savedPlace": "Недавно читали"
+    "savedPlace": "Недавно читали",
+    "hub": {
+      "searchPlaceholder": "Search library"
+    }
   }
 }
