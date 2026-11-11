@@ -80,7 +80,7 @@ module.exports = {
   //   die unterste Kachelreihe. Auch die drei Gebetsruf-Aufnahmen sind
   //   klarer (44,1 statt 32 kHz), und das Hintergrundmotiv laesst sich jetzt
   //   auch hinter Startmenue und Koran-Leser einschalten.
-  version: '1.16.0',
+  version: '1.17.0',
   scheme: 'salatitv',
   orientation: 'landscape',
   icon: './assets/icon.png',
@@ -103,7 +103,8 @@ module.exports = {
     // 24 = 1.14.4 (Bibliothek: Salati Islam-Lernwerk All-in-One).
     // 25 = 1.15.0 (Bibliothek Reader v1: pdf.js, TOC, Fernbedienung).
     // 26 = 1.16.0 (In-App Datenschutz/Impressum; Play-URL-Fix salati.pro/datenschutz).
-    versionCode: 26,
+    // 27 = 1.17.0 (In-App Datenschutz/Impressum + Bibliothek-Reader; ASC Clean-Ship nach PR #6).
+    versionCode: 27,
     // Der Vordergrund darf NICHT icon.png sein: das ist seit 1.8.1 vollflaechig,
     // und die Maske zeigt vom 108-dp-Vordergrund nur die mittleren 72 dp — die
     // Zacken waeren abgeschnitten.
