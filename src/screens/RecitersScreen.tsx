@@ -3,6 +3,7 @@ import { BackHandler, ScrollView, StyleSheet, Text, useWindowDimensions, View } 
 
 import { AudioNowPlaying } from '@/components/AudioNowPlaying';
 import { FocusCard } from '@/components/FocusCard';
+import { QuranArabicText } from '@/components/QuranArabicText';
 import { fokusUeberstand } from '@/components/fokusUeberstand';
 import { StateView } from '@/components/StateView';
 import { SURAHS } from '@/data/surahs';
@@ -167,9 +168,9 @@ function SurahPicker({ reciter, onPick }: { reciter: Reciter; onPick: (n: number
             <Text style={styles.surahName} numberOfLines={1}>
               {s.en}
             </Text>
-            <Text style={styles.surahAr} numberOfLines={1}>
+            <QuranArabicText style={styles.surahAr} numberOfLines={1}>
               {s.ar}
-            </Text>
+            </QuranArabicText>
           </FocusCard>
         ))}
       </ScrollView>

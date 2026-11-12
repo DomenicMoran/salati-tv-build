@@ -474,7 +474,8 @@
       "reader": "Quran",
       "storage": "Storage",
       "datenschutz": "Privacy",
-      "impressum": "Legal notice"
+      "impressum": "Legal notice",
+      "about": "About Salati"
     },
     "storage": {
       "deleteAll": "Delete all",
@@ -559,10 +560,18 @@
   },
   "bibliothek": {
     "continueReading": "Continue reading",
-    "savedPlace": "Last read"
-,
+    "savedPlace": "Last read",
     "hub": {
       "searchPlaceholder": "Search library"
     }
+  },
+  "authorBook": {
+    "eyebrow": "From the developer of Salati",
+    "title": "Wie ich nach 26 Jahren Frieden fand",
+    "body": "Alongside Salati I wrote a personal book — about my path to Islam and taking the shahada on 18 October 2025. Available as paperback and e-book via BoD (self-publishing).",
+    "meta": "Paperback €{printPrice} · Released {releaseDate} · ISBN {isbn}",
+    "ebookNote": "Budget entry €{ebookPrice} (e-book)",
+    "ctaBod": "Order in the BoD bookshop",
+    "ctaAmazon": "On Amazon"
   }
 }

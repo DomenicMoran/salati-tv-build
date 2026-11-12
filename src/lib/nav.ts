@@ -134,6 +134,7 @@ export const SETTINGS_BEREICHE = [
   'reader',
   'storage',
   'datenschutz',
+  'about',
   'impressum',
 ] as const;
 

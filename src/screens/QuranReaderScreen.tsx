@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { AmbientGlow } from '@/components/AmbientGlow';
 import { FocusCard } from '@/components/FocusCard';
+import { QuranArabicText } from '@/components/QuranArabicText';
 import { WortAnalyseOverlay } from '@/components/WortAnalyseOverlay';
 import { fokusUeberstand } from '@/components/fokusUeberstand';
 import { useBedienungSichtbar } from '@/lib/bedienungSichtbar';
@@ -125,7 +126,6 @@ function SurahPicker({
   const cardW = Math.floor((width - padH * 2 - gap * (cols - 1)) / cols) - 1;
   const { t, rtl } = useTranslation();
   const theme = useTheme();
-  const arab = useQuranFont();
   // Der Block wird beim Aufbau festgelegt und danach vom Nutzer gewechselt;
   // die Auswahl selbst bleibt beim Verlassen NICHT erhalten — der Leser kommt
   // ueblicherweise an einer anderen Sure heraus, als er begonnen hat.
@@ -164,7 +164,9 @@ function SurahPicker({
             <Text style={s.name} numberOfLines={1}>{sur.en}</Text>
             {/* Auch der Suren-Name ist arabische Schrift und bekommt deshalb
                 dieselbe gewaehlte Koran-Schrift wie der Vers. */}
-            <Text style={[s.ar, arab.style]} numberOfLines={1}>{arab.text(sur.ar)}</Text>
+            <QuranArabicText style={s.ar} numberOfLines={1}>
+              {sur.ar}
+            </QuranArabicText>
           </FocusCard>
         ))}
       </ScrollView>
@@ -352,7 +354,10 @@ function Reader({ height, width }: { height: number; width: number }) {
 
       <View style={s.header}>
         <Text style={s.surahName} numberOfLines={1}>
-          {surah}. {meta?.en ?? ''} · <Text style={arab.style}>{arab.text(meta?.ar ?? '')}</Text>
+          {surah}. {meta?.en ?? ''} ·{' '}
+          <QuranArabicText baseFontSize={18} baseLineHeight={30}>
+            {meta?.ar ?? ''}
+          </QuranArabicText>
         </Text>
         <Text style={s.verseNo}>
           {t('reader.verseOf', { n: current.n, total: verses.length })}

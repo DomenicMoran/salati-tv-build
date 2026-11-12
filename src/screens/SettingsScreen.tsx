@@ -93,6 +93,7 @@ import { AKZENTE, THEMES } from '@/lib/theme';
 import type { Theme } from '@/lib/theme';
 import { useAllQuranFonts } from '@/lib/useQuranFont';
 import { useTheme } from '@/lib/useTheme';
+import { AuthorBookSettingsSection } from '@/screens/authorBookSettingsSection';
 import { DatenschutzSettingsSection, ImpressumSettingsSection } from '@/screens/legalSettingsSections';
 
 /** Vorschautext der Schriftauswahl — kurz genug fuer eine Kachel und lang
@@ -137,6 +138,7 @@ const SECTION_KEYS: Record<SectionId, string> = {
   reader: 'settings.sections.reader',
   storage: 'settings.sections.storage',
   datenschutz: 'settings.sections.datenschutz',
+  about: 'settings.sections.about',
   impressum: 'settings.sections.impressum',
 };
 
@@ -193,6 +195,7 @@ export function SettingsScreen({ startBereich }: { startBereich?: SectionId | nu
         {section === 'reader' && <ReaderSection s={s} />}
         {section === 'storage' && <StorageSection s={s} />}
         {section === 'datenschutz' && <DatenschutzSettingsSection />}
+        {section === 'about' && <AuthorBookSettingsSection />}
         {section === 'impressum' && <ImpressumSettingsSection />}
       </ScrollView>
     </View>

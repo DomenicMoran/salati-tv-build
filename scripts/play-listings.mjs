@@ -65,6 +65,15 @@ for (const [locale, { title, short, full }] of Object.entries(parsed)) {
   if (!r.ok) process.exit(1);
 }
 
-const commit = await api(`/edits/${editId}:commit`, { method: 'POST' });
+let commit = await api(`/edits/${editId}:commit`, { method: 'POST' });
+let manuell = false;
+if (!commit.ok && JSON.stringify(commit.json ?? '').includes('changesNotSentForReview')) {
+  commit = await api(`/edits/${editId}:commit?changesNotSentForReview=true`, { method: 'POST' });
+  manuell = commit.ok;
+}
 console.log('Commit:', commit.ok ? 'OK' : `${commit.status} ${JSON.stringify(commit.json).slice(0, 300)}`);
+if (manuell) {
+  console.log('HINWEIS: nicht zur Pruefung geschickt. In der Play Console unter');
+  console.log('         „Veroeffentlichungsuebersicht" die Aenderungen einreichen.');
+}
 if (!commit.ok) process.exit(1);

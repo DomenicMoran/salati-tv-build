@@ -474,7 +474,8 @@
       "reader": "Koran",
       "storage": "Speicher",
       "datenschutz": "Datenschutz",
-      "impressum": "Impressum"
+      "impressum": "Impressum",
+      "about": "Über Salati"
     },
     "storage": {
       "deleteAll": "Alle löschen",
@@ -563,5 +564,14 @@
     "hub": {
       "searchPlaceholder": "Bibliothek durchsuchen"
     }
+  },
+  "authorBook": {
+    "eyebrow": "Vom Entwickler von Salati",
+    "title": "Wie ich nach 26 Jahren Frieden fand",
+    "body": "Neben Salati habe ich mein persönliches Buch geschrieben — über meinen Weg zum Islam und die Shahada am 18. Oktober 2025. Erhältlich als Taschenbuch und E-Book über BoD (Selbstverlag).",
+    "meta": "Taschenbuch {printPrice} € · Erscheinung {releaseDate} · ISBN {isbn}",
+    "ebookNote": "günstiger Einstieg {ebookPrice} € (E-Book)",
+    "ctaBod": "Im BoD-Buchshop bestellen",
+    "ctaAmazon": "Bei Amazon"
   }
 }

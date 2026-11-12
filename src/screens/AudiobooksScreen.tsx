@@ -22,6 +22,7 @@ import {
 import { AudioNowPlaying } from '@/components/AudioNowPlaying';
 import { PdfInAppView } from '@/components/PdfInAppView';
 import { FocusCard } from '@/components/FocusCard';
+import { QuranArabicText } from '@/components/QuranArabicText';
 import { StateView } from '@/components/StateView';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { SURAHS } from '@/data/surahs';
@@ -537,7 +538,7 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
               <Text style={styles.zeile}>
                 {sure.n}. {sure.en}
               </Text>
-              <Text style={styles.meta}>{sure.ar}</Text>
+              <QuranArabicText style={styles.meta}>{sure.ar}</QuranArabicText>
             </FocusCard>
           ))}
         </>

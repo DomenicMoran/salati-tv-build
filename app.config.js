@@ -80,7 +80,7 @@ module.exports = {
   //   die unterste Kachelreihe. Auch die drei Gebetsruf-Aufnahmen sind
   //   klarer (44,1 statt 32 kHz), und das Hintergrundmotiv laesst sich jetzt
   //   auch hinter Startmenue und Koran-Leser einschalten.
-  version: '1.18.0',
+  version: '1.19.0',
   scheme: 'salatitv',
   orientation: 'landscape',
   icon: './assets/icon.png',
@@ -104,7 +104,9 @@ module.exports = {
     // 25 = 1.15.0 (Bibliothek Reader v1: pdf.js, TOC, Fernbedienung).
     // 26 = 1.16.0 (In-App Datenschutz/Impressum; Play-URL-Fix salati.pro/datenschutz).
     // 27 = 1.17.0 (In-App Datenschutz/Impressum + Bibliothek-Reader; ASC Clean-Ship nach PR #6).
-    versionCode: 28,
+    // 28 = 1.18.0 (production completed; Reader-Audio Restschluss).
+    // 29 = 1.19.0 (Koran-Surennamen KFGQPC/U+06E1, Buch-Hinweis).
+    versionCode: 29,
     // Der Vordergrund darf NICHT icon.png sein: das ist seit 1.8.1 vollflaechig,
     // und die Maske zeigt vom 108-dp-Vordergrund nur die mittleren 72 dp — die
     // Zacken waeren abgeschnitten.
@@ -116,7 +118,7 @@ module.exports = {
     bundleIdentifier: 'de.salatibox.tv',
     // Wird beim Bauen vom Workflow hochgezaehlt; Apple lehnt eine schon
     // hochgeladene Build-Nummer ab, auch wenn die Version dieselbe bleibt.
-    buildNumber: '12',
+    buildNumber: '16',
     infoPlist: {
       // Der Fernseher oeffnet fuer die Handy-Kopplung einen TCP-Server im WLAN
       // (src/lib/pairing.ts). Ohne diesen Text verweigert tvOS den Zugriff aufs

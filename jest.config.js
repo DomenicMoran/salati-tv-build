@@ -20,6 +20,9 @@ process.env.TZ = process.env.TZ || 'Europe/Berlin';
 module.exports = {
   preset: 'jest-expo',
   setupFiles: ['./jest.setup.js'],
-  moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^test-renderer$': 'react-test-renderer',
+  },
   collectCoverageFrom: ['src/**/*.{ts,tsx}', 'App.tsx', '!src/**/*.test.*'],
 };
