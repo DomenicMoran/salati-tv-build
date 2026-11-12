@@ -1,6 +1,15 @@
 import { useSyncExternalStore } from 'react';
 import { createVideoPlayer, type VideoPlayer } from 'expo-video';
 
+import {
+  AUDIO_MIN_POSITION_SEC,
+  flushAudioProgressNow,
+  loadAudioProgressEntry,
+  saveAudioProgress,
+  type TvAudioProgressEntry,
+  type TvAudioProgressKind,
+} from '@/lib/audioProgress';
+
 // Koran-Wiedergabe, die den Bildschirmwechsel ueberlebt.
 //
 // WARUM ES DIESE DATEI GIBT (Nutzerbefund 2026-08-16): der Ton haing an
@@ -25,7 +34,13 @@ export interface LaufendesStueck {
   coverUrl?: string;
   loop: boolean;
   /** Woher es gestartet wurde — der Hinweis-Streifen verlinkt zurueck. */
-  quelle: 'reciters' | 'radio' | 'podcasts' | 'quran';
+  quelle: 'reciters' | 'radio' | 'podcasts' | 'quran' | 'audiobooks';
+}
+
+export interface AudioFortschrittRef {
+  id: string;
+  kind: TvAudioProgressKind;
+  meta?: TvAudioProgressEntry['meta'];
 }
 
 interface Zustand {
@@ -52,6 +67,39 @@ const hoerer = new Set<() => void>();
  * `abspielen` ohnehin neu gesetzt.
  */
 let beiEnde: (() => void) | null = null;
+let fortschrittAktiv: AudioFortschrittRef | null = null;
+let pendingSeekSec: number | null = null;
+let persistTimer: ReturnType<typeof setInterval> | null = null;
+
+function stopPersistTimer(): void {
+  if (persistTimer) {
+    clearInterval(persistTimer);
+    persistTimer = null;
+  }
+}
+
+function persistPositionNow(): void {
+  if (!spieler || !fortschrittAktiv) return;
+  try {
+    const positionSec = spieler.currentTime ?? 0;
+    const durationSec = spieler.duration ?? 0;
+    void saveAudioProgress({
+      kind: fortschrittAktiv.kind,
+      id: fortschrittAktiv.id,
+      positionSec,
+      durationSec,
+      meta: fortschrittAktiv.meta,
+    });
+  } catch {
+    /* Spieler gerade freigegeben */
+  }
+}
+
+function startPersistTimer(): void {
+  stopPersistTimer();
+  if (!fortschrittAktiv) return;
+  persistTimer = setInterval(persistPositionNow, 5000);
+}
 
 function melden() {
   for (const h of [...hoerer]) h();
@@ -94,10 +142,24 @@ function spielerAufbauen(uri: string, loop: boolean): VideoPlayer {
   p.addListener('playingChange', (e) => {
     zustand = { ...zustand, spielt: e.isPlaying };
     melden();
+    if (e.isPlaying) startPersistTimer();
+    else {
+      stopPersistTimer();
+      persistPositionNow();
+      void flushAudioProgressNow();
+    }
   });
   p.addListener('statusChange', (e) => {
     zustand = { ...zustand, status: e.status };
     melden();
+    if (e.status === 'readyToPlay' && pendingSeekSec != null) {
+      try {
+        p.currentTime = pendingSeekSec;
+      } catch {
+        /* ignore */
+      }
+      pendingSeekSec = null;
+    }
   });
   return p;
 }
@@ -106,19 +168,40 @@ function spielerAufbauen(uri: string, loop: boolean): VideoPlayer {
  * Startet ein Stueck. Laeuft bereits dasselbe, passiert nichts — sonst
  * begaenne die Rezitation bei jedem Betreten des Bildschirms von vorn.
  */
-export function abspielen(stueck: LaufendesStueck, optionen?: { beiEnde?: () => void }): void {
+export function abspielen(
+  stueck: LaufendesStueck,
+  optionen?: { beiEnde?: () => void; fortschritt?: AudioFortschrittRef },
+): void {
   // Der Ende-Rueckruf gilt fuer die LAUFENDE Wiedergabe und wird deshalb auch
   // dann nachgezogen, wenn dieselbe Adresse weiterlaeuft.
   beiEnde = optionen?.beiEnde ?? null;
   if (spieler && zustand.stueck?.uri === stueck.uri) {
     // Gleiche Quelle: nur die Beschriftung nachziehen (z. B. anderer Titel
     // nach einem Sprachwechsel) und weiterlaufen lassen.
+    if (optionen?.fortschritt) fortschrittAktiv = optionen.fortschritt;
     zustand = { ...zustand, stueck };
     melden();
     if (!zustand.spielt) spieler.play();
     return;
   }
+  pendingSeekSec = null;
+  fortschrittAktiv = optionen?.fortschritt ?? null;
+  if (fortschrittAktiv) {
+    void loadAudioProgressEntry(fortschrittAktiv.id).then((entry) => {
+      if (!entry || entry.positionSec < AUDIO_MIN_POSITION_SEC) return;
+      pendingSeekSec = entry.positionSec;
+      if (spieler && zustand.stueck?.uri === stueck.uri && zustand.status === 'readyToPlay') {
+        try {
+          spieler.currentTime = pendingSeekSec;
+        } catch {
+          /* ignore */
+        }
+        pendingSeekSec = null;
+      }
+    });
+  }
   spieler?.release();
+  stopPersistTimer();
   spieler = spielerAufbauen(stueck.uri, stueck.loop);
   zustand = { stueck, spielt: false, status: 'loading' };
   melden();
@@ -155,6 +238,11 @@ export function pausieren(): void {
 /** Beendet die Wiedergabe und gibt den Spieler frei. */
 export function beenden(): void {
   beiEnde = null;
+  stopPersistTimer();
+  persistPositionNow();
+  void flushAudioProgressNow();
+  fortschrittAktiv = null;
+  pendingSeekSec = null;
   spieler?.release();
   spieler = null;
   zustand = { stueck: null, spielt: false, status: 'idle' };
@@ -164,6 +252,9 @@ export function beenden(): void {
 /** Nur fuer Tests: setzt alles auf den Ausgangszustand zurueck. */
 export function zuruecksetzenFuerTest(): void {
   beiEnde = null;
+  fortschrittAktiv = null;
+  pendingSeekSec = null;
+  stopPersistTimer();
   spieler = null;
   zustand = { stueck: null, spielt: false, status: 'idle' };
   hoerer.clear();

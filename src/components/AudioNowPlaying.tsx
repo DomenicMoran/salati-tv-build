@@ -10,6 +10,7 @@ import {
   pausieren,
   umschalten,
   useHintergrundAudio,
+  type AudioFortschrittRef,
   type LaufendesStueck,
 } from '@/lib/hintergrundAudio';
 import {
@@ -47,6 +48,7 @@ export function AudioNowPlaying({
   kickerKey,
   speicherbar,
   quelle,
+  hoerFortschritt,
 }: {
   uri: string;
   title: string;
@@ -54,6 +56,8 @@ export function AudioNowPlaying({
   loop?: boolean;
   coverUrl?: string;
   kickerKey?: string;
+  /** Hörposition — gleicher Speicher wie Mobile (`salatibox:progress:v1:audio`). */
+  hoerFortschritt?: AudioFortschrittRef;
   /**
    * Wenn gesetzt, bekommt der Bildschirm einen Knopf zum Speichern der
    * Rezitation. Nur die Rezitatoren geben ihn mit: ein Radio-Stream hat kein
@@ -76,8 +80,8 @@ export function AudioNowPlaying({
   // Adresse schon, setzt `abspielen` nur die Beschriftung nach und laesst den
   // Ton weiterlaufen — sonst begaenne die Sure bei jedem Betreten von vorn.
   useEffect(() => {
-    abspielen({ uri, title, subtitle, kickerKey, coverUrl, loop, quelle });
-  }, [uri, title, subtitle, kickerKey, coverUrl, loop, quelle]);
+    abspielen({ uri, title, subtitle, kickerKey, coverUrl, loop, quelle }, { fortschritt: hoerFortschritt });
+  }, [uri, title, subtitle, kickerKey, coverUrl, loop, quelle, hoerFortschritt?.id, hoerFortschritt?.kind]);
 
   // Setzt der Gebetsruf ein, verstummt die laufende Rezitation. Zwei Stimmen
   // gleichzeitig aus demselben Fernseher waeren fuer beide respektlos. Danach

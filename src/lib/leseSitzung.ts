@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from 'react';
 
 import { SURAHS } from '@/data/surahs';
+import { quranListenProgressId } from '@/lib/audioProgress';
 import {
   abspielen,
   beenden as audioBeenden,
@@ -156,7 +157,14 @@ function versAbspielen(verses: ReaderVerse[], idx: number, surah: number): void 
       loop: false,
       quelle: 'quran',
     },
-    { beiEnde: versEnde },
+    {
+      beiEnde: versEnde,
+      fortschritt: {
+        id: quranListenProgressId(surah, String(REZITATOR)),
+        kind: 'quran-listen',
+        meta: { surah, ayah: vers.n, reciter: String(REZITATOR) },
+      },
+    },
   );
 }
 

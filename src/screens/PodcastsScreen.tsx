@@ -9,6 +9,7 @@ import { makeRowStyles, rowIconSize } from '@/components/rowStyles';
 import { StateView } from '@/components/StateView';
 import { fetchPodcasts, fmtDuration, groupBySeries,
   kamAusAblage, type PodcastEntry, type Section } from '@/lib/content';
+import { podcastProgressId } from '@/lib/audioProgress';
 import { useTranslation } from '@/lib/i18n';
 import { useTheme } from '@/lib/useTheme';
 
@@ -68,6 +69,11 @@ export function PodcastsScreen() {
         subtitle={playing.series_title ?? t('podcasts.fallbackSeries')}
         coverUrl={playing.cover_url}
         kickerKey="player.kickerPodcast"
+        hoerFortschritt={{
+          id: podcastProgressId(playing.episode_no),
+          kind: 'podcast',
+          meta: { episodeNo: playing.episode_no },
+        }}
       />
     );
   }

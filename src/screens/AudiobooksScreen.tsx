@@ -25,6 +25,7 @@ import { FocusCard } from '@/components/FocusCard';
 import { StateView } from '@/components/StateView';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { SURAHS } from '@/data/surahs';
+import { audiobookProgressId } from '@/lib/audioProgress';
 import { releasePolicy } from '@/data/release-policy';
 import { useTranslation } from '@/lib/i18n';
 import { unterlageHinweis, unterlagenAufloesen } from '@/lib/unterlagen';
@@ -347,6 +348,19 @@ export function AudiobooksScreen({ onQuran }: { onQuran?: () => void }) {
         title={ton.title}
         subtitle={spurName(ton.track, t)}
         kickerKey="audiobooks.kicker"
+        hoerFortschritt={{
+          id: audiobookProgressId(
+            ton.track,
+            ton.chapter_no,
+            ton.lang.trim().toLowerCase().split(/[-_]/)[0] ?? '',
+          ),
+          kind: 'audiobook',
+          meta: {
+            track: ton.track,
+            chapterNo: ton.chapter_no,
+            lang: ton.lang.trim().toLowerCase().split(/[-_]/)[0] ?? '',
+          },
+        }}
       />
     );
   }
